@@ -1,0 +1,214 @@
+[gd_scene format=3 uid="uid://c3jrfqbwsjslo"]
+
+[ext_resource type="Script" uid="uid://cayvnglg8v2xd" path="res://cenas/creature/creatures_eye.gd" id="1_evvns"]
+[ext_resource type="PackedScene" uid="uid://1kb3wwquwmu7" path="res://cenas/the_victim.tscn" id="1_kxg5b"]
+[ext_resource type="Material" uid="uid://cinyiv6adww8j" path="res://recursos/materiais/madeira_mat.tres" id="2_1ap6j"]
+[ext_resource type="PackedScene" uid="uid://brf8x28t534l0" path="res://recursos/models/ilhas/ilhas.tscn" id="4_8c340"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_so80e"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kxg5b"]
+albedo_color = Color(0.43137255, 0.8392157, 0.6431373, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_so80e"]
+size = Vector3(1000, 0.1, 1000)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qn35j"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8c340"]
+size = Vector3(1.5, 1, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1ap6j"]
+size = Vector3(7, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qn35j"]
+size = Vector3(7, 1, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_45nkh"]
+size = Vector3(14, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ysdx3"]
+size = Vector3(14, 1, 3)
+
+[sub_resource type="Environment" id="Environment_kxg5b"]
+background_mode = 1
+background_color = Color(0.9647059, 0.65882355, 0.7019608, 1)
+tonemap_mode = 3
+tonemap_exposure = 0.64
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.9647059, 0.65882355, 0.7019608, 1)
+fog_density = 1.0
+fog_depth_begin = 90.0
+fog_depth_end = 270.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yq54j"]
+top_radius = 5.0
+bottom_radius = 5.0
+height = 5.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qn35j"]
+height = 13.173
+radius = 12.79
+
+[node name="Node3D" type="Node3D" unique_id=1206501729]
+
+[node name="TheBeach" type="Node3D" parent="." unique_id=453127703]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="TheBeach" unique_id=1947376134]
+transform = Transform3D(1, 0, 0, 0, 0.5409451, 0.8410579, 0, -0.8410579, 0.5409451, 0, 45, 0)
+light_color = Color(1, 0.8810025, 0.7647058, 1)
+
+[node name="Water" type="MeshInstance3D" parent="TheBeach" unique_id=1838620708]
+mesh = SubResource("PlaneMesh_so80e")
+surface_material_override/0 = SubResource("StandardMaterial3D_kxg5b")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheBeach/Water" unique_id=1984113861]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Water/StaticBody3D" unique_id=279695935]
+shape = SubResource("BoxShape3D_so80e")
+
+[node name="Pier" type="Node3D" parent="TheBeach" unique_id=1197045304]
+
+[node name="Base" type="MeshInstance3D" parent="TheBeach/Pier" unique_id=1475868120]
+transform = Transform3D(0.6108501, 0, 0.79174626, 0, 1, 0, -0.79174626, 0, 0.6108501, 8.87732, 0.23641062, -12.119812)
+material_override = ExtResource("2_1ap6j")
+mesh = SubResource("BoxMesh_qn35j")
+
+[node name="Base2" type="MeshInstance3D" parent="TheBeach/Pier" unique_id=1178761738]
+transform = Transform3D(0.6108501, 0, 0.79174626, 0, 1, 0, -0.79174626, 0, 0.6108501, 8.001276, 0.9933584, -11.015484)
+material_override = ExtResource("2_1ap6j")
+mesh = SubResource("BoxMesh_8c340")
+
+[node name="ilhas" parent="TheBeach" unique_id=1212567673 instance=ExtResource("4_8c340")]
+transform = Transform3D(1.75, 0, 0, 0, 1.75, 0, 0, 0, 1.75, -13.984642, 0, -6.513108)
+
+[node name="Pontes" type="Node3D" parent="TheBeach" unique_id=11909878]
+
+[node name="Ponte" type="Node3D" parent="TheBeach/Pontes" unique_id=910175755]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2301922, -0.22807193, 26)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TheBeach/Pontes/Ponte" unique_id=1949497279]
+material_override = ExtResource("2_1ap6j")
+mesh = SubResource("BoxMesh_1ap6j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheBeach/Pontes/Ponte" unique_id=475716752]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Pontes/Ponte/StaticBody3D" unique_id=534227202]
+shape = SubResource("BoxShape3D_qn35j")
+
+[node name="Ponte2" type="Node3D" parent="TheBeach/Pontes" unique_id=1068582332]
+transform = Transform3D(0.39058656, 0, -0.9205662, 0, 1, 0, 0.9205662, 0, 0.39058656, -16.28411, -0.22807193, 18.376688)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TheBeach/Pontes/Ponte2" unique_id=892911222]
+material_override = ExtResource("2_1ap6j")
+mesh = SubResource("BoxMesh_1ap6j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheBeach/Pontes/Ponte2" unique_id=476089354]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Pontes/Ponte2/StaticBody3D" unique_id=937752365]
+shape = SubResource("BoxShape3D_qn35j")
+
+[node name="Ponte3" type="Node3D" parent="TheBeach/Pontes" unique_id=1154380570]
+transform = Transform3D(-0.55404556, 0, -0.8324863, 0, 1, 0, 0.8324863, 0, -0.55404556, -25.595684, -0.22807193, 18.177855)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TheBeach/Pontes/Ponte3" unique_id=1473829693]
+material_override = ExtResource("2_1ap6j")
+mesh = SubResource("BoxMesh_1ap6j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheBeach/Pontes/Ponte3" unique_id=1268911571]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Pontes/Ponte3/StaticBody3D" unique_id=1016851855]
+shape = SubResource("BoxShape3D_qn35j")
+
+[node name="Ponte4" type="Node3D" parent="TheBeach/Pontes" unique_id=114896022]
+transform = Transform3D(0.5222008, 0, -0.8528224, 0, 1, 0, 0.8528224, 0, 0.5222008, -32.32979, -0.22807193, 17.211262)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TheBeach/Pontes/Ponte4" unique_id=1581010690]
+material_override = ExtResource("2_1ap6j")
+mesh = SubResource("BoxMesh_1ap6j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheBeach/Pontes/Ponte4" unique_id=636682168]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Pontes/Ponte4/StaticBody3D" unique_id=956187204]
+shape = SubResource("BoxShape3D_qn35j")
+
+[node name="Pontezona" type="Node3D" parent="TheBeach/Pontes" unique_id=1106337660]
+transform = Transform3D(-0.12296066, 0, -0.9924115, 0, 1, 0, 0.9924115, 0, -0.12296066, -35.641403, -0.22807205, -0.20798331)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TheBeach/Pontes/Pontezona" unique_id=437278048]
+material_override = ExtResource("2_1ap6j")
+mesh = SubResource("BoxMesh_45nkh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheBeach/Pontes/Pontezona" unique_id=1732710508]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Pontes/Pontezona/StaticBody3D" unique_id=2092588424]
+shape = SubResource("BoxShape3D_ysdx3")
+
+[node name="Pontezona3" type="Node3D" parent="TheBeach/Pontes" unique_id=596087986]
+transform = Transform3D(-0.9927573, 0, -0.12013682, 0, 1, 0, 0.12013682, 0, -0.9927573, -11.513434, -0.3284253, -27.473986)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TheBeach/Pontes/Pontezona3" unique_id=2050487102]
+material_override = ExtResource("2_1ap6j")
+mesh = SubResource("BoxMesh_45nkh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheBeach/Pontes/Pontezona3" unique_id=1324079100]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Pontes/Pontezona3/StaticBody3D" unique_id=1865052631]
+shape = SubResource("BoxShape3D_ysdx3")
+
+[node name="Pontezona4" type="Node3D" parent="TheBeach/Pontes" unique_id=1523030914]
+transform = Transform3D(0.094212614, 0, 0.99555206, 0, 1, 0, -0.99555206, 0, 0.094212614, 20.696913, -0.3284253, 3.704977)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TheBeach/Pontes/Pontezona4" unique_id=1183296118]
+material_override = ExtResource("2_1ap6j")
+mesh = SubResource("BoxMesh_45nkh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheBeach/Pontes/Pontezona4" unique_id=1752846076]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Pontes/Pontezona4/StaticBody3D" unique_id=1151629403]
+shape = SubResource("BoxShape3D_ysdx3")
+
+[node name="Pontezona2" type="Node3D" parent="TheBeach/Pontes" unique_id=1256985669]
+transform = Transform3D(0.5678868, 0, -0.8231067, 0, 1, 0, 0.8231067, 0, 0.5678868, -35.75452, -0.22807539, -43.502327)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TheBeach/Pontes/Pontezona2" unique_id=1711444562]
+material_override = ExtResource("2_1ap6j")
+mesh = SubResource("BoxMesh_45nkh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheBeach/Pontes/Pontezona2" unique_id=1611997908]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Pontes/Pontezona2/StaticBody3D" unique_id=2066443167]
+shape = SubResource("BoxShape3D_ysdx3")
+
+[node name="TheCreature" type="Node3D" parent="." unique_id=1480783709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2550864, 0, 2.6688201)
+
+[node name="ItsEye" type="Node3D" parent="TheCreature" unique_id=1862773437 node_paths=PackedStringArray("cam", "victim")]
+script = ExtResource("1_evvns")
+cam = NodePath("Camera3D")
+victim = NodePath("../../TheVictim")
+
+[node name="Camera3D" type="Camera3D" parent="TheCreature/ItsEye" unique_id=408621461]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 15, 0)
+environment = SubResource("Environment_kxg5b")
+fov = 50.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TheCreature" unique_id=1594302015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7449389, 0)
+visible = false
+mesh = SubResource("CylinderMesh_yq54j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheCreature" unique_id=1587913694]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheCreature/StaticBody3D" unique_id=778996947]
+shape = SubResource("CylinderShape3D_qn35j")
+
+[node name="TheVictim" parent="." unique_id=762061992 node_paths=PackedStringArray("center") instance=ExtResource("1_kxg5b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9457245, 2.2058544, -17.115946)
+center = NodePath("../TheCreature/ItsEye/Camera3D")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=414156041]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.01216, 0, 77.728966)

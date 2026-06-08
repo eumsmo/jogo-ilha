@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://1kb3wwquwmu7"]
+
+[ext_resource type="Script" uid="uid://dtw7g2xhd2ojv" path="res://cenas/the_victim.gd" id="1_s7l8g"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_so80e"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kxg5b"]
+
+[node name="TheVictim" type="CharacterBody3D" unique_id=762061992]
+script = ExtResource("1_s7l8g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1279903870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_so80e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=434184874]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_kxg5b")

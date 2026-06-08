@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://brf8x28t534l0"]
+
+[ext_resource type="PackedScene" uid="uid://d32hbshxf2xob" path="res://recursos/models/ilhas/ilhas.fbx" id="1_c8fo1"]
+[ext_resource type="Shape3D" uid="uid://bw2tlfgx5ny8e" path="res://recursos/models/ilhas/ilha_polygon_shape.tres" id="2_vc3v2"]
+
+[node name="ilhas" unique_id=1212567673 instance=ExtResource("1_c8fo1")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ilhas" parent_id_path=PackedInt32Array(2078393851) index="0" unique_id=2138221308]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ilhas/StaticBody3D" index="0" unique_id=1036727391]
+shape = ExtResource("2_vc3v2")
