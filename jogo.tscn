@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://c3jrfqbwsjslo"]
 
+[ext_resource type="Script" uid="uid://c4ios5c2e0s8w" path="res://jogo.gd" id="1_8c340"]
 [ext_resource type="Script" uid="uid://cayvnglg8v2xd" path="res://cenas/creature/creatures_eye.gd" id="1_evvns"]
 [ext_resource type="PackedScene" uid="uid://1kb3wwquwmu7" path="res://cenas/the_victim.tscn" id="1_kxg5b"]
 [ext_resource type="Material" uid="uid://cinyiv6adww8j" path="res://recursos/materiais/madeira_mat.tres" id="2_1ap6j"]
+[ext_resource type="Script" uid="uid://tl8ndvake8h" path="res://scripts/interactable.gd" id="3_qn35j"]
 [ext_resource type="PackedScene" uid="uid://brf8x28t534l0" path="res://recursos/models/ilhas/ilhas.tscn" id="4_8c340"]
+[ext_resource type="PackedScene" uid="uid://cu8dc566tc1ea" path="res://cenas/items/red_flower.tscn" id="4_ysdx3"]
+[ext_resource type="Texture2D" uid="uid://ccgnepiysvidp" path="res://recursos/sprites/circle.png" id="7_45nkh"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_so80e"]
 size = Vector2(1000, 1000)
@@ -16,6 +20,12 @@ size = Vector3(1000, 0.1, 1000)
 
 [sub_resource type="BoxMesh" id="BoxMesh_qn35j"]
 size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ap6j"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8c340"]
+size = Vector3(1.5, 1, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_8c340"]
 size = Vector3(1.5, 1, 2)
@@ -31,6 +41,28 @@ size = Vector3(14, 1, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ysdx3"]
 size = Vector3(14, 1, 3)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8c340"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_45nkh"]
+height = 1.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ysdx3"]
+friction = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t8pok"]
+size = Vector3(1, 10, 11.5)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ysdx3"]
+radius = 4.229004
+height = 13.522949
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t8pok"]
+radius = 4.229004
+height = 13.522949
 
 [sub_resource type="Environment" id="Environment_kxg5b"]
 background_mode = 1
@@ -53,7 +85,10 @@ height = 5.0
 height = 13.173
 radius = 12.79
 
-[node name="Node3D" type="Node3D" unique_id=1206501729]
+[node name="Game" type="Node3D" unique_id=1206501729 node_paths=PackedStringArray("victim", "interact_indicator")]
+script = ExtResource("1_8c340")
+victim = NodePath("TheVictim")
+interact_indicator = NodePath("InteractablePointer")
 
 [node name="TheBeach" type="Node3D" parent="." unique_id=453127703]
 
@@ -76,6 +111,15 @@ shape = SubResource("BoxShape3D_so80e")
 transform = Transform3D(0.6108501, 0, 0.79174626, 0, 1, 0, -0.79174626, 0, 0.6108501, 8.87732, 0.23641062, -12.119812)
 material_override = ExtResource("2_1ap6j")
 mesh = SubResource("BoxMesh_qn35j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheBeach/Pier/Base" unique_id=1652994134]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Pier/Base/StaticBody3D" unique_id=216021154]
+shape = SubResource("BoxShape3D_1ap6j")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TheBeach/Pier/Base/StaticBody3D" unique_id=1342254387]
+transform = Transform3D(1.0000002, 0, 0, 0, 1, 0, 0, 0, 1.0000002, -1.3523617, 0.9396055, -0.003171444)
+shape = SubResource("BoxShape3D_8c340")
 
 [node name="Base2" type="MeshInstance3D" parent="TheBeach/Pier" unique_id=1178761738]
 transform = Transform3D(0.6108501, 0, 0.79174626, 0, 1, 0, -0.79174626, 0, 0.6108501, 8.001276, 0.9933584, -11.015484)
@@ -183,16 +227,98 @@ mesh = SubResource("BoxMesh_45nkh")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Pontes/Pontezona2/StaticBody3D" unique_id=2066443167]
 shape = SubResource("BoxShape3D_ysdx3")
 
+[node name="Objetos" type="Node3D" parent="TheBeach" unique_id=890866312]
+
+[node name="RedFlower" parent="TheBeach/Objetos" unique_id=1744809044 instance=ExtResource("4_ysdx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.524368, 2.197656, -12.440262)
+
+[node name="RedFlower2" parent="TheBeach/Objetos" unique_id=275311469 instance=ExtResource("4_ysdx3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.289593, 2.197656, -16.444073)
+
+[node name="ObjectTest3" type="Node3D" parent="TheBeach/Objetos" unique_id=1945925504]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.609295, 2.097341, -51.824013)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TheBeach/Objetos/ObjectTest3" unique_id=1023160422]
+mesh = SubResource("CylinderMesh_8c340")
+
+[node name="Interactable" type="StaticBody3D" parent="TheBeach/Objetos/ObjectTest3" unique_id=490329366 node_paths=PackedStringArray("indicator_holder")]
+script = ExtResource("3_qn35j")
+indicator_holder = NodePath("../IndicatorHolder")
+metadata/_custom_type_script = "uid://tl8ndvake8h"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Objetos/ObjectTest3/Interactable" unique_id=1791959100]
+shape = SubResource("CapsuleShape3D_45nkh")
+
+[node name="IndicatorHolder" type="Marker3D" parent="TheBeach/Objetos/ObjectTest3" unique_id=1751156276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="ObjectTest2" type="Node3D" parent="TheBeach/Objetos" unique_id=2046266906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.50102, 2.6448722, -15.564501)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TheBeach/Objetos/ObjectTest2" unique_id=232201718]
+mesh = SubResource("CylinderMesh_8c340")
+
+[node name="Interactable" type="StaticBody3D" parent="TheBeach/Objetos/ObjectTest2" unique_id=1432787897 node_paths=PackedStringArray("indicator_holder")]
+script = ExtResource("3_qn35j")
+indicator_holder = NodePath("../IndicatorHolder")
+metadata/_custom_type_script = "uid://tl8ndvake8h"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Objetos/ObjectTest2/Interactable" unique_id=1159670767]
+shape = SubResource("CapsuleShape3D_45nkh")
+
+[node name="IndicatorHolder" type="Marker3D" parent="TheBeach/Objetos/ObjectTest2" unique_id=1660273252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Limites" type="Node3D" parent="TheBeach" unique_id=1125645722]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheBeach/Limites" unique_id=3398026]
+physics_material_override = SubResource("PhysicsMaterial_ysdx3")
+
+[node name="ParedesInternas" type="CollisionPolygon3D" parent="TheBeach/Limites/StaticBody3D" unique_id=360314320]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 4.0085373, 0)
+visible = false
+depth = 10.0
+polygon = PackedVector2Array(12.638965, -11.599781, 11.046014, -14.078828, 9.431895, -16.73255, 7.052044, -18.600605, 2.8389175, -19.421343, 1.1700838, -20.324156, -0.08838296, -21.664696, -0.52610993, -23.99012, -0.9496646, -24.391262, -6.0789366, -24.305666, -6.459732, -23.132149, -6.6760287, -21.877615, -7.669282, -20.35407, -9.226654, -19.58931, -10.994255, -19.452316, -12.562474, -19.690851, -13.857767, -19.813808, -14.858357, -17.164083, -14.027181, -16.327887, -13.4812155, -15.204964, -13.095038, -13.504941, -13.385061, -11.337842, -14.410615, -9.688912, -16.482317, -7.994654, -18.470432, -7.1347175, -20.57621, -7.5268407, -22.198303, -8.477912, -25.14432, -10.4620495, -25.68303, -12.6387615, -25.143803, -14.561031, -28.02786, -18.850838, -28.813179, -18.759972, -29.42892, -18.725693, -32.194187, -14.263435, -31.311502, -13.130579, -30.962706, -11.31681, -31.175632, -8.690722, -31.86055, -6.41337, -33.21772, -5.2469864, -34.509003, -4.4618, -33.3359, 4.79311, -31.828964, 5.1766434, -30.20378, 7.3719974, -28.98168, 10.0015745, -27.779814, 11.913323, -26.022839, 13.92094, -24.165207, 15.882741, -22.746319, 18.354544, -21.126196, 19.740429, -19.161894, 21.080189, -17.903894, 22.616035, -17.438805, 24.036472, -17.139786, 25.127144, -5.690149, 26.588987, -4.687996, 25.134487, -3.1130903, 23.282722, -0.15046942, 21.93468, 2.3826728, 20.57429, 4.3351016, 18.573986, 6.2818685, 16.67413, 7.680406, 14.832494, 5.682984, 11.687971, 9.269698, 8.743392, 10.883245, 10.619412, 11.41935, 9.443033, 12.051542, 7.6135902, 12.87228, 5.397597, 14.595832, 3.5919726, 16.647675, 2.525013, 18.125008, 2.0325706, 19.42643, 1.4063084, 18.337627, -9.362125, 15.606161, -9.495562, 14.116296, -10.286599)
+
+[node name="ParedesExternas" type="CollisionPolygon3D" parent="TheBeach/Limites/StaticBody3D" unique_id=797498127]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+visible = false
+depth = 10.0
+polygon = PackedVector2Array(21.655718, -10.181248, 26.426697, -11.968907, 30.017296, -13.753242, 34.15617, -15.842874, 36.29177, -17.915024, 37.280735, -19.37614, 37.914314, -21.385096, 37.94604, -23.488972, 37.524406, -25.889404, 36.331753, -28.298029, 35.70936, -30.746796, 35.687943, -33.200806, 35.216663, -35.550724, 33.54342, -37.89015, 31.328453, -39.173046, 28.20546, -41.199306, 26.026209, -43.295013, 23.30868, -44.77387, 19.642214, -45.943928, 16.028017, -46.864014, 13.422013, -47.04162, 10.770734, -46.667877, 7.6695924, -46.190044, 4.3768625, -44.708824, 2.2465067, -42.789787, 1.0607145, -40.92627, 1.1958416, -36.920593, 1.0814366, -32.812565, 0.15610275, -29.79935, -0.42608443, -27.640585, -6.281741, -27.643385, -6.9009376, -29.878916, -8.081603, -31.35205, -10.297693, -32.12177, -13.171587, -32.317627, -15.40767, -31.76155, -17.669254, -30.51088, -18.69173, -28.324144, -19.168287, -26.491564, -18.2634, -24.069149, -17.68017, -22.338305, -16.817581, -21.146458, -18.211618, -18.135859, -19.58174, -18.454416, -21.003593, -18.631382, -22.263794, -18.367886, -23.49078, -17.9153, -25.248892, -20.45652, -24.508608, -22.077374, -23.857965, -23.471798, -23.650267, -24.988611, -23.980465, -26.658539, -24.440758, -28.769209, -25.810509, -30.20913, -27.807882, -31.233261, -30.270945, -31.36958, -32.78914, -30.590103, -34.6042, -28.806765, -35.689796, -26.619478, -35.864834, -24.976704, -35.08701, -22.647867, -33.841022, -20.922804, -32.633476, -19.98647, -35.41069, -15.277051, -38.222015, -15.53658, -39.862312, -15.427579, -41.7306, -14.192715, -42.981434, -12.856175, -43.467392, -10.674123, -43.194805, -8.372441, -42.22955, -6.266178, -40.234596, -4.784672, -38.114014, -4.1088037, -36.870373, 5.177228, -38.515594, 5.961469, -40.07845, 7.711045, -41.133038, 9.834932, -42.58792, 11.354643, -45.222717, 13.239822, -47.831738, 14.461964, -49.77882, 15.583643, -51.915264, 16.706974, -54.020855, 17.16568, -57.23447, 17.824974, -60.765068, 18.329224, -63.444366, 18.731354, -65.744125, 19.224861, -67.53919, 19.682402, -68.05946, 21.549128, -67.7487, 24.607975, -66.90914, 26.77846, -65.0693, 27.835527, -62.782482, 28.050507, -59.50244, 27.769382, -55.72157, 27.01045, -52.474735, 26.540241, -50.55205, 26.239399, -48.81873, 25.94021, -47.436695, 25.17065, -45.74292, 23.956495, -44.487675, 23.124916, -43.06405, 22.068981, -41.431187, 21.107857, -39.44676, 20.648664, -36.60663, 20.592318, -34.708344, 21.112312, -33.243908, 22.551407, -32.183144, 24.455643, -31.87955, 26.693926, -32.648228, 28.784317, -33.982174, 31.447206, -35.241913, 33.6085, -35.349976, 35.692566, -34.162422, 37.954704, -40.324078, 47.239285, -41.68673, 46.563324, -43.70905, 46.29691, -45.43852, 47.03794, -46.752197, 48.40659, -48.28019, 50.534615, -49.359467, 52.14325, -48.640358, 54.977596, -47.080696, 56.478985, -42.80439, 58.240726, -40.531788, 58.252457, -38.805073, 57.195827, -38.06113, 55.64277, -37.221294, 53.474766, -36.8602, 51.45162, -37.25462, 49.656, -37.420956, 48.679012, -31.316961, 39.935715, -29.77107, 39.859097, -27.82426, 38.70586, -26.214176, 37.39463, -24.679852, 35.992493, -22.863966, 34.303833, -21.17432, 32.616276, -19.895506, 30.86918, -18.58458, 29.184929, -17.832922, 28.515558, -5.9460278, 29.838017, -5.4072, 31.118357, -4.1027718, 32.306347, -1.8268671, 32.6968, 1.9274035, 32.50622, 3.876693, 31.637026, 6.0093527, 30.390972, 9.063241, 29.512133, 11.768868, 28.510086, 16.664024, 24.819836, 19.710718, 23.799257, 28.278519, 22.656866, 30.861984, 21.551596, 31.950912, 19.774998, 33.264755, 14.241362, 33.30032, 8.844109, 32.640793, 4.9843454, 31.261415, 3.0084007, 29.043077, 1.9233266, 26.168234, 1.5434549, 22.703442, 1.058289, 43.180313, -9.024139, 46.396103, 43.858276, -73.418915, 72.61304, -80.82179, -2.7372744, -14.336746, -55.13977, 39.839127, -56.546234, 42.524, -14.18)
+
+[node name="FixGambiarra" type="CollisionShape3D" parent="TheBeach/Limites/StaticBody3D" unique_id=1074224652]
+transform = Transform3D(0.99671, 0, -0.08105135, 0, 1, 0, 0.08105135, 0, 0.99671, 22.668, 0, 4.709)
+visible = false
+shape = SubResource("BoxShape3D_t8pok")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Limites/StaticBody3D" unique_id=20545279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.427256, 2.9162598, 25.392643)
+visible = false
+shape = SubResource("CapsuleShape3D_ysdx3")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="TheBeach/Limites/StaticBody3D" unique_id=1017157150]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.19655, 2.9162598, 35.849323)
+visible = false
+shape = SubResource("CapsuleShape3D_t8pok")
+
 [node name="TheCreature" type="Node3D" parent="." unique_id=1480783709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2550864, 0, 2.6688201)
 
-[node name="ItsEye" type="Node3D" parent="TheCreature" unique_id=1862773437 node_paths=PackedStringArray("cam", "victim")]
+[node name="EyeBottomRef" type="Marker3D" parent="TheCreature" unique_id=426806147]
+
+[node name="EyeTopRef" type="Marker3D" parent="TheCreature" unique_id=961510593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+
+[node name="Eye" type="Node3D" parent="TheCreature" unique_id=1616323726 node_paths=PackedStringArray("cam", "victim", "creature", "top_ref", "bottom_ref")]
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 15, 0)
 script = ExtResource("1_evvns")
 cam = NodePath("Camera3D")
 victim = NodePath("../../TheVictim")
+creature = NodePath("..")
+top_ref = NodePath("../EyeTopRef")
+bottom_ref = NodePath("../EyeBottomRef")
 
-[node name="Camera3D" type="Camera3D" parent="TheCreature/ItsEye" unique_id=408621461]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 15, 0)
+[node name="Camera3D" type="Camera3D" parent="TheCreature/Eye" unique_id=408621461]
 environment = SubResource("Environment_kxg5b")
 fov = 50.0
 
@@ -208,7 +334,25 @@ shape = SubResource("CylinderShape3D_qn35j")
 
 [node name="TheVictim" parent="." unique_id=762061992 node_paths=PackedStringArray("center") instance=ExtResource("1_kxg5b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9457245, 2.2058544, -17.115946)
-center = NodePath("../TheCreature/ItsEye/Camera3D")
+center = NodePath("../TheCreature/Eye/Camera3D")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=414156041]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 145.01216, 0, 77.728966)
+
+[node name="InteractablePointer" type="Node3D" parent="." unique_id=665730938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.299533, 0)
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="InteractablePointer" unique_id=218912616]
+transform = Transform3D(0.42, 0, 0, 0, 0.42, 0, 0, 0, 0.42, 0, 0, 0)
+billboard = 1
+no_depth_test = true
+texture = ExtResource("7_45nkh")
+
+[node name="Label3D" type="Label3D" parent="InteractablePointer" unique_id=1784952485]
+billboard = 1
+no_depth_test = true
+render_priority = 1
+modulate = Color(0, 0, 0, 1)
+text = "E"
+font_size = 180

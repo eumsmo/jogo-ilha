@@ -10,10 +10,15 @@ config_version=5
 
 [application]
 
-config/name="lying"
+config/name="Jogo da Praia"
+config/description="Jogo produzido por Juan Vitor (Cebojuan) e Maria Fernanda (MaryLife) para a GameJam ComfyJam Summer 2026 (https://itch.io/jam/comfy-jam-summer-2026) com o tema \"The Instructions are a lie\"."
 run/main_scene="uid://c3jrfqbwsjslo"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Globals="*uid://dk6r6hwn2csm5"
 
 [filesystem]
 

@@ -1,18 +1,80 @@
 [gd_scene format=3 uid="uid://1kb3wwquwmu7"]
 
 [ext_resource type="Script" uid="uid://dtw7g2xhd2ojv" path="res://cenas/the_victim.gd" id="1_s7l8g"]
+[ext_resource type="Script" uid="uid://ddsqayr6gd8ld" path="res://cenas/victim/camera.gd" id="2_3j8e3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_so80e"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_cd81x"]
+size = Vector3(0.5, 0.4, 0.2)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kxg5b"]
 
-[node name="TheVictim" type="CharacterBody3D" unique_id=762061992]
-script = ExtResource("1_s7l8g")
+[sub_resource type="SphereShape3D" id="SphereShape3D_s7l8g"]
+radius = 1.5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1279903870]
+[node name="TheVictim" type="CharacterBody3D" unique_id=762061992 node_paths=PackedStringArray("shape_cast")]
+script = ExtResource("1_s7l8g")
+shape_cast = NodePath("ShapeCast3D")
+
+[node name="Body" type="Node3D" parent="." unique_id=532842855]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body" unique_id=1279903870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_so80e")
+
+[node name="NasMoes" type="Node3D" parent="Body" unique_id=911029733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1519258, 0.7180909)
+
+[node name="Camera" type="Node3D" parent="Body/NasMoes" unique_id=1049223435 node_paths=PackedStringArray("camera", "camera_viewpoint")]
+script = ExtResource("2_3j8e3")
+camera = NodePath("Control/SubViewportContainer/SubViewport/Camera3D")
+camera_viewpoint = NodePath("CameraViewPoint")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/NasMoes/Camera" unique_id=286653145]
+mesh = SubResource("BoxMesh_cd81x")
+
+[node name="CameraViewPoint" type="Node3D" parent="Body/NasMoes/Camera" unique_id=338728636]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.220446e-15, 0, 0.18148148)
+
+[node name="Control" type="Control" parent="Body/NasMoes/Camera" unique_id=1722424761]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -560.0
+offset_right = -623.0
+offset_bottom = -696.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Body/NasMoes/Camera/Control" unique_id=1907996473]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Body/NasMoes/Camera/Control/SubViewportContainer" unique_id=1167095173]
+handle_input_locally = false
+render_target_clear_mode = 1
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Body/NasMoes/Camera/Control/SubViewportContainer/SubViewport" unique_id=1079464591]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.1519258, 0.72145057)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=434184874]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_kxg5b")
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="." unique_id=25382642]
+shape = SubResource("SphereShape3D_s7l8g")
+target_position = Vector3(0, 0, 0)
+max_results = 4
+debug_shape_custom_color = Color(1, 0, 1, 1)
+
+[connection signal="using_action" from="." to="Body/NasMoes/Camera" method="take_picture"]
