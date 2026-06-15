@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cjbqvolctlt8r"]
+
+[ext_resource type="PackedScene" uid="uid://c54yfrjld5c6b" path="res://recursos/models/itens/vara_pesca.fbx" id="1_0rxgx"]
+
+[node name="VaraPesca" type="Node3D" unique_id=1898407150]
+
+[node name="vara_pesca" parent="." unique_id=1306104136 instance=ExtResource("1_0rxgx")]

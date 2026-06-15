@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cbfuwnuqkufwx"]
+
+[ext_resource type="PackedScene" uid="uid://b1x1cf45fnkv" path="res://recursos/models/natureza/arvore.fbx" id="1_ihv04"]
+
+[node name="Arvore" type="Node3D" unique_id=829681782]
+
+[node name="arvore" parent="." unique_id=639062356 instance=ExtResource("1_ihv04")]
