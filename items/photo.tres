@@ -6,4 +6,5 @@
 [resource]
 script = ExtResource("2_xcfwj")
 img = ExtResource("1_o6vjg")
+max_quant = 4
 metadata/_custom_type_script = "uid://sledefw12tar"

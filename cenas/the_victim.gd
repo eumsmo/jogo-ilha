@@ -14,6 +14,10 @@ const JUMP_VELOCITY = 4.5
 var on_hand: HandTool
 @export var tools_holder: Node3D
 
+@export var camera: HandTool
+@export var fishing_rod: HandTool
+@export var hands: HandTool
+
 
 # Interactable
 @export var shape_cast: ShapeCast3D
@@ -33,7 +37,7 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		on_hand.use_tool()
+		on_hand.use_tool(self)
 	
 	if event.is_action_pressed("switch"):
 		switch_hand_tool()

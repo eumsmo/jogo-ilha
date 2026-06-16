@@ -5,3 +5,4 @@
 [node name="Maca" type="Node3D" unique_id=1644423440]
 
 [node name="maca" parent="." unique_id=688026923 instance=ExtResource("1_pogy2")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

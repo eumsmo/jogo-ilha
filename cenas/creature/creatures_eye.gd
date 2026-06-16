@@ -10,7 +10,6 @@ extends Node3D
 @export var start_closing_dist: float = 23.0
 @export var closest_dist: float = 13.0
 
-
 func _physics_process(_delta: float) -> void:
 	cam.look_at(victim.position)
 	

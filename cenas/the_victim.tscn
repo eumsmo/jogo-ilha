@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://xbqavrhimxwa" path="res://cenas/victim/hand_tool.gd" id="4_2uvyr"]
 [ext_resource type="PackedScene" uid="uid://c54yfrjld5c6b" path="res://recursos/models/itens/vara_pesca.fbx" id="4_w1wq2"]
 [ext_resource type="Texture2D" uid="uid://c01caihepf70m" path="res://recursos/sprites/cam.png" id="5_k6mmk"]
+[ext_resource type="Resource" uid="uid://dd4pigl04vkpc" path="res://items/photo.tres" id="5_lysed"]
 [ext_resource type="Script" uid="uid://cskga41wg3d7l" path="res://cenas/victim/fishing_rod.gd" id="5_sud1n"]
 [ext_resource type="Texture2D" uid="uid://cwk58bp5xc0d0" path="res://recursos/sprites/fishing.png" id="8_k6mmk"]
 
@@ -18,10 +19,13 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_s7l8g"]
 radius = 1.5
 
-[node name="TheVictim" type="CharacterBody3D" unique_id=762061992 node_paths=PackedStringArray("inventory", "tools_holder", "shape_cast")]
+[node name="TheVictim" type="CharacterBody3D" unique_id=762061992 node_paths=PackedStringArray("inventory", "tools_holder", "camera", "fishing_rod", "hands", "shape_cast")]
 script = ExtResource("1_s7l8g")
 inventory = NodePath("Inventory")
 tools_holder = NodePath("Body/NasMoes")
+camera = NodePath("Body/NasMoes/Camera")
+fishing_rod = NodePath("Body/NasMoes/VaraDePesca")
+hands = NodePath("Body/NasMoes/Moes")
 shape_cast = NodePath("ShapeCast3D")
 
 [node name="Body" type="Node3D" parent="." unique_id=532842855]
@@ -41,6 +45,7 @@ img = ExtResource("3_vp0ll")
 [node name="Camera" type="Node3D" parent="Body/NasMoes" unique_id=1049223435 node_paths=PackedStringArray("camera", "camera_viewpoint")]
 visible = false
 script = ExtResource("2_3j8e3")
+photo_item = ExtResource("5_lysed")
 camera = NodePath("Control/SubViewportContainer/SubViewport/Camera3D")
 camera_viewpoint = NodePath("CameraViewPoint")
 available = true
@@ -67,12 +72,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Body/NasMoes/Camera/Control" unique_id=1907996473]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+stretch_shrink = 3
 
 [node name="SubViewport" type="SubViewport" parent="Body/NasMoes/Camera/Control/SubViewportContainer" unique_id=1167095173]
 handle_input_locally = false

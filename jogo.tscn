@@ -14,11 +14,9 @@
 [ext_resource type="Script" uid="uid://dwigjcvo2jsan" path="res://cenas/creature/creature_demands.gd" id="9_qlqx7"]
 [ext_resource type="Script" uid="uid://bhxcormw418t5" path="res://cenas/creature/demand.gd" id="10_dwd3o"]
 [ext_resource type="Script" uid="uid://c5nru43e0eiis" path="res://cenas/creature/item_quant.gd" id="11_0ebkc"]
-[ext_resource type="PackedScene" uid="uid://c03b32i2i2kdi" path="res://cenas/ui/slot_de_inventario.tscn" id="12_7rhuj"]
 [ext_resource type="Resource" uid="uid://chvf63nkceeph" path="res://items/fruit.tres" id="12_dwd3o"]
-[ext_resource type="Script" uid="uid://bxcjjme8q0erw" path="res://scripts/inventory_ui.gd" id="12_msvki"]
 [ext_resource type="Resource" uid="uid://dkcxnyv08ip06" path="res://items/flower.tres" id="13_0ebkc"]
-[ext_resource type="Texture2D" uid="uid://h4bxi237oj3w" path="res://recursos/sprites/hand.png" id="13_2ka1p"]
+[ext_resource type="PackedScene" uid="uid://cbfuwnuqkufwx" path="res://recursos/models/natureza/arvore.tscn" id="17_qlqx7"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_8c340"]
 top_radius = 0.25
@@ -440,7 +438,7 @@ mesh = SubResource("CylinderMesh_yq54j")
 shape = SubResource("CylinderShape3D_qn35j")
 
 [node name="TheVictim" parent="." unique_id=762061992 node_paths=PackedStringArray("center") instance=ExtResource("1_kxg5b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.912954, 2.6675053, -9.308842)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.468973, 2.9158435, 36.08899)
 center = NodePath("../TheCreature/Eye/Camera3D")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=414156041]
@@ -464,137 +462,8 @@ modulate = Color(0, 0, 0, 1)
 text = "E"
 font_size = 180
 
-[node name="UI" type="Control" parent="." unique_id=674148071]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Inventory" type="MarginContainer" parent="UI" unique_id=133821994 node_paths=PackedStringArray("slots_holder", "on_hand")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_bottom = 8
-script = ExtResource("12_msvki")
-slot_scene = ExtResource("12_7rhuj")
-slots_holder = NodePath("HBoxContainer")
-on_hand = NodePath("../HandSlot/TextureRect")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Inventory" unique_id=893122151]
-layout_mode = 2
-alignment = 1
-
-[node name="HandSlot" type="MarginContainer" parent="UI" unique_id=1813799541]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureRect" type="TextureRect" parent="UI/HandSlot" unique_id=946541786]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture = ExtResource("13_2ka1p")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Precision" type="Control" parent="UI" unique_id=841559245]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -163.5
-offset_top = -327.0
-offset_right = 163.5
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Circle" type="Control" parent="UI/Precision" unique_id=1703906482]
-visible = false
-modulate = Color(1, 1, 1, 0.39215687)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.9999986, 1.9999986)
-pivot_offset_ratio = Vector2(0.5, 0.5)
-
-[node name="TextureRect" type="TextureRect" parent="UI/Precision/Circle" unique_id=1116148445]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_45nkh")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Circle2" type="Control" parent="UI/Precision" unique_id=2029710502]
-visible = false
-modulate = Color(1, 1, 1, 0.19607843)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3.6399999, 3.6399999)
-pivot_offset_ratio = Vector2(0.5, 0.5)
-
-[node name="TextureRect" type="TextureRect" parent="UI/Precision/Circle2" unique_id=2107723342]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_45nkh")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="List" type="MarginContainer" parent="UI" unique_id=455917428]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/List" unique_id=2009680132]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/List/VBoxContainer" unique_id=2007021685]
-layout_mode = 2
-text = "1. Traga frutas ao altar"
+[node name="Arvore" parent="." unique_id=829681782 instance=ExtResource("17_qlqx7")]
+transform = Transform3D(-0.7612441, 0, -0.64846534, 0, 1, 0, 0.64846534, 0, -0.7612441, 22.024565, 3.006779, 37.516384)
 
 [connection signal="screen_entered" from="TheBeach/Caverna/VisibleOnScreenNotifier3D" to="TheBeach/Caverna" method="fechar_porta"]
 [connection signal="screen_exited" from="TheBeach/Caverna/VisibleOnScreenNotifier3D" to="TheBeach/Caverna" method="abrir_porta"]

@@ -1,7 +1,35 @@
 [gd_scene format=3 uid="uid://cbfuwnuqkufwx"]
 
 [ext_resource type="PackedScene" uid="uid://b1x1cf45fnkv" path="res://recursos/models/natureza/arvore.fbx" id="1_ihv04"]
+[ext_resource type="PackedScene" uid="uid://bdygvn6ffhgvg" path="res://recursos/models/natureza/maca.tscn" id="2_jkvli"]
 
 [node name="Arvore" type="Node3D" unique_id=829681782]
 
 [node name="arvore" parent="." unique_id=639062356 instance=ExtResource("1_ihv04")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="MacasPoint" type="Node3D" parent="." unique_id=779835397]
+
+[node name="Marker3D" type="Marker3D" parent="MacasPoint" unique_id=315763573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5291608, 3.8234153, 2.3932793)
+
+[node name="Maca" parent="MacasPoint/Marker3D" unique_id=1644423440 instance=ExtResource("2_jkvli")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="Marker3D2" type="Marker3D" parent="MacasPoint" unique_id=913214052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6113822, 5.459447, 1.6586702)
+
+[node name="Maca" parent="MacasPoint/Marker3D2" unique_id=1711547948 instance=ExtResource("2_jkvli")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="Marker3D3" type="Marker3D" parent="MacasPoint" unique_id=177198056]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5458348, 6.7980185, 1.7017024)
+
+[node name="Maca" parent="MacasPoint/Marker3D3" unique_id=1332182570 instance=ExtResource("2_jkvli")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="Marker3D4" type="Marker3D" parent="MacasPoint" unique_id=664146255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1396236, 2.8950136, 0.8677175)
+
+[node name="Maca" parent="MacasPoint/Marker3D4" unique_id=1865543368 instance=ExtResource("2_jkvli")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)

@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://nihc5wbm4o5k"]
+
+[ext_resource type="PackedScene" uid="uid://c3jrfqbwsjslo" path="res://jogo.tscn" id="1_j160m"]
+[ext_resource type="Script" uid="uid://bxcjjme8q0erw" path="res://scripts/inventory_ui.gd" id="2_dc7qk"]
+[ext_resource type="PackedScene" uid="uid://c03b32i2i2kdi" path="res://cenas/ui/slot_de_inventario.tscn" id="3_sph1n"]
+[ext_resource type="Texture2D" uid="uid://h4bxi237oj3w" path="res://recursos/sprites/hand.png" id="4_ggsbl"]
+[ext_resource type="Texture2D" uid="uid://ccgnepiysvidp" path="res://recursos/sprites/circle.png" id="5_y78qc"]
+
+[node name="GameHolder" type="Control" unique_id=631920395]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1146658279]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1498225757]
+handle_input_locally = false
+size = Vector2i(384, 216)
+render_target_update_mode = 4
+
+[node name="Game" parent="SubViewportContainer/SubViewport" unique_id=1206501729 instance=ExtResource("1_j160m")]
+
+[node name="UI" type="Control" parent="." unique_id=100585977]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Inventory" type="MarginContainer" parent="UI" unique_id=350255185 node_paths=PackedStringArray("slots_holder", "on_hand")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 8
+script = ExtResource("2_dc7qk")
+slot_scene = ExtResource("3_sph1n")
+slots_holder = NodePath("HBoxContainer")
+on_hand = NodePath("../HandSlot/TextureRect")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Inventory" unique_id=1040851708]
+layout_mode = 2
+alignment = 1
+
+[node name="HandSlot" type="MarginContainer" parent="UI" unique_id=238290463]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="UI/HandSlot" unique_id=1559862365]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("4_ggsbl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Precision" type="Control" parent="UI" unique_id=978222195]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -163.5
+offset_top = -327.0
+offset_right = 163.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Circle" type="Control" parent="UI/Precision" unique_id=527407406]
+visible = false
+modulate = Color(1, 1, 1, 0.39215687)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.9999986, 1.9999986)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="UI/Precision/Circle" unique_id=1300927307]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_y78qc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Circle2" type="Control" parent="UI/Precision" unique_id=2083346908]
+visible = false
+modulate = Color(1, 1, 1, 0.19607843)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.6399999, 3.6399999)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="UI/Precision/Circle2" unique_id=2116300696]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_y78qc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="List" type="MarginContainer" parent="UI" unique_id=1153218748]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/List" unique_id=378548820]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/List/VBoxContainer" unique_id=179601193]
+layout_mode = 2
+text = "1. Traga frutas ao altar"
