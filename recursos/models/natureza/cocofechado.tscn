@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://p4n1guuuy3ss"]
+
+[ext_resource type="PackedScene" uid="uid://dd4d7qeecqfas" path="res://recursos/models/natureza/fbxnatureza/cocofechado.fbx" id="1_c8b50"]
+
+[node name="cocofechado" type="Node3D" unique_id=1363575228]
+
+[node name="cocofechado" parent="." unique_id=1132650024 instance=ExtResource("1_c8b50")]

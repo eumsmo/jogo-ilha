@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://83migtujwl8e"]
+
+[ext_resource type="PackedScene" uid="uid://coa5rso55hhuq" path="res://recursos/models/decoracao/fbxdecoracao/garrafa.fbx" id="1_uqsog"]
+
+[node name="garrafa" type="Node3D" unique_id=1096389368]
+
+[node name="garrafa" parent="." unique_id=824737668 instance=ExtResource("1_uqsog")]

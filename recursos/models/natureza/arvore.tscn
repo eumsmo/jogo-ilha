@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cbfuwnuqkufwx"]
 
-[ext_resource type="PackedScene" uid="uid://b1x1cf45fnkv" path="res://recursos/models/natureza/arvore.fbx" id="1_ihv04"]
+[ext_resource type="PackedScene" uid="uid://b1x1cf45fnkv" path="res://recursos/models/natureza/fbxnatureza/arvore.fbx" id="1_ihv04"]
 [ext_resource type="PackedScene" uid="uid://bdygvn6ffhgvg" path="res://recursos/models/natureza/maca.tscn" id="2_jkvli"]
 
 [node name="Arvore" type="Node3D" unique_id=829681782]

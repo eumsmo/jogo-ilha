@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bqipj4r8iixpk"]
+
+[ext_resource type="PackedScene" uid="uid://qt4hi816tacg" path="res://recursos/models/decoracao/fbxdecoracao/latafechada.fbx" id="1_uiouy"]
+
+[node name="latafechada" type="Node3D" unique_id=525473446]
+
+[node name="latafechada" parent="." unique_id=2036410286 instance=ExtResource("1_uiouy")]

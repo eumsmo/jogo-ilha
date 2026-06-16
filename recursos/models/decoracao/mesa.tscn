@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://barnks3qhuogk"]
+
+[ext_resource type="PackedScene" uid="uid://c8uookh6aub3l" path="res://recursos/models/decoracao/fbxdecoracao/mesa.fbx" id="1_e8fj7"]
+
+[node name="mesa" type="Node3D" unique_id=2147312808]
+
+[node name="mesa" parent="." unique_id=1037197141 instance=ExtResource("1_e8fj7")]

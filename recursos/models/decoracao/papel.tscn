@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://butbgaxx7pq5k"]
+
+[ext_resource type="PackedScene" uid="uid://d1gd7jb46cvfo" path="res://recursos/models/decoracao/fbxdecoracao/papel.fbx" id="1_iqpww"]
+
+[node name="papel" type="Node3D" unique_id=2057349918]
+
+[node name="papel" parent="." unique_id=594062796 instance=ExtResource("1_iqpww")]

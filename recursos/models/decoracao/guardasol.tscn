@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://biljfyrykr6kv"]
+
+[ext_resource type="PackedScene" uid="uid://65xpl2px4qf3" path="res://recursos/models/decoracao/fbxdecoracao/guardasol.fbx" id="1_6ac6c"]
+
+[node name="guardasol" type="Node3D" unique_id=1667521885]
+
+[node name="guardasol" parent="." unique_id=1639027364 instance=ExtResource("1_6ac6c")]

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bdwhsr5de7deq"]
+
+[ext_resource type="PackedScene" uid="uid://csydijw3rg2ta" path="res://recursos/models/marinho/fbxmarinho/concha00.fbx" id="1_i71n1"]
+
+[node name="concha00" type="Node3D" unique_id=16141995]
+
+[node name="concha00" parent="." unique_id=618954584 instance=ExtResource("1_i71n1")]

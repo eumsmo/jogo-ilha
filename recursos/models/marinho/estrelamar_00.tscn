@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://s4ajf00msrn7"]
+
+[ext_resource type="PackedScene" uid="uid://dpy7wv25qbujd" path="res://recursos/models/marinho/fbxmarinho/estrelamar00.fbx" id="1_uviv3"]
+
+[node name="estrelamar00" type="Node3D" unique_id=1609758150]
+
+[node name="estrelamar00" parent="." unique_id=458451856 instance=ExtResource("1_uviv3")]

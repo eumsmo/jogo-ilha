@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bk72msp6yptot"]
+
+[ext_resource type="PackedScene" uid="uid://ds0phaa5xxtv3" path="res://recursos/models/natureza/fbxnatureza/coqueiro.fbx" id="1_a6s71"]
+
+[node name="coqueiro" type="Node3D" unique_id=1924780143]
+
+[node name="coqueiro" parent="." unique_id=1727134424 instance=ExtResource("1_a6s71")]

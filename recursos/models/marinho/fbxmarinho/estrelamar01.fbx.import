@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://chex45bwr4gmr"
-path="res://.godot/imported/maca.fbx-e1d0255fb7fa1352276dc76d68175e5d.scn"
+uid="uid://nrw5a8p28ari"
+path="res://.godot/imported/estrelamar01.fbx-fed812c02d0d4d042c8bd804e73987a3.scn"
 
 [deps]
 
-source_file="res://recursos/models/natureza/maca.fbx"
-dest_files=["res://.godot/imported/maca.fbx-e1d0255fb7fa1352276dc76d68175e5d.scn"]
+source_file="res://recursos/models/marinho/fbxmarinho/estrelamar01.fbx"
+dest_files=["res://.godot/imported/estrelamar01.fbx-fed812c02d0d4d042c8bd804e73987a3.scn"]
 
 [params]
 

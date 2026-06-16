@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bssttwgc8kscm"]
+
+[ext_resource type="PackedScene" uid="uid://bmdel8pxkddyb" path="res://recursos/models/decoracao/fbxdecoracao/lataaberta.fbx" id="1_fg0nf"]
+
+[node name="lataaberta" type="Node3D" unique_id=667108919]
+
+[node name="lataaberta" parent="." unique_id=1591301133 instance=ExtResource("1_fg0nf")]

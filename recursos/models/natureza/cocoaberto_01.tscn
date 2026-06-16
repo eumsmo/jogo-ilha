@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b06cfvt7a7fxq"]
+
+[ext_resource type="PackedScene" uid="uid://dhxtffesoepug" path="res://recursos/models/natureza/fbxnatureza/cocoaberto01.fbx" id="1_q2ddf"]
+
+[node name="cocoaberto01" type="Node3D" unique_id=442124491]
+
+[node name="cocoaberto01" parent="." unique_id=2062195941 instance=ExtResource("1_q2ddf")]

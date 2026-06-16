@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dr6lapb31lag1"]
+
+[ext_resource type="PackedScene" uid="uid://dyyms6tp7qc0y" path="res://recursos/models/natureza/fbxnatureza/flor00.fbx" id="1_1kweh"]
+
+[node name="flor00" type="Node3D" unique_id=1018173014]
+
+[node name="flor00" parent="." unique_id=1583673083 instance=ExtResource("1_1kweh")]

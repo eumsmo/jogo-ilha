@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cw86hdyr7l4iv"]
+
+[ext_resource type="PackedScene" uid="uid://nrw5a8p28ari" path="res://recursos/models/marinho/fbxmarinho/estrelamar01.fbx" id="1_cm4cw"]
+
+[node name="estrelamar01" type="Node3D" unique_id=519121463]
+
+[node name="estrelamar01" parent="." unique_id=515338326 instance=ExtResource("1_cm4cw")]
