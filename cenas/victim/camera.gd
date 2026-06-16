@@ -1,4 +1,4 @@
-extends Node3D
+extends HandTool
 
 @export var camera: Camera3D
 @export var camera_viewpoint: Node3D
@@ -9,6 +9,9 @@ func _ready() -> void:
 	viewport.world_3d = get_viewport().world_3d
 	camera.current = false
 
+func use_tool() -> void:
+	take_picture()
+
 func take_picture() -> void:
 	camera.current = true
 	camera.global_position = camera_viewpoint.global_position
@@ -18,3 +21,4 @@ func take_picture() -> void:
 	var img: Image = viewport.get_texture().get_image()
 	img.save_png("user://teste.png")
 	camera.current = false
+	print(img)

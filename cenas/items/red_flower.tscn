@@ -2,6 +2,7 @@
 
 [ext_resource type="Material" uid="uid://cxblqptvfhfqr" path="res://recursos/materiais/grass_mat.tres" id="1_u58a7"]
 [ext_resource type="Material" uid="uid://dtu6lscfdwqfq" path="res://recursos/materiais/red_mat.tres" id="2_4a7l0"]
+[ext_resource type="Resource" uid="uid://dkcxnyv08ip06" path="res://items/flower.tres" id="2_mjlde"]
 [ext_resource type="Script" uid="uid://0sq6lk4j0fpt" path="res://scripts/collectible.gd" id="3_mjlde"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_mtw28"]
@@ -31,9 +32,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.060256004, 0)
 material_override = ExtResource("2_4a7l0")
 mesh = SubResource("SphereMesh_hj6vb")
 
-[node name="Collectible" type="StaticBody3D" parent="." unique_id=2090193797 node_paths=PackedStringArray("indicator_holder")]
+[node name="Collectible" type="StaticBody3D" parent="." unique_id=2090193797 node_paths=PackedStringArray("delete_node", "indicator_holder")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44721627, 0)
 script = ExtResource("3_mjlde")
+item = ExtResource("2_mjlde")
+delete_node = NodePath("..")
 indicator_holder = NodePath("../IndicatorHolder")
 metadata/_custom_type_script = "uid://0sq6lk4j0fpt"
 

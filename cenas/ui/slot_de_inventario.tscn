@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c03b32i2i2kdi"]
+
+[ext_resource type="Texture2D" uid="uid://cosvotfvp3xg1" path="res://recursos/sprites/fruit.png" id="1_hcmtb"]
+[ext_resource type="Script" uid="uid://cec368kxdryx6" path="res://cenas/ui/inventory_slot.gd" id="1_i8pyc"]
+
+[node name="SlotDeInventario" type="HBoxContainer" unique_id=272357001 node_paths=PackedStringArray("image", "text")]
+custom_minimum_size = Vector2(100, 0)
+script = ExtResource("1_i8pyc")
+image = NodePath("TextureRect")
+text = NodePath("Label")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1772607259]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("1_hcmtb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="." unique_id=2027025170]
+layout_mode = 2
+text = "x2"

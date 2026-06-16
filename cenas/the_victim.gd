@@ -8,6 +8,13 @@ const JUMP_VELOCITY = 4.5
 @export var center: Node3D
 @export var own_body: Node3D
 
+
+@export var inventory: Inventory
+
+var on_hand: HandTool
+@export var tools_holder: Node3D
+
+
 # Interactable
 @export var shape_cast: ShapeCast3D
 var closest_interactable: Interactable = null
@@ -15,15 +22,24 @@ signal closest_interactable_changed(interactable: Interactable)
 
 
 signal using_action
+signal on_hand_tool_changed(tool: HandTool)
 
+func _ready() -> void:
+	switch_hand_tool()
 
 func _physics_process(delta: float) -> void:
 	_handle_movement(delta)
 	_handle_interactables(delta)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action("ui_accept"):
-		using_action.emit()
+	if event.is_action_pressed("ui_accept"):
+		on_hand.use_tool()
+	
+	if event.is_action_pressed("switch"):
+		switch_hand_tool()
+	
+	if event.is_action_pressed("interact") and closest_interactable != null and closest_interactable.can_interact(self):
+		closest_interactable.interact(self)
 
 func _handle_movement(delta: float) -> void:
 	# Add the gravity.
@@ -56,6 +72,11 @@ func _handle_interactables(_delta: float) -> void:
 			closest_interactable = null
 			closest_interactable_changed.emit(closest_interactable)
 
+func clear_closest_interactable() -> void:
+	if closest_interactable != null:
+		closest_interactable = null
+		closest_interactable_changed.emit(closest_interactable)
+
 func get_closest_collision() -> Interactable:
 	if not shape_cast.is_colliding():
 		return null
@@ -75,3 +96,34 @@ func get_closest_collision() -> Interactable:
 			closest_dist = dist
 	
 	return closest
+
+func set_hand_tool(tool: HandTool) -> void:
+	if tool != null and not tool.available:
+		return
+	
+	if on_hand != null and on_hand != tool:
+		on_hand.hide()
+	
+	if tool != null:
+		on_hand = tool
+		on_hand.show()
+		on_hand_tool_changed.emit(on_hand)
+	else:
+		on_hand_tool_changed.emit(null)
+
+func switch_hand_tool() -> void:
+	if on_hand == null:
+		set_hand_tool(tools_holder.get_child(0))
+		return
+	
+	var idx = on_hand.get_index()
+	
+	while true:
+		idx = (idx+1) % tools_holder.get_child_count()
+		var tool = tools_holder.get_child(idx)
+		
+		if tool.available or tool == on_hand:
+			break
+	
+	set_hand_tool(tools_holder.get_child(idx))
+	

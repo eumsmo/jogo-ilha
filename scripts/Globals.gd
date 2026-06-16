@@ -5,7 +5,3 @@ enum ItemTypes {
 	TRASH,
 	FOOD
 }
-
-enum Items {
-	
-}

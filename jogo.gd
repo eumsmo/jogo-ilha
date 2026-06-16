@@ -11,18 +11,17 @@ func _init() -> void:
 
 func _ready() -> void:
 	victim.closest_interactable_changed.connect(put_indicator_at)
+	interact_indicator.reparent(self)
+	interact_indicator.owner = self
 
 func put_indicator_at(interactable: Interactable):
 	if interactable == null:
 		hide_indicator()
 		return
 	
-	interact_indicator.reparent(interactable.indicator_holder)
-	interact_indicator.position = Vector3.ZERO
+	interact_indicator.global_position = interactable.indicator_holder.global_position
 	interact_indicator.show()
 
 func hide_indicator():
-	if interact_indicator.get_parent() != self:
-		interact_indicator.reparent(self)
-		interact_indicator.position = Vector3.ZERO
+	interact_indicator.global_position = Vector3.ZERO
 	interact_indicator.hide()

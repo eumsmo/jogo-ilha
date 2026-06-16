@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cpnvddkvxxhl3"]
+
+[ext_resource type="Texture2D" uid="uid://cf7arx1wcjhx2" path="res://recursos/sprites/evil_fish.png" id="1_mijpq"]
+[ext_resource type="Script" uid="uid://sledefw12tar" path="res://scripts/item.gd" id="2_e7mcy"]
+
+[resource]
+script = ExtResource("2_e7mcy")
+img = ExtResource("1_mijpq")
+metadata/_custom_type_script = "uid://sledefw12tar"
