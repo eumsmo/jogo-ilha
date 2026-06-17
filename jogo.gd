@@ -4,6 +4,7 @@ extends Node3D
 static var instance: Game
 
 @export var victim: TheVictim
+@export var creature: TheCreature
 @export var interact_indicator: Node3D
 
 func _init() -> void:

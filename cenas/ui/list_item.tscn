@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bh65ivpii6yxi"]
+
+[ext_resource type="Script" uid="uid://dyr8u8mvwolwx" path="res://cenas/ui/list_item.gd" id="1_kx02e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sph1n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sph1n"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="ListItem" type="PanelContainer" unique_id=831202404 node_paths=PackedStringArray("text", "done")]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_sph1n")
+script = ExtResource("1_kx02e")
+text = NodePath("Label")
+done = NodePath("Label/Panel")
+
+[node name="Label" type="Label" parent="." unique_id=1821294913]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.14901961)
+text = "1. Traga frutas ao altar"
+
+[node name="Panel" type="Panel" parent="Label" unique_id=1177369065]
+visible = false
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_sph1n")

@@ -2,8 +2,7 @@ class_name TheVictim
 extends CharacterBody3D
 
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const SPEED = 7.5
 
 @export var center: Node3D
 @export var own_body: Node3D
