@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://0uxnfdt6fwd7"]
+
+[ext_resource type="PackedScene" uid="uid://deke1ip230pwc" path="res://recursos/models/decoracao/fbxdecoracao/pontegrande.fbx" id="1_ork7b"]
+
+[node name="pontegrande" type="Node3D" unique_id=1252991130]
+
+[node name="pontegrande" parent="." unique_id=144075050 instance=ExtResource("1_ork7b")]

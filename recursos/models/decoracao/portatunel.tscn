@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://clkx55wkbemaa"]
+
+[ext_resource type="PackedScene" uid="uid://b7lmqnu2kbex4" path="res://recursos/models/decoracao/fbxdecoracao/portatunel.fbx" id="1_qab6x"]
+
+[node name="portatunel" type="Node3D" unique_id=1827040948]
+
+[node name="portatunel" parent="." unique_id=653643992 instance=ExtResource("1_qab6x")]

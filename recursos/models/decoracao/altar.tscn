@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d4bvbapei2f88"]
+
+[ext_resource type="PackedScene" uid="uid://uuua88hfyvk8" path="res://recursos/models/decoracao/fbxdecoracao/altar.fbx" id="1_o70v8"]
+
+[node name="altar" type="Node3D" unique_id=906397420]
+
+[node name="altar" parent="." unique_id=1003632794 instance=ExtResource("1_o70v8")]

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c6hx2w28cl3cr"]
+
+[ext_resource type="PackedScene" uid="uid://boal2qcqeesxx" path="res://recursos/models/decoracao/fbxdecoracao/pontecurta.fbx" id="1_k385o"]
+
+[node name="pontecurta" type="Node3D" unique_id=887535116]
+
+[node name="pontecurta" parent="." unique_id=1751511666 instance=ExtResource("1_k385o")]
