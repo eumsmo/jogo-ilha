@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://bxcjjme8q0erw" path="res://cenas/ui/inventory_ui.gd" id="2_dc7qk"]
 [ext_resource type="PackedScene" uid="uid://c03b32i2i2kdi" path="res://cenas/ui/slot_de_inventario.tscn" id="3_sph1n"]
 [ext_resource type="Texture2D" uid="uid://h4bxi237oj3w" path="res://recursos/sprites/hand.png" id="4_ggsbl"]
+[ext_resource type="Texture2D" uid="uid://bmcuucvpab4p8" path="res://recursos/sprites/outline_circle.png" id="5_7mt7j"]
+[ext_resource type="Script" uid="uid://c1v3vcfecmht6" path="res://cenas/ui/altar/precision.gd" id="5_nujuc"]
 [ext_resource type="Texture2D" uid="uid://ccgnepiysvidp" path="res://recursos/sprites/circle.png" id="5_y78qc"]
 [ext_resource type="Script" uid="uid://bj4vporq1e0od" path="res://cenas/ui/demands_ui.gd" id="6_sph1n"]
 [ext_resource type="PackedScene" uid="uid://bh65ivpii6yxi" path="res://cenas/ui/list_item.tscn" id="7_ggsbl"]
@@ -29,11 +31,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 3
+stretch_shrink = 2
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1498225757]
 handle_input_locally = false
-size = Vector2i(384, 216)
+size = Vector2i(576, 324)
 render_target_update_mode = 4
 
 [node name="Game" parent="SubViewportContainer/SubViewport" unique_id=1206501729 instance=ExtResource("1_j160m")]
@@ -81,21 +83,23 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Precision" type="Control" parent="UI" unique_id=978222195]
+visible = false
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -163.5
-offset_top = -327.0
-offset_right = 163.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("5_nujuc")
 
 [node name="Circle" type="Control" parent="UI/Precision" unique_id=527407406]
-visible = false
-modulate = Color(1, 1, 1, 0.39215687)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -108,7 +112,6 @@ offset_right = 50.0
 offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.9999986, 1.9999986)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="TextureRect" type="TextureRect" parent="UI/Precision/Circle" unique_id=1300927307]
@@ -118,13 +121,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_y78qc")
+texture = ExtResource("5_7mt7j")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Circle2" type="Control" parent="UI/Precision" unique_id=2083346908]
-visible = false
-modulate = Color(1, 1, 1, 0.19607843)
+modulate = Color(1, 1, 1, 0.49019608)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -137,7 +139,7 @@ offset_right = 50.0
 offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(3.6399999, 3.6399999)
+scale = Vector2(2.5, 2.5)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="TextureRect" type="TextureRect" parent="UI/Precision/Circle2" unique_id=2116300696]
@@ -176,7 +178,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_y78qc")
-time_exit_photos = 4.0
 photo_scene = ExtResource("9_hhf4n")
 photos_holder = NodePath(".")
 texture_temp = ExtResource("9_uhfu4")

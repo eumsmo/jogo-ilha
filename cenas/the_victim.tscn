@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://1kb3wwquwmu7"]
 
 [ext_resource type="Script" uid="uid://dtw7g2xhd2ojv" path="res://cenas/the_victim.gd" id="1_s7l8g"]
+[ext_resource type="PackedScene" uid="uid://eb14638l0jyd" path="res://recursos/models/vitima/vitima.fbx" id="2_0mf3q"]
 [ext_resource type="Script" uid="uid://ddsqayr6gd8ld" path="res://cenas/victim/camera.gd" id="2_3j8e3"]
 [ext_resource type="Script" uid="uid://beohup807f2d6" path="res://scripts/inventory.gd" id="3_cd81x"]
 [ext_resource type="PackedScene" uid="uid://bimd0mdmxx0c3" path="res://recursos/models/itens/camera.tscn" id="3_u7652"]
@@ -19,19 +20,55 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_s7l8g"]
 radius = 1.5
 
-[node name="TheVictim" type="CharacterBody3D" unique_id=762061992 node_paths=PackedStringArray("inventory", "tools_holder", "camera", "fishing_rod", "hands", "shape_cast")]
+[node name="TheVictim" type="CharacterBody3D" unique_id=762061992 node_paths=PackedStringArray("inventory", "tools_holder", "camera", "fishing_rod", "hands", "animator", "shape_cast")]
 script = ExtResource("1_s7l8g")
 inventory = NodePath("Inventory")
 tools_holder = NodePath("Body/NasMoes")
 camera = NodePath("Body/NasMoes/Camera")
 fishing_rod = NodePath("Body/NasMoes/VaraDePesca")
 hands = NodePath("Body/NasMoes/Moes")
+animator = NodePath("Body/vitima/AnimationPlayer")
+animations = Dictionary[int, String]({
+0: "idel",
+1: "walk",
+2: "idelcamera",
+3: "walkcamera",
+4: "idelfishingrod",
+5: "walkfishingrod"
+})
 shape_cast = NodePath("ShapeCast3D")
 
 [node name="Body" type="Node3D" parent="." unique_id=532842855]
 
+[node name="vitima" parent="Body" unique_id=1213765168 instance=ExtResource("2_0mf3q")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Body/vitima/armvitima" parent_id_path=PackedInt32Array(1213765168, 562520514) index="0" unique_id=1578486684]
+bones/1/rotation = Quaternion(0, 0, -0.003304164, 0.99999464)
+bones/3/rotation = Quaternion(0.6904853, 0.1524141, 0.6904853, -0.1524141)
+bones/3/scale = Vector3(1, 0.99999994, 1)
+bones/5/position = Vector3(0, -0.00013919391, 0)
+bones/5/rotation = Quaternion(1, 0, -4.371139e-08, 0)
+bones/7/position = Vector3(0, 0.0014135977, -8.4703295e-22)
+bones/7/rotation = Quaternion(-0.7004053, 0, 0, 0.7137453)
+bones/7/scale = Vector3(1, 1, 1)
+bones/10/position = Vector3(0, 0.0014135977, -8.4703295e-22)
+bones/10/rotation = Quaternion(-0.7004053, 0, 0, 0.7137453)
+bones/10/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(0.6959484, -0.12512398, -0.69594806, -0.12512404)
+bones/12/scale = Vector3(1, 0.99999994, 1)
+bones/15/position = Vector3(-3.4093151e-28, 0.00069472654, 8.991487e-11)
+bones/15/rotation = Quaternion(0.061801277, 0.00025976537, -0.011440662, 0.9980229)
+bones/16/position = Vector3(2.6562395e-26, 0.000870758, 2.8055405e-10)
+bones/16/rotation = Quaternion(-0.0056712534, -0.000274279, -0.008160843, 0.9999506)
+bones/16/scale = Vector3(1, 1.0000001, 1.0000001)
+bones/17/position = Vector3(-4.0657688e-26, 0.0010505337, -9.190822e-11)
+bones/17/rotation = Quaternion(0.005683913, -0.00030235318, -0.008996353, 0.99994344)
+bones/17/scale = Vector3(1, 0.99999976, 0.9999999)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body" unique_id=1279903870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_so80e")
 
 [node name="NasMoes" type="Node3D" parent="Body" unique_id=911029733]
@@ -43,6 +80,7 @@ available = true
 img = ExtResource("3_vp0ll")
 
 [node name="Camera" type="Node3D" parent="Body/NasMoes" unique_id=1049223435 node_paths=PackedStringArray("camera", "camera_viewpoint")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23420417, 0)
 visible = false
 script = ExtResource("2_3j8e3")
 photo_item = ExtResource("5_lysed")
@@ -90,6 +128,7 @@ render_target_update_mode = 4
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.1519258, 0.72145057)
 
 [node name="VaraDePesca" type="Node3D" parent="Body/NasMoes" unique_id=1615379628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29366577, 0)
 visible = false
 script = ExtResource("5_sud1n")
 img = ExtResource("8_k6mmk")
@@ -112,3 +151,5 @@ script = ExtResource("3_cd81x")
 metadata/_custom_type_script = "uid://beohup807f2d6"
 
 [connection signal="using_action" from="." to="Body/NasMoes/Camera" method="take_picture"]
+
+[editable path="Body/vitima"]

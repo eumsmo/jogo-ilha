@@ -17,6 +17,13 @@ var on_hand: HandTool
 @export var fishing_rod: HandTool
 @export var hands: HandTool
 
+@export var animator: AnimationPlayer
+
+
+enum VictimAnimations { IDLE, WALK, CAM_IDLE, CAM_WALK, FISH_IDLE, FISH_WALK }
+@export var animations: Dictionary[VictimAnimations, String]
+
+
 var locked := false
 
 
@@ -69,6 +76,8 @@ func _handle_movement(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	
+	set_animation(direction)
 
 	move_and_slide()
 
@@ -137,7 +146,25 @@ func switch_hand_tool() -> void:
 			break
 	
 	set_hand_tool(tools_holder.get_child(idx))
-	
+
+
+func set_animation(direction: Vector3) -> void:
+	if direction:
+		match on_hand:
+			camera:
+				animator.play(animations[VictimAnimations.CAM_WALK])
+			fishing_rod:
+				animator.play(animations[VictimAnimations.FISH_WALK])
+			_:
+				animator.play(animations[VictimAnimations.WALK])
+	else:
+		match on_hand:
+			camera:
+				animator.play(animations[VictimAnimations.CAM_IDLE])
+			fishing_rod:
+				animator.play(animations[VictimAnimations.FISH_IDLE])
+			_:
+				animator.play(animations[VictimAnimations.IDLE])
 
 func lock() -> void:
 	locked = true
