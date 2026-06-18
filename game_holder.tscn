@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://ccgnepiysvidp" path="res://recursos/sprites/circle.png" id="5_y78qc"]
 [ext_resource type="Script" uid="uid://bj4vporq1e0od" path="res://cenas/ui/demands_ui.gd" id="6_sph1n"]
 [ext_resource type="PackedScene" uid="uid://bh65ivpii6yxi" path="res://cenas/ui/list_item.tscn" id="7_ggsbl"]
+[ext_resource type="Script" uid="uid://cskcetkpg7b25" path="res://cenas/ui/altar/photos_visualizer.gd" id="8_y78qc"]
+[ext_resource type="PackedScene" uid="uid://beq56xea3kuob" path="res://cenas/ui/altar/photo_ui.tscn" id="9_hhf4n"]
+[ext_resource type="Texture2D" uid="uid://drw80bmfdd4e" path="res://recursos/sprites/img_0.png" id="9_uhfu4"]
+[ext_resource type="Resource" uid="uid://dd4pigl04vkpc" path="res://items/photo.tres" id="11_hhf4n"]
 
 [node name="GameHolder" type="Control" unique_id=631920395]
 layout_mode = 3
@@ -163,3 +167,17 @@ demands_holder = NodePath("VBoxContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Demands" unique_id=378548820]
 layout_mode = 2
+
+[node name="PhotosVisualizer" type="Control" parent="UI" unique_id=1136043697 node_paths=PackedStringArray("photos_holder")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_y78qc")
+time_exit_photos = 4.0
+photo_scene = ExtResource("9_hhf4n")
+photos_holder = NodePath(".")
+texture_temp = ExtResource("9_uhfu4")
+photo_item = ExtResource("11_hhf4n")

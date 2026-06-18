@@ -5,3 +5,4 @@
 [node name="cadeira" type="Node3D" unique_id=360871348]
 
 [node name="cadeira" parent="." unique_id=655972290 instance=ExtResource("1_f514t")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)

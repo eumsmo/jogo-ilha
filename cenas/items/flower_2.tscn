@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dmdsmsb7akjl0"]
+
+[ext_resource type="PackedScene" uid="uid://5obgt4lddlsj" path="res://recursos/models/natureza/flor_01.tscn" id="1_wc36s"]
+[ext_resource type="Material" uid="uid://cxblqptvfhfqr" path="res://recursos/materiais/grass_mat.tres" id="2_qtgnb"]
+[ext_resource type="Material" uid="uid://dtu6lscfdwqfq" path="res://recursos/materiais/red_mat.tres" id="3_g66l3"]
+[ext_resource type="Script" uid="uid://0sq6lk4j0fpt" path="res://scripts/collectible.gd" id="4_y6v8f"]
+[ext_resource type="Resource" uid="uid://dkcxnyv08ip06" path="res://items/flower.tres" id="5_g4kj3"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mtw28"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.3
+
+[sub_resource type="SphereMesh" id="SphereMesh_hj6vb"]
+radius = 0.15
+height = 0.3
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_45nkh"]
+height = 1.0
+
+[node name="Flower2" type="Node3D" unique_id=1744809044]
+
+[node name="flor01" parent="." unique_id=562461087 instance=ExtResource("1_wc36s")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="Mesh" type="Node3D" parent="." unique_id=1916137562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44721627, 0)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh" unique_id=941891506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29705858, 0)
+material_override = ExtResource("2_qtgnb")
+mesh = SubResource("CylinderMesh_mtw28")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Mesh" unique_id=294542218]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.060256004, 0)
+material_override = ExtResource("3_g66l3")
+mesh = SubResource("SphereMesh_hj6vb")
+
+[node name="Collectible" type="StaticBody3D" parent="." unique_id=2090193797 node_paths=PackedStringArray("delete_node", "indicator_holder")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44721627, 0)
+script = ExtResource("4_y6v8f")
+item = ExtResource("5_g4kj3")
+delete_node = NodePath("..")
+indicator_holder = NodePath("../IndicatorHolder")
+metadata/_custom_type_script = "uid://0sq6lk4j0fpt"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectible" unique_id=2047382965]
+shape = SubResource("CapsuleShape3D_45nkh")
+
+[node name="IndicatorHolder" type="Marker3D" parent="." unique_id=1058094365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4472163, 0)

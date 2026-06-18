@@ -41,3 +41,9 @@ func take_picture() -> Image:
 	camera.current = false
 	
 	return img
+
+func is_full() -> bool:
+	return len(photos) >= photos_per_camera
+
+func clear() -> void:
+	photos.clear()

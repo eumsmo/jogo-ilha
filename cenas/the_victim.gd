@@ -17,6 +17,8 @@ var on_hand: HandTool
 @export var fishing_rod: HandTool
 @export var hands: HandTool
 
+var locked := false
+
 
 # Interactable
 @export var shape_cast: ShapeCast3D
@@ -31,10 +33,16 @@ func _ready() -> void:
 	switch_hand_tool()
 
 func _physics_process(delta: float) -> void:
+	if locked:
+		return
+	
 	_handle_movement(delta)
 	_handle_interactables(delta)
 
 func _input(event: InputEvent) -> void:
+	if locked:
+		return
+		
 	if event.is_action_pressed("ui_accept"):
 		on_hand.use_tool(self)
 	
@@ -130,3 +138,9 @@ func switch_hand_tool() -> void:
 	
 	set_hand_tool(tools_holder.get_child(idx))
 	
+
+func lock() -> void:
+	locked = true
+
+func unlock() -> void:
+	locked = false

@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://beq56xea3kuob"]
+
+[ext_resource type="Script" uid="uid://0qhr7x5gjtu3" path="res://cenas/ui/altar/photo_ui.gd" id="1_0yyst"]
+[ext_resource type="Texture2D" uid="uid://b0a08xrwtioqr" path="res://recursos/sprites/polaroid.png" id="1_2w306"]
+[ext_resource type="Texture2D" uid="uid://drw80bmfdd4e" path="res://recursos/sprites/img_0.png" id="2_0yyst"]
+
+[sub_resource type="Animation" id="Animation_0yyst"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(326, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_i2v8v"]
+resource_name = "comeback"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.40612632, 0),
+"update": 0,
+"values": [Vector2(1243, 369), Vector2(326, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_bb7ny"]
+resource_name = "enter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.46651608, 1),
+"update": 0,
+"values": [Vector2(-535, -210), Vector2(326, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_c6r3h"]
+resource_name = "exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.8660663, 1),
+"update": 0,
+"values": [Vector2(326, 24), Vector2(1243, 369)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i2v8v"]
+_data = {
+&"RESET": SubResource("Animation_0yyst"),
+&"comeback": SubResource("Animation_i2v8v"),
+&"enter": SubResource("Animation_bb7ny"),
+&"exit": SubResource("Animation_c6r3h")
+}
+
+[node name="PhotoUI" type="Control" unique_id=2108982789 node_paths=PackedStringArray("photo", "animator")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -300.0
+offset_right = 249.9989
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("1_0yyst")
+rot_angle_max = 0.06981317007977318
+photo = NodePath("Foto")
+animator = NodePath("AnimationPlayer")
+
+[node name="Fundo" type="TextureRect" parent="." unique_id=1898199923]
+texture_filter = 1
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 600.0
+texture = ExtResource("1_2w306")
+
+[node name="Foto" type="TextureRect" parent="." unique_id=319380710]
+modulate = Color(1, 1, 1, 0.91764706)
+self_modulate = Color(1, 0.8862745, 0.8862745, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 26.0
+offset_top = 26.0
+offset_right = 474.0
+offset_bottom = 474.0
+texture = ExtResource("2_0yyst")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=455648092]
+libraries/ = SubResource("AnimationLibrary_i2v8v")
