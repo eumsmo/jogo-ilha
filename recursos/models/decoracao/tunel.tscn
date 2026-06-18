@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bphxrbhdfxnxw"]
 
-[ext_resource type="PackedScene" uid="uid://22f4enwot0f1" path="res://recursos/models/decoracao/fbxdecoracao/tunel.fbx" id="1_lgkyt"]
+[ext_resource type="PackedScene" uid="uid://cbd46vv8labxl" path="res://recursos/models/decoracao/fbxdecoracao/tunel.fbx" id="1_lgkyt"]
 
 [node name="tunel" type="Node3D" unique_id=216463991]
 
-[node name="tunel" parent="." unique_id=539568579 instance=ExtResource("1_lgkyt")]
+[node name="tunel" parent="." unique_id=574786767 instance=ExtResource("1_lgkyt")]

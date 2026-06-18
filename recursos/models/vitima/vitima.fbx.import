@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cbd46vv8labxl"
-path="res://.godot/imported/tunel.fbx-3ebfd30346079ded457fb734fa15c034.scn"
+uid="uid://eb14638l0jyd"
+path="res://.godot/imported/vitima.fbx-b37736548b0910779065e5d31b520a97.scn"
 
 [deps]
 
-source_file="res://recursos/models/decoracao/fbxdecoracao/tunel.fbx"
-dest_files=["res://.godot/imported/tunel.fbx-3ebfd30346079ded457fb734fa15c034.scn"]
+source_file="res://recursos/models/vitima/vitima.fbx"
+dest_files=["res://.godot/imported/vitima.fbx-b37736548b0910779065e5d31b520a97.scn"]
 
 [params]
 
