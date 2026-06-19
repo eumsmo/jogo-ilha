@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Demand" format=3 uid="uid://dgpufx8gtk6g4"]
+
+[ext_resource type="Script" uid="uid://c5nru43e0eiis" path="res://cenas/creature/item_quant.gd" id="1_ifi0u"]
+[ext_resource type="Resource" uid="uid://dd4pigl04vkpc" path="res://items/photo.tres" id="2_b28rk"]
+[ext_resource type="Script" uid="uid://bhxcormw418t5" path="res://cenas/creature/demand.gd" id="3_vivhw"]
+
+[sub_resource type="Resource" id="Resource_lr568"]
+script = ExtResource("1_ifi0u")
+item = ExtResource("2_b28rk")
+quant = 4
+metadata/_custom_type_script = "uid://c5nru43e0eiis"
+
+[resource]
+script = ExtResource("3_vivhw")
+text = "Tire fotos da ilha e leve ao altar para serem reveladas"
+items = Array[ExtResource("1_ifi0u")]([SubResource("Resource_lr568")])
+metadata/_custom_type_script = "uid://bhxcormw418t5"

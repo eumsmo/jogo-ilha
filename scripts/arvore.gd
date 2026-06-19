@@ -6,20 +6,27 @@ extends Interactable
 @export var timer_next: Timer
 var spawned_fruit: Node3D
 
+@export var can_spawn_more: bool = false
+
+
 func _ready() -> void:
 	randomize()
 	create_apple()
 
 func can_interact(victim: TheVictim) -> bool:
-	return super(victim)
+	return super(victim) and spawned_fruit != null
 
 func interact(victim: TheVictim) -> void:
+	if spawned_fruit == null:
+		return
+	
 	victim.inventory.add_item(item)
 	victim.clear_closest_interactable()
 	spawned_fruit.queue_free()
 	spawned_fruit = null
 	
-	timer_next.start()
+	if can_spawn_more:
+		timer_next.start()
 
 func create_apple() -> void:
 	if spawned_fruit != null:

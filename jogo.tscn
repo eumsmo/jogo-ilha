@@ -4,7 +4,10 @@
 [ext_resource type="Script" uid="uid://cayvnglg8v2xd" path="res://cenas/creature/creatures_eye.gd" id="1_evvns"]
 [ext_resource type="PackedScene" uid="uid://1kb3wwquwmu7" path="res://cenas/the_victim.tscn" id="1_kxg5b"]
 [ext_resource type="Material" uid="uid://cinyiv6adww8j" path="res://recursos/materiais/madeira_mat.tres" id="2_1ap6j"]
+[ext_resource type="PackedScene" uid="uid://bimd0mdmxx0c3" path="res://recursos/models/itens/camera.tscn" id="3_kxg64"]
+[ext_resource type="PackedScene" uid="uid://cjbqvolctlt8r" path="res://recursos/models/itens/vara_pesca.tscn" id="4_1n8u8"]
 [ext_resource type="PackedScene" uid="uid://brf8x28t534l0" path="res://recursos/models/ilhas/ilhas.tscn" id="4_8c340"]
+[ext_resource type="Script" uid="uid://dak51vs5vipko" path="res://cenas/victim/enable_tool.gd" id="4_ho1os"]
 [ext_resource type="PackedScene" uid="uid://d4bvbapei2f88" path="res://recursos/models/decoracao/altar.tscn" id="4_t3mex"]
 [ext_resource type="PackedScene" uid="uid://cu8dc566tc1ea" path="res://cenas/items/flower_1.tscn" id="4_ysdx3"]
 [ext_resource type="Script" uid="uid://ca47lt0i40vap" path="res://scripts/altar.gd" id="6_0ebkc"]
@@ -36,6 +39,9 @@
 [ext_resource type="PackedScene" uid="uid://ccsnncgdv1vb3" path="res://recursos/models/decoracao/barcomadeira.tscn" id="26_2lt7e"]
 [ext_resource type="PackedScene" uid="uid://dgpeyw87g3ksg" path="res://recursos/models/decoracao/cangagrande.tscn" id="26_j77lb"]
 [ext_resource type="PackedScene" uid="uid://bqipj4r8iixpk" path="res://recursos/models/decoracao/latafechada.tscn" id="28_lr568"]
+[ext_resource type="Resource" uid="uid://cxsrh6c2ft3pc" path="res://items/trash.tres" id="34_lr568"]
+[ext_resource type="Resource" uid="uid://dgpufx8gtk6g4" path="res://items/demand_photo.tres" id="35_onujg"]
+[ext_resource type="Resource" uid="uid://c0cduj667rvbb" path="res://items/fish.tres" id="37_onujg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ysdx3"]
 friction = 0.0
@@ -50,6 +56,57 @@ height = 13.522949
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t8pok"]
 radius = 4.229004
 height = 13.522949
+
+[sub_resource type="GDScript" id="GDScript_ho1os"]
+script/source = "extends Node3D
+
+
+@export var animator: AnimationPlayer
+
+func _ready() -> void:
+	animator.play(\"rotate\")
+"
+
+[sub_resource type="Animation" id="Animation_ho1os"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_x68vr"]
+resource_name = "rotate"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.1415927, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ne7a3"]
+_data = {
+&"RESET": SubResource("Animation_ho1os"),
+&"rotate": SubResource("Animation_x68vr")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+radius = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8c340"]
 size = Vector3(1.5, 1, 2)
@@ -84,28 +141,84 @@ points = PackedVector3Array(-0.2, 0, 0.5, 0.2, 0, -1.5, -0.2, 1.555, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_48tcl"]
 size = Vector3(0.56380856, 1.4317627, 0.585)
 
-[sub_resource type="Resource" id="Resource_veval"]
-script = ExtResource("11_0ebkc")
-item = ExtResource("13_0ebkc")
-quant = 2
-metadata/_custom_type_script = "uid://c5nru43e0eiis"
-
-[sub_resource type="Resource" id="Resource_dwd3o"]
-script = ExtResource("10_dwd3o")
-text = "Traga flores ao altar"
-items = Array[ExtResource("11_0ebkc")]([SubResource("Resource_veval")])
-metadata/_custom_type_script = "uid://bhxcormw418t5"
-
 [sub_resource type="Resource" id="Resource_0ebkc"]
 script = ExtResource("11_0ebkc")
 item = ExtResource("12_dwd3o")
-quant = 4
+quant = 3
 metadata/_custom_type_script = "uid://c5nru43e0eiis"
 
 [sub_resource type="Resource" id="Resource_48tcl"]
 script = ExtResource("10_dwd3o")
-text = "Traga frutas ao altar"
+text = "Colete 3 frutas e as leve ao altar"
 items = Array[ExtResource("11_0ebkc")]([SubResource("Resource_0ebkc")])
+fade_to_black = true
+metadata/_custom_type_script = "uid://bhxcormw418t5"
+
+[sub_resource type="Resource" id="Resource_veval"]
+script = ExtResource("11_0ebkc")
+item = ExtResource("34_lr568")
+quant = 5
+metadata/_custom_type_script = "uid://c5nru43e0eiis"
+
+[sub_resource type="Resource" id="Resource_dwd3o"]
+script = ExtResource("10_dwd3o")
+text = "Limpe a ilha inferior e retorne os restos ao altar"
+items = Array[ExtResource("11_0ebkc")]([SubResource("Resource_veval")])
+fade_to_black = true
+activate_node_with_name = "Camera"
+metadata/_custom_type_script = "uid://bhxcormw418t5"
+
+[sub_resource type="Resource" id="Resource_onujg"]
+script = ExtResource("11_0ebkc")
+item = ExtResource("13_0ebkc")
+quant = 6
+metadata/_custom_type_script = "uid://c5nru43e0eiis"
+
+[sub_resource type="Resource" id="Resource_3viy2"]
+script = ExtResource("10_dwd3o")
+text = "Entregue 6 flores no altar"
+items = Array[ExtResource("11_0ebkc")]([SubResource("Resource_onujg")])
+fade_to_black = true
+activate_node_with_name = "Vara"
+metadata/_custom_type_script = "uid://bhxcormw418t5"
+
+[sub_resource type="Resource" id="Resource_1n8u8"]
+script = ExtResource("11_0ebkc")
+item = ExtResource("37_onujg")
+quant = 3
+metadata/_custom_type_script = "uid://c5nru43e0eiis"
+
+[sub_resource type="Resource" id="Resource_ho1os"]
+script = ExtResource("10_dwd3o")
+text = "Pesque nas ilhas conectadas e leve 3 peixes para o altar"
+items = Array[ExtResource("11_0ebkc")]([SubResource("Resource_1n8u8")])
+fade_to_black = true
+metadata/_custom_type_script = "uid://bhxcormw418t5"
+
+[sub_resource type="Resource" id="Resource_ne7a3"]
+script = ExtResource("11_0ebkc")
+item = ExtResource("12_dwd3o")
+quant = 6
+metadata/_custom_type_script = "uid://c5nru43e0eiis"
+
+[sub_resource type="Resource" id="Resource_x68vr"]
+script = ExtResource("10_dwd3o")
+text = "Entregue mais 6 frutas ao altar para o banquete final"
+items = Array[ExtResource("11_0ebkc")]([SubResource("Resource_ne7a3")])
+fade_to_black = true
+metadata/_custom_type_script = "uid://bhxcormw418t5"
+
+[sub_resource type="Resource" id="Resource_c6qah"]
+script = ExtResource("11_0ebkc")
+item = ExtResource("34_lr568")
+quant = 999
+metadata/_custom_type_script = "uid://c5nru43e0eiis"
+
+[sub_resource type="Resource" id="Resource_8sejf"]
+script = ExtResource("10_dwd3o")
+text = "Entre no ritual e se torne o prato principal"
+items = Array[ExtResource("11_0ebkc")]([SubResource("Resource_c6qah")])
+fade_to_black = true
 metadata/_custom_type_script = "uid://bhxcormw418t5"
 
 [sub_resource type="Environment" id="Environment_kxg5b"]
@@ -180,6 +293,44 @@ shape = SubResource("CapsuleShape3D_t8pok")
 transform = Transform3D(1.75, 0, 0, 0, 1.75, 0, 0, 0, 1.75, -13.984642, 0, -6.513108)
 
 [node name="Pier" type="Node3D" parent="TheBeach/Estrutural" unique_id=1197045304]
+
+[node name="Recompensas" type="Node3D" parent="TheBeach/Estrutural/Pier" unique_id=65185423 node_paths=PackedStringArray("animator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.001276, 1.8810806, -11.015484)
+script = SubResource("GDScript_ho1os")
+animator = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TheBeach/Estrutural/Pier/Recompensas" unique_id=501085776]
+libraries/ = SubResource("AnimationLibrary_ne7a3")
+
+[node name="Camera" type="Node3D" parent="TheBeach/Estrutural/Pier/Recompensas" unique_id=501803310 groups=["appear_on_demand"]]
+process_mode = 4
+visible = false
+
+[node name="Camera" parent="TheBeach/Estrutural/Pier/Recompensas/Camera" unique_id=729508623 instance=ExtResource("3_kxg64")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="Enabler" type="StaticBody3D" parent="TheBeach/Estrutural/Pier/Recompensas/Camera" unique_id=492069986 node_paths=PackedStringArray("delete_node")]
+script = ExtResource("4_ho1os")
+delete_node = NodePath("..")
+which = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Estrutural/Pier/Recompensas/Camera/Enabler" unique_id=1054292916]
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="Vara" type="Node3D" parent="TheBeach/Estrutural/Pier/Recompensas" unique_id=565011314 groups=["appear_on_demand"]]
+process_mode = 4
+visible = false
+
+[node name="VaraPesca" parent="TheBeach/Estrutural/Pier/Recompensas/Vara" unique_id=1898407150 instance=ExtResource("4_1n8u8")]
+transform = Transform3D(1.7320508, -1, 0, 1, 1.7320508, 0, 0, 0, 2, 0.25, -0.16, 0)
+
+[node name="Enabler" type="StaticBody3D" parent="TheBeach/Estrutural/Pier/Recompensas/Vara/VaraPesca" unique_id=300441456 node_paths=PackedStringArray("delete_node")]
+script = ExtResource("4_ho1os")
+delete_node = NodePath("../..")
+which = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Estrutural/Pier/Recompensas/Vara/VaraPesca/Enabler" unique_id=1231765836]
+shape = SubResource("SphereShape3D_g4v7s")
 
 [node name="Altar" type="Node3D" parent="TheBeach/Estrutural/Pier" unique_id=1620251238]
 transform = Transform3D(1.0000001, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1.0000001, 8.001276, 0.9933584, -11.015484)
@@ -437,6 +588,9 @@ transform = Transform3D(0.93533784, 0, 0.35375574, 0, 1, 0, -0.35375574, 0, 0.93
 [node name="coqueiro" parent="TheBeach/Areas/BracoDireito/Decoracao/Descanso" unique_id=1924780143 instance=ExtResource("10_48tcl")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.2498083, 0.056263447, -0.84347343)
 
+[node name="coqueiro2" parent="TheBeach/Areas/BracoDireito/Decoracao/Descanso" unique_id=1342031182 instance=ExtResource("10_48tcl")]
+transform = Transform3D(0.9763411, -0.012414082, -0.21587937, 9.313226e-10, 0.9983507, -0.057409875, 0.21623601, 0.05605162, 0.97473085, -14.142418, -1.0384879, 24.134197)
+
 [node name="guardasol" parent="TheBeach/Areas/BracoDireito/Decoracao/Descanso" unique_id=1667521885 instance=ExtResource("18_hsikf")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.0953865, 0.021551609, -0.8362751)
 
@@ -493,7 +647,10 @@ transform = Transform3D(-0.71882313, 0.10916786, -0.686568, 7.450581e-09, 0.9875
 transform = Transform3D(0.9999999, 0.00051201024, -4.026254e-05, -0.0005135909, 0.9969223, -0.07839418, 0, 0.0783942, 0.99692243, -7.508933, 1.565717, 7.910394)
 
 [node name="garrafa" parent="TheBeach/Areas/BracoEsquerdo/Decoracao" unique_id=1096389368 instance=ExtResource("25_l5ha6")]
-transform = Transform3D(1, 0, 0, 0, 0.9429622, -0.33289972, 0, 0.33289972, 0.9429622, -6.1415787, 1.4885093, 6.4066944)
+transform = Transform3D(0.9939523, 0.10981293, 3.7252903e-09, -0.10354945, 0.93725944, -0.33289972, -0.0365567, 0.33088645, 0.9429622, -5.4322414, 1.4693178, 6.90485)
+
+[node name="Collectible" parent="TheBeach/Areas/BracoEsquerdo/Decoracao/garrafa" index="1" unique_id=2133568370]
+process_mode = 4
 
 [node name="Interagiveis" type="Node3D" parent="TheBeach/Areas/BracoEsquerdo" unique_id=14407345]
 
@@ -536,7 +693,8 @@ demands = NodePath("Demands")
 
 [node name="Demands" type="Node" parent="TheCreature" unique_id=1596109770]
 script = ExtResource("9_qlqx7")
-demands = Array[ExtResource("10_dwd3o")]([SubResource("Resource_dwd3o"), SubResource("Resource_48tcl")])
+demands = Array[ExtResource("10_dwd3o")]([SubResource("Resource_48tcl"), SubResource("Resource_dwd3o"), ExtResource("35_onujg"), SubResource("Resource_3viy2"), SubResource("Resource_ho1os"), SubResource("Resource_x68vr"), SubResource("Resource_8sejf")])
+photo_demand = ExtResource("35_onujg")
 
 [node name="EyeBottomRef" type="Marker3D" parent="TheCreature" unique_id=426806147]
 
@@ -567,8 +725,10 @@ mesh = SubResource("CylinderMesh_yq54j")
 shape = SubResource("CylinderShape3D_qn35j")
 
 [node name="TheVictim" parent="." unique_id=762061992 node_paths=PackedStringArray("center") instance=ExtResource("1_kxg5b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.35449, 1.0567753, -18.045918)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.580128, 2.5633824, 23.519238)
 center = NodePath("../TheCreature/Eye/Camera3D")
 
 [connection signal="screen_entered" from="TheBeach/Areas/Cabeca/Decoracao/Caverna/VisibleOnScreenNotifier3D" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="fechar_porta"]
 [connection signal="screen_exited" from="TheBeach/Areas/Cabeca/Decoracao/Caverna/VisibleOnScreenNotifier3D" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="abrir_porta"]
+
+[editable path="TheBeach/Areas/BracoEsquerdo/Decoracao/garrafa"]

@@ -3,6 +3,8 @@ extends Resource
 
 @export_multiline var text: String
 @export var items: Array[ItemQuantity]
+@export var fade_to_black: bool = false
+@export var activate_node_with_name: String = ""
 
 func can_realize(inventory: Inventory) -> bool:
 	for item_quantity in items:

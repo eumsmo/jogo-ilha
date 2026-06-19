@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://cxsrh6c2ft3pc"]
 
-[ext_resource type="Texture2D" uid="uid://oudos7xnje0c" path="res://recursos/sprites/trash.png" id="1_v4mqc"]
+[ext_resource type="Texture2D" uid="uid://dtmkn4lgqg7fr" path="res://recursos/sprites/trash.png" id="1_v4mqc"]
 [ext_resource type="Script" uid="uid://sledefw12tar" path="res://scripts/item.gd" id="2_yb1qd"]
 
 [resource]
 script = ExtResource("2_yb1qd")
 img = ExtResource("1_v4mqc")
+max_quant = 5
 metadata/_custom_type_script = "uid://sledefw12tar"

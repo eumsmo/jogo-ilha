@@ -1,8 +1,7 @@
 class_name DemandUIItem
 extends Control
 
-@export var text: Label
-@export var done: Control
+@export var text: RichTextLabel
 var realized = false
 
 func set_text(text: String) -> void:
@@ -13,4 +12,4 @@ func set_realized() -> void:
 		return
 	
 	realized = true
-	done.show()
+	text.text = "[s]" + text.text + "[/s]"

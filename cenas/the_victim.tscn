@@ -5,13 +5,13 @@
 [ext_resource type="Script" uid="uid://ddsqayr6gd8ld" path="res://cenas/victim/camera.gd" id="2_3j8e3"]
 [ext_resource type="Script" uid="uid://beohup807f2d6" path="res://scripts/inventory.gd" id="3_cd81x"]
 [ext_resource type="PackedScene" uid="uid://bimd0mdmxx0c3" path="res://recursos/models/itens/camera.tscn" id="3_u7652"]
-[ext_resource type="Texture2D" uid="uid://h4bxi237oj3w" path="res://recursos/sprites/hand.png" id="3_vp0ll"]
+[ext_resource type="Texture2D" uid="uid://drvtlk7fannst" path="res://recursos/sprites/hand.png" id="3_vp0ll"]
 [ext_resource type="Script" uid="uid://xbqavrhimxwa" path="res://cenas/victim/hand_tool.gd" id="4_2uvyr"]
 [ext_resource type="PackedScene" uid="uid://c54yfrjld5c6b" path="res://recursos/models/itens/vara_pesca.fbx" id="4_w1wq2"]
-[ext_resource type="Texture2D" uid="uid://c01caihepf70m" path="res://recursos/sprites/cam.png" id="5_k6mmk"]
+[ext_resource type="Texture2D" uid="uid://tri6iybwx0tr" path="res://recursos/sprites/cam.png" id="5_k6mmk"]
 [ext_resource type="Resource" uid="uid://dd4pigl04vkpc" path="res://items/photo.tres" id="5_lysed"]
 [ext_resource type="Script" uid="uid://cskga41wg3d7l" path="res://cenas/victim/fishing_rod.gd" id="5_sud1n"]
-[ext_resource type="Texture2D" uid="uid://cwk58bp5xc0d0" path="res://recursos/sprites/fishing.png" id="8_k6mmk"]
+[ext_resource type="Texture2D" uid="uid://dlnnaaf4bi8e7" path="res://recursos/sprites/fishing.png" id="8_k6mmk"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_so80e"]
 
@@ -44,8 +44,7 @@ shape_cast = NodePath("ShapeCast3D")
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Body/vitima/armvitima" parent_id_path=PackedInt32Array(1213765168, 562520514) index="0" unique_id=1578486684]
-bones/1/rotation = Quaternion(0, 0, -0.003304164, 0.99999464)
-bones/3/rotation = Quaternion(0.6904853, 0.1524141, 0.6904853, -0.1524141)
+bones/3/rotation = Quaternion(0.6922097, 0.14438069, 0.6922096, -0.14438069)
 bones/3/scale = Vector3(1, 0.99999994, 1)
 bones/5/position = Vector3(0, -0.00013919391, 0)
 bones/5/rotation = Quaternion(1, 0, -4.371139e-08, 0)
@@ -55,15 +54,15 @@ bones/7/scale = Vector3(1, 1, 1)
 bones/10/position = Vector3(0, 0.0014135977, -8.4703295e-22)
 bones/10/rotation = Quaternion(-0.7004053, 0, 0, 0.7137453)
 bones/10/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(0.6959484, -0.12512398, -0.69594806, -0.12512404)
+bones/12/rotation = Quaternion(0.695979, -0.12495385, -0.6959787, -0.12495391)
 bones/12/scale = Vector3(1, 0.99999994, 1)
 bones/15/position = Vector3(-3.4093151e-28, 0.00069472654, 8.991487e-11)
-bones/15/rotation = Quaternion(0.061801277, 0.00025976537, -0.011440662, 0.9980229)
+bones/15/rotation = Quaternion(0.061866466, -4.8732457e-18, 1.0147735e-16, 0.9980844)
 bones/16/position = Vector3(2.6562395e-26, 0.000870758, 2.8055405e-10)
-bones/16/rotation = Quaternion(-0.0056712534, -0.000274279, -0.008160843, 0.9999506)
+bones/16/rotation = Quaternion(-0.0056781624, 2.6708858e-19, -1.8489606e-17, 0.99998397)
 bones/16/scale = Vector3(1, 1.0000001, 1.0000001)
 bones/17/position = Vector3(-4.0657688e-26, 0.0010505337, -9.190822e-11)
-bones/17/rotation = Quaternion(0.005683913, -0.00030235318, -0.008996353, 0.99994344)
+bones/17/rotation = Quaternion(0.005678332, -2.6710282e-19, 1.8489604e-17, 0.99998397)
 bones/17/scale = Vector3(1, 0.99999976, 0.9999999)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body" unique_id=1279903870]
@@ -86,7 +85,6 @@ script = ExtResource("2_3j8e3")
 photo_item = ExtResource("5_lysed")
 camera = NodePath("Control/SubViewportContainer/SubViewport/Camera3D")
 camera_viewpoint = NodePath("CameraViewPoint")
-available = true
 img = ExtResource("5_k6mmk")
 
 [node name="Camera" parent="Body/NasMoes/Camera" unique_id=729508623 instance=ExtResource("3_u7652")]

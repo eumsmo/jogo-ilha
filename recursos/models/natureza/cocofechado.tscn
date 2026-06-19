@@ -5,3 +5,4 @@
 [node name="cocofechado" type="Node3D" unique_id=1363575228]
 
 [node name="cocofechado" parent="." unique_id=1132650024 instance=ExtResource("1_c8b50")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)

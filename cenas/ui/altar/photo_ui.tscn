@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://0qhr7x5gjtu3" path="res://cenas/ui/altar/photo_ui.gd" id="1_0yyst"]
 [ext_resource type="Texture2D" uid="uid://b0a08xrwtioqr" path="res://recursos/sprites/polaroid.png" id="1_2w306"]
-[ext_resource type="Texture2D" uid="uid://drw80bmfdd4e" path="res://recursos/sprites/img_0.png" id="2_0yyst"]
 
 [sub_resource type="Animation" id="Animation_0yyst"]
 length = 0.001
@@ -107,7 +106,6 @@ offset_left = 26.0
 offset_top = 26.0
 offset_right = 474.0
 offset_bottom = 474.0
-texture = ExtResource("2_0yyst")
 expand_mode = 1
 stretch_mode = 5
 

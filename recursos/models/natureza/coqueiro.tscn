@@ -1,8 +1,43 @@
 [gd_scene format=3 uid="uid://bk72msp6yptot"]
 
 [ext_resource type="PackedScene" uid="uid://ds0phaa5xxtv3" path="res://recursos/models/natureza/fbxnatureza/coqueiro.fbx" id="1_a6s71"]
+[ext_resource type="Script" uid="uid://cq12xag7h3w0x" path="res://scripts/arvore.gd" id="2_nnp17"]
+[ext_resource type="Resource" uid="uid://chvf63nkceeph" path="res://items/fruit.tres" id="3_rgshh"]
+[ext_resource type="PackedScene" uid="uid://dd4d7qeecqfas" path="res://recursos/models/natureza/fbxnatureza/cocofechado.fbx" id="4_nnp17"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vjwo5"]
+height = 8.307373
 
 [node name="coqueiro" type="Node3D" unique_id=1924780143]
 
 [node name="coqueiro" parent="." unique_id=1727134424 instance=ExtResource("1_a6s71")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="CocosPoint" type="Node3D" parent="." unique_id=1581377811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.199257, 0)
+
+[node name="Marker3D" type="Marker3D" parent="CocosPoint" unique_id=1601649278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24612105, 0.66754436, 0)
+
+[node name="Marker3D2" type="Marker3D" parent="CocosPoint" unique_id=109112605]
+transform = Transform3D(1, 0, 0, 0, 0.94672906, 0.3220312, 0, -0.3220312, 0.94672906, 0.041917324, 0.6436372, 0.5663934)
+
+[node name="Marker3D3" type="Marker3D" parent="CocosPoint" unique_id=593167346]
+transform = Transform3D(0.96392673, 0.26616773, 7.450581e-09, -0.25198874, 0.9125775, 0.3220312, 0.08571431, -0.3104145, 0.946729, -0.45331502, 0.7359867, 0.17240328)
+
+[node name="Timer" type="Timer" parent="." unique_id=586599745]
+process_callback = 0
+wait_time = 20.0
+one_shot = true
+
+[node name="Interactable" type="StaticBody3D" parent="." unique_id=968139485 node_paths=PackedStringArray("places_holder", "timer_next")]
+script = ExtResource("2_nnp17")
+item = ExtResource("3_rgshh")
+fruit_scene = ExtResource("4_nnp17")
+places_holder = NodePath("../CocosPoint")
+timer_next = NodePath("../Timer")
+metadata/_custom_type_script = "uid://tl8ndvake8h"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=1876365506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1536865, 0)
+shape = SubResource("CylinderShape3D_vjwo5")

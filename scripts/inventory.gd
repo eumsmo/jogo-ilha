@@ -57,3 +57,9 @@ func sub_item(item: Item, quant: int = 1) -> void:
 	value = value - quant
 	inventory.set(item, value)
 	on_item_change.emit(item, value)
+
+func is_item_full(item: Item) -> bool:
+	if item.max_quant == -1:
+		return false
+	
+	return false if not has_item(item) else item.max_quant <= inventory[item]

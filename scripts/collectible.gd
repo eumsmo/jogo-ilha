@@ -6,6 +6,10 @@ extends Interactable
 @export_group("References")
 @export var delete_node: Node
 
+
+func can_interact(victim: TheVictim) -> bool:
+	return super(victim) and not victim.inventory.is_item_full(item)
+
 func collect(victim: TheVictim) -> void:
 	interact(victim)
 
