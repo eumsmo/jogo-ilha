@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dgpeyw87g3ksg"]
+
+[ext_resource type="PackedScene" uid="uid://b5cbf7bbb4wtm" path="res://recursos/models/decoracao/fbxdecoracao/cangagrande.fbx" id="1_r7238"]
+
+[node name="cangagrande" type="Node3D" unique_id=2098190245]
+
+[node name="cangagrande" parent="." unique_id=497624867 instance=ExtResource("1_r7238")]

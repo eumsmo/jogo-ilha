@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dcro48bjskuip"]
+
+[ext_resource type="PackedScene" uid="uid://f4f4r86gjox7" path="res://recursos/models/decoracao/fbxdecoracao/chave.fbx" id="1_nk01p"]
+
+[node name="chave" type="Node3D" unique_id=198739110]
+
+[node name="chave" parent="." unique_id=1987339826 instance=ExtResource("1_nk01p")]

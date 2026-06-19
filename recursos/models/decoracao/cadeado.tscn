@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d1rvln3x2lex7"]
+
+[ext_resource type="PackedScene" uid="uid://d1ukdx0qip8kv" path="res://recursos/models/decoracao/fbxdecoracao/cadeado.fbx" id="1_fs7l0"]
+
+[node name="cadeado" type="Node3D" unique_id=139527961]
+
+[node name="cadeado" parent="." unique_id=1280926473 instance=ExtResource("1_fs7l0")]

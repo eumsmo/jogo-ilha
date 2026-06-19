@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ccsnncgdv1vb3"]
+
+[ext_resource type="PackedScene" uid="uid://bb62ome6mg1ue" path="res://recursos/models/decoracao/fbxdecoracao/barcomadeira.fbx" id="1_afk5t"]
+
+[node name="barcomadeira" type="Node3D" unique_id=1892110636]
+
+[node name="barcomadeira" parent="." unique_id=400930552 instance=ExtResource("1_afk5t")]
