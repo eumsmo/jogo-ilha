@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://nihc5wbm4o5k"]
 
 [ext_resource type="PackedScene" uid="uid://c3jrfqbwsjslo" path="res://jogo.tscn" id="1_j160m"]
+[ext_resource type="Script" uid="uid://cyp6hi5qfauou" path="res://cenas/ui/ritual_ui.gd" id="2_7mt7j"]
 [ext_resource type="Script" uid="uid://bxcjjme8q0erw" path="res://cenas/ui/inventory_ui.gd" id="2_dc7qk"]
 [ext_resource type="PackedScene" uid="uid://c03b32i2i2kdi" path="res://cenas/ui/slot_de_inventario.tscn" id="3_sph1n"]
 [ext_resource type="Texture2D" uid="uid://drvtlk7fannst" path="res://recursos/sprites/hand.png" id="4_ggsbl"]
@@ -49,6 +50,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="EndingLabel" type="Label" parent="UI" unique_id=933519041 node_paths=PackedStringArray("indicator")]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -110.0
+offset_right = 576.0
+offset_bottom = -82.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 20
+text = "[E] para se sacrificar"
+horizontal_alignment = 1
+script = ExtResource("2_7mt7j")
+indicator = NodePath("../InteractIndicator")
+
 [node name="InteractIndicator" type="Control" parent="UI" unique_id=1696031751 node_paths=PackedStringArray("indicator")]
 layout_mode = 1
 anchors_preset = 15
@@ -59,6 +81,9 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("12_nujuc")
 indicator = NodePath("Label")
+hand_text = "Press [E] to interact"
+camera_text = "Press [E] to take photos"
+fishing_text = "Press [E] to fish"
 
 [node name="Label" type="Label" parent="UI/InteractIndicator" unique_id=605820378]
 layout_mode = 1

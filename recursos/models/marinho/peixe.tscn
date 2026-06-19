@@ -5,3 +5,4 @@
 [node name="peixe" type="Node3D" unique_id=765033659]
 
 [node name="peixe" parent="." unique_id=554190529 instance=ExtResource("1_yupqy")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)

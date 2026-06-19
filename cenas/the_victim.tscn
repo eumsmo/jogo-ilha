@@ -12,6 +12,10 @@
 [ext_resource type="Resource" uid="uid://dd4pigl04vkpc" path="res://items/photo.tres" id="5_lysed"]
 [ext_resource type="Script" uid="uid://cskga41wg3d7l" path="res://cenas/victim/fishing_rod.gd" id="5_sud1n"]
 [ext_resource type="Texture2D" uid="uid://dlnnaaf4bi8e7" path="res://recursos/sprites/fishing.png" id="8_k6mmk"]
+[ext_resource type="Script" uid="uid://bm0dhx7ixqc3w" path="res://cenas/victim/victim_audios.gd" id="13_vpqg3"]
+[ext_resource type="AudioStream" uid="uid://c5duqg2u2xiis" path="res://recursos/soundeffects/tirandofoto.mp3" id="14_shoob"]
+[ext_resource type="AudioStream" uid="uid://c0u7lsbwsm72r" path="res://recursos/soundeffects/pegandoopeixe.mp3" id="15_bckuc"]
+[ext_resource type="AudioStream" uid="uid://b63j6cco2d0jn" path="res://recursos/soundeffects/coletasuave.mp3" id="16_bckuc"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_so80e"]
 
@@ -23,7 +27,7 @@ radius = 1.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_s7l8g"]
 radius = 1.5
 
-[node name="TheVictim" type="CharacterBody3D" unique_id=762061992 node_paths=PackedStringArray("inventory", "tools_holder", "camera", "fishing_rod", "hands", "animator")]
+[node name="TheVictim" type="CharacterBody3D" unique_id=762061992 node_paths=PackedStringArray("inventory", "tools_holder", "camera", "fishing_rod", "hands", "animator", "audio")]
 script = ExtResource("1_s7l8g")
 inventory = NodePath("Inventory")
 tools_holder = NodePath("Body/NasMoes")
@@ -31,6 +35,7 @@ camera = NodePath("Body/NasMoes/Camera")
 fishing_rod = NodePath("Body/NasMoes/VaraDePesca")
 hands = NodePath("Body/NasMoes/Moes")
 animator = NodePath("Body/vitima/AnimationPlayer")
+audio = NodePath("BarulhosDoJogador")
 animations = Dictionary[int, String]({
 0: "idel",
 1: "walk",
@@ -88,7 +93,6 @@ script = ExtResource("2_3j8e3")
 photo_item = ExtResource("5_lysed")
 camera = NodePath("Control/SubViewportContainer/SubViewport/Camera3D")
 camera_viewpoint = NodePath("CameraViewPoint")
-available = true
 img = ExtResource("5_k6mmk")
 
 [node name="Camera" parent="Body/NasMoes/Camera" unique_id=729508623 instance=ExtResource("3_u7652")]
@@ -134,7 +138,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29366577, 0)
 visible = false
 script = ExtResource("5_sud1n")
 shape_cast = NodePath("ShapeCast3D2")
-available = true
 img = ExtResource("8_k6mmk")
 
 [node name="ShapeCast3D2" type="ShapeCast3D" parent="Body/NasMoes/VaraDePesca" unique_id=1970797760]
@@ -160,6 +163,18 @@ debug_shape_custom_color = Color(1, 0, 1, 1)
 [node name="Inventory" type="Node" parent="." unique_id=1836407094]
 script = ExtResource("3_cd81x")
 metadata/_custom_type_script = "uid://beohup807f2d6"
+
+[node name="BarulhosDoJogador" type="Node3D" parent="." unique_id=649064324 node_paths=PackedStringArray("player")]
+script = ExtResource("13_vpqg3")
+player = NodePath("AudioStreamPlayer")
+start_offset = Dictionary[AudioStream, float]({
+ExtResource("14_shoob"): 0.77
+})
+camera_click = ExtResource("14_shoob")
+fishing_road_catch = ExtResource("15_bckuc")
+hand_collect = ExtResource("16_bckuc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BarulhosDoJogador" unique_id=1527757167]
 
 [connection signal="using_action" from="." to="Body/NasMoes/Camera" method="take_picture"]
 

@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://ndjuf2q5lg1s"]
+
+[sub_resource type="GDScript" id="GDScript_g4v7s"]
+script/source = "extends Control
+
+func go_to_game() -> void:
+	get_tree().change_scene_to_file(\"res://game_holder.tscn\")
+"
+
+[node name="Start" type="Control" unique_id=1823842551]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_g4v7s")
+
+[node name="Label" type="Label" parent="." unique_id=242644093]
+layout_mode = 1
+offset_left = 39.0
+offset_top = 34.0
+offset_right = 441.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 64
+text = "Skull Island"
+
+[node name="Button" type="Button" parent="." unique_id=776792364]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -197.0
+offset_top = -121.0
+offset_right = -76.0
+offset_bottom = -46.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "Start"
+
+[node name="Label2" type="Label" parent="." unique_id=1868558109]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = -254.0
+offset_right = 547.0
+offset_bottom = -23.0
+grow_vertical = 0
+text = "Made by:
+- Juan Vitor [@Cebojuan]: Code, Level/Game design, Implementation
+- Maria Fernanda [@Mary_Life]: Models and Animations
+
+Outside Material (audios from pixabay.com):
+- Jerome Chauvel
+- Daniel Roberts
+- freesound_community
+- Xmer™ Sounds"
+vertical_alignment = 2
+
+[connection signal="pressed" from="Button" to="." method="go_to_game"]

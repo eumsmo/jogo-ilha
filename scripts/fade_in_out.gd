@@ -10,6 +10,7 @@ signal fade_out_finished
 func _ready() -> void:
 	hide()
 	Game.instance.creature.demands.need_to_fade.connect(demand_fade)
+	Game.instance.on_bad_ending.connect(fade_in)
 
 func _fade(from: float, to: float, fade_time: float) -> void:
 	var tween = get_tree().create_tween()

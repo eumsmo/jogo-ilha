@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d32hbshxf2xob"
-path="res://.godot/imported/ilhas.fbx-4e82bd822a978be48031b1f97598ce4b.scn"
+uid="uid://dg7cwh81fbcye"
+path="res://.godot/imported/apendices_da_ilha.fbx-a792b1ccb54c7edc1eeef902fb55edc1.scn"
 
 [deps]
 
-source_file="res://recursos/models/ilhas/ilhas.fbx"
-dest_files=["res://.godot/imported/ilhas.fbx-4e82bd822a978be48031b1f97598ce4b.scn"]
+source_file="res://recursos/models/ilhas/apendices_da_ilha.fbx"
+dest_files=["res://.godot/imported/apendices_da_ilha.fbx-a792b1ccb54c7edc1eeef902fb55edc1.scn"]
 
 [params]
 
@@ -36,9 +36,9 @@ animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-materials/extract=1
+materials/extract=0
 materials/extract_format=0
-materials/extract_path="res://recursos/models/materials"
+materials/extract_path=""
 _subresources={}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false

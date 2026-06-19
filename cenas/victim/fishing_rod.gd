@@ -22,6 +22,7 @@ func use_tool(_victim: TheVictim) -> void:
 	fishing_spot = get_closest_collision()
 	
 	if fishing_spot != null:
+		victim.audio.play(victim.audio.fishing_road_catch)
 		fishing_spot.caught()
 
 func _physics_process(delta: float) -> void:

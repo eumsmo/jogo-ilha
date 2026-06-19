@@ -1,12 +1,18 @@
 [gd_scene format=3 uid="uid://brf8x28t534l0"]
 
 [ext_resource type="PackedScene" uid="uid://d32hbshxf2xob" path="res://recursos/models/ilhas/ilhas.fbx" id="1_c8fo1"]
-[ext_resource type="Shape3D" uid="uid://bw2tlfgx5ny8e" path="res://recursos/models/ilhas/ilha_polygon_shape.tres" id="2_vc3v2"]
+[ext_resource type="Shape3D" uid="uid://b1icpnnpc8pl0" path="res://recursos/models/ilhas/ilha_grama_shape.tres" id="5_rnwr3"]
+[ext_resource type="Shape3D" uid="uid://ds6j5wu8p12wo" path="res://recursos/models/ilhas/ilha_areia_shape.tres" id="6_mx4mi"]
 
 [node name="ilhas" unique_id=1212567673 instance=ExtResource("1_c8fo1")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Ilhas" parent_id_path=PackedInt32Array(2078393851) index="0" unique_id=2138221308]
+[node name="Grama" type="StaticBody3D" parent="." index="2" unique_id=1012046665]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ilhas/StaticBody3D" index="0" unique_id=1036727391]
-shape = ExtResource("2_vc3v2")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grama" index="0" unique_id=1126604938]
+shape = ExtResource("5_rnwr3")
+
+[node name="Areia" type="StaticBody3D" parent="." index="3" unique_id=1210056268]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areia" index="0" unique_id=877255903]
+shape = ExtResource("6_mx4mi")

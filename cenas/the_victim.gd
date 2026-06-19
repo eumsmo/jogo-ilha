@@ -18,6 +18,8 @@ var on_hand: HandTool
 @export var hands: HandTool
 
 @export var animator: AnimationPlayer
+@export var audio: VictimAudio
+
 
 
 enum VictimAnimations { IDLE, WALK, CAM_IDLE, CAM_WALK, FISH_IDLE, FISH_WALK }
@@ -45,7 +47,8 @@ func _input(event: InputEvent) -> void:
 		return
 		
 	if event.is_action_pressed("ui_accept") or event.is_action_pressed("interact"):
-		on_hand.use_tool(self)
+		if not Game.instance.player_interact_lock:
+			on_hand.use_tool(self)
 	
 	if event.is_action_pressed("switch"):
 		switch_hand_tool()

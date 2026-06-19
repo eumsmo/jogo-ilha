@@ -23,6 +23,7 @@ func use_tool(victim: TheVictim) -> void:
 	if count >= photos_per_camera:
 		return
 	
+	victim.audio.play(victim.audio.camera_click)
 	var img = await take_picture()
 	
 	img.save_png("user://img_{0}.png".format([count]))

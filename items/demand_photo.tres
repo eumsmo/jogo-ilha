@@ -12,6 +12,6 @@ metadata/_custom_type_script = "uid://c5nru43e0eiis"
 
 [resource]
 script = ExtResource("3_vivhw")
-text = "Tire fotos da ilha e leve ao altar para serem reveladas"
+text = "Take photos of the island and bring them to the altar."
 items = Array[ExtResource("1_ifi0u")]([SubResource("Resource_lr568")])
 metadata/_custom_type_script = "uid://bhxcormw418t5"

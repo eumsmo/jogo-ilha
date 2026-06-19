@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cxa3skk1milkx"]
+
+[sub_resource type="GDScript" id="GDScript_j14t3"]
+script/source = "extends Control
+
+func go_to_game() -> void:
+	get_tree().change_scene_to_file(\"res://start.tscn\")
+"
+
+[node name="BadEnding" type="Control" unique_id=1823842551]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_j14t3")
+
+[node name="Label" type="Label" parent="." unique_id=242644093]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -201.0
+offset_top = 37.0
+offset_right = 201.0
+offset_bottom = 125.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Bad Ending :("
+
+[node name="Button" type="Button" parent="." unique_id=776792364]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -134.0
+offset_top = -91.0
+offset_right = 135.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "Main Menu"
+
+[node name="Label2" type="Label" parent="." unique_id=1868558109]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -173.0
+offset_right = 448.0
+offset_bottom = 194.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Apparently, following rules without 
+direction can have terrible consequences.
+
+But don't worry, 
+so far there's nothing you could have done.
+
+We're working as fast as we can 
+to give you a chance to escape.
+
+Thank you for playing!"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[connection signal="pressed" from="Button" to="." method="go_to_game"]

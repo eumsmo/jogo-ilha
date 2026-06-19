@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cqqvh0up7rfjw"]
+
+[ext_resource type="PackedScene" uid="uid://dg7cwh81fbcye" path="res://recursos/models/ilhas/apendices_da_ilha.fbx" id="1_fplr7"]
+[ext_resource type="Material" uid="uid://ck3ppdwmu8xn4" path="res://recursos/materiais/roxo_escuro.tres" id="2_fvbf2"]
+[ext_resource type="Material" uid="uid://bjwr3cjfspgle" path="res://recursos/materiais/roxo_claro.tres" id="3_ka7ei"]
+
+[node name="apendices_da_ilha" unique_id=1624319752 instance=ExtResource("1_fplr7")]
+
+[node name="Caverna" parent="." index="0" unique_id=677557377]
+surface_material_override/0 = ExtResource("2_fvbf2")
+
+[node name="Pedrona" parent="." index="1" unique_id=1670044664]
+visible = false
+surface_material_override/0 = ExtResource("3_ka7ei")
+
+[node name="Pedrona2" parent="." index="2" unique_id=2046301540]
+visible = false
+surface_material_override/0 = ExtResource("3_ka7ei")
+
+[node name="Pier do Mal" parent="." index="3" unique_id=82821883]
+surface_material_override/0 = ExtResource("2_fvbf2")
