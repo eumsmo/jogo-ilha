@@ -6,6 +6,9 @@ extends Interactable
 @export_group("References")
 @export var delete_node: Node
 
+func collect(victim: TheVictim) -> void:
+	interact(victim)
+
 func interact(victim: TheVictim) -> void:
 	victim.inventory.add_item(item)
 	victim.clear_closest_interactable()

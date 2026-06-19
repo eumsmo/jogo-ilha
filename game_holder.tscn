@@ -3,16 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://c3jrfqbwsjslo" path="res://jogo.tscn" id="1_j160m"]
 [ext_resource type="Script" uid="uid://bxcjjme8q0erw" path="res://cenas/ui/inventory_ui.gd" id="2_dc7qk"]
 [ext_resource type="PackedScene" uid="uid://c03b32i2i2kdi" path="res://cenas/ui/slot_de_inventario.tscn" id="3_sph1n"]
-[ext_resource type="Texture2D" uid="uid://h4bxi237oj3w" path="res://recursos/sprites/hand.png" id="4_ggsbl"]
-[ext_resource type="Texture2D" uid="uid://bmcuucvpab4p8" path="res://recursos/sprites/outline_circle.png" id="5_7mt7j"]
-[ext_resource type="Script" uid="uid://c1v3vcfecmht6" path="res://cenas/ui/altar/precision.gd" id="5_nujuc"]
-[ext_resource type="Texture2D" uid="uid://ccgnepiysvidp" path="res://recursos/sprites/circle.png" id="5_y78qc"]
+[ext_resource type="Texture2D" uid="uid://drvtlk7fannst" path="res://recursos/sprites/hand.png" id="4_ggsbl"]
 [ext_resource type="Script" uid="uid://bj4vporq1e0od" path="res://cenas/ui/demands_ui.gd" id="6_sph1n"]
 [ext_resource type="PackedScene" uid="uid://bh65ivpii6yxi" path="res://cenas/ui/list_item.tscn" id="7_ggsbl"]
 [ext_resource type="Script" uid="uid://cskcetkpg7b25" path="res://cenas/ui/altar/photos_visualizer.gd" id="8_y78qc"]
 [ext_resource type="PackedScene" uid="uid://beq56xea3kuob" path="res://cenas/ui/altar/photo_ui.tscn" id="9_hhf4n"]
-[ext_resource type="Texture2D" uid="uid://drw80bmfdd4e" path="res://recursos/sprites/img_0.png" id="9_uhfu4"]
+[ext_resource type="Script" uid="uid://05yjpl7yq8n2" path="res://cenas/ui/precision/precision_controller.gd" id="11_7mt7j"]
 [ext_resource type="Resource" uid="uid://dd4pigl04vkpc" path="res://items/photo.tres" id="11_hhf4n"]
+[ext_resource type="PackedScene" uid="uid://d30lowle5u43h" path="res://cenas/ui/precision/one_hit_precision.tscn" id="12_7mt7j"]
+[ext_resource type="Script" uid="uid://bnxbap2j3ggw" path="res://cenas/ui/interact_indicator.gd" id="12_nujuc"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hhf4n"]
+load_path = "res://.godot/imported/img_0.png-a30e8d644d66daa3997b82c1d3293cb6.ctex"
 
 [node name="GameHolder" type="Control" unique_id=631920395]
 layout_mode = 3
@@ -82,77 +84,6 @@ texture = ExtResource("4_ggsbl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Precision" type="Control" parent="UI" unique_id=978222195]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -200.0
-offset_right = 200.0
-offset_bottom = 200.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-script = ExtResource("5_nujuc")
-
-[node name="Circle" type="Control" parent="UI/Precision" unique_id=527407406]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-
-[node name="TextureRect" type="TextureRect" parent="UI/Precision/Circle" unique_id=1300927307]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_7mt7j")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Circle2" type="Control" parent="UI/Precision" unique_id=2083346908]
-modulate = Color(1, 1, 1, 0.49019608)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2.5, 2.5)
-pivot_offset_ratio = Vector2(0.5, 0.5)
-
-[node name="TextureRect" type="TextureRect" parent="UI/Precision/Circle2" unique_id=2116300696]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_y78qc")
-expand_mode = 1
-stretch_mode = 5
-
 [node name="Demands" type="MarginContainer" parent="UI" unique_id=1153218748 node_paths=PackedStringArray("demands_holder")]
 layout_mode = 1
 anchors_preset = 1
@@ -180,5 +111,68 @@ grow_vertical = 2
 script = ExtResource("8_y78qc")
 photo_scene = ExtResource("9_hhf4n")
 photos_holder = NodePath(".")
-texture_temp = ExtResource("9_uhfu4")
+texture_temp = SubResource("CompressedTexture2D_hhf4n")
 photo_item = ExtResource("11_hhf4n")
+
+[node name="Precision2" type="Control" parent="UI" unique_id=482360378 node_paths=PackedStringArray("order")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_7mt7j")
+order = [NodePath("OneHitPrecision2"), NodePath("OneHitPrecision"), NodePath("OneHitPrecision3")]
+time_between_precisions = 1.0
+
+[node name="OneHitPrecision2" parent="UI/Precision2" unique_id=685162259 instance=ExtResource("12_7mt7j")]
+layout_mode = 1
+offset_left = -352.0
+offset_top = -128.0
+offset_right = 48.0
+offset_bottom = 272.0
+time = 2.0
+
+[node name="OneHitPrecision" parent="UI/Precision2" unique_id=1351837630 instance=ExtResource("12_7mt7j")]
+layout_mode = 1
+offset_top = -340.0
+offset_bottom = 60.0
+time = 2.0
+
+[node name="OneHitPrecision3" parent="UI/Precision2" unique_id=1731553870 instance=ExtResource("12_7mt7j")]
+layout_mode = 1
+offset_left = -48.0
+offset_top = -128.0
+offset_right = 352.0
+offset_bottom = 272.0
+time = 2.0
+
+[node name="InteractIndicator" type="Control" parent="UI" unique_id=1696031751 node_paths=PackedStringArray("indicator")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("12_nujuc")
+indicator = NodePath("Label")
+
+[node name="Label" type="Label" parent="UI/InteractIndicator" unique_id=605820378]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -110.0
+offset_right = 576.0
+offset_bottom = -82.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 20
+text = "[E] para interagir"
+horizontal_alignment = 1

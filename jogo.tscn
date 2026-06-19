@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://ca47lt0i40vap" path="res://scripts/altar.gd" id="6_0ebkc"]
 [ext_resource type="PackedScene" uid="uid://c6hx2w28cl3cr" path="res://recursos/models/decoracao/pontecurta.tscn" id="6_3u2t7"]
 [ext_resource type="Script" uid="uid://c1x1xh5jeqb1s" path="res://scripts/cave.gd" id="6_orj5g"]
-[ext_resource type="Texture2D" uid="uid://ccgnepiysvidp" path="res://recursos/sprites/circle.png" id="7_45nkh"]
 [ext_resource type="PackedScene" uid="uid://0uxnfdt6fwd7" path="res://recursos/models/decoracao/pontegrande.tscn" id="7_t3mex"]
 [ext_resource type="PackedScene" uid="uid://bphxrbhdfxnxw" path="res://recursos/models/decoracao/tunel.tscn" id="8_veval"]
 [ext_resource type="Script" uid="uid://dt6pegewwlcx2" path="res://cenas/creature/the_creature.gd" id="9_dwd3o"]
@@ -125,7 +124,7 @@ radius = 12.79
 script = ExtResource("1_8c340")
 victim = NodePath("TheVictim")
 creature = NodePath("TheCreature")
-interact_indicator = NodePath("InteractablePointer")
+interact_indicator = NodePath("")
 
 [node name="TheBeach" type="Node3D" parent="." unique_id=453127703]
 
@@ -405,14 +404,17 @@ transform = Transform3D(0.9952662, -0.09596731, -0.0153438505, 0.09641406, 0.994
 [node name="Flower6" parent="TheBeach/Areas/Cabeca/Interagiveis/Flores" unique_id=1558552040 instance=ExtResource("13_fxpqx")]
 transform = Transform3D(0.9952662, -0.09596731, -0.0153438505, 0.09641406, 0.9948377, 0.03165628, 0.012226682, -0.0329858, 0.99938107, -9.205957, 1.8497044, 9.308085)
 
-[node name="Flower5" parent="TheBeach/Areas/Cabeca/Interagiveis/Flores" unique_id=1339711997 instance=ExtResource("4_ysdx3")]
-transform = Transform3D(0.99626887, 0.086303756, 0, -0.08503876, 0.981666, 0.17058785, 0.014722373, -0.16995136, 0.98534244, 9.571123, 2.1983552, -6.3645835)
+[node name="FlowersLeft" type="Node3D" parent="TheBeach/Areas/Cabeca/Interagiveis/Flores" unique_id=1377900983]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 10.177281, 2.1278148, -5.5025806)
 
-[node name="Flower7" parent="TheBeach/Areas/Cabeca/Interagiveis/Flores" unique_id=670247688 instance=ExtResource("4_ysdx3")]
-transform = Transform3D(0.99626887, 0.086303756, 0, -0.08503876, 0.981666, 0.17058785, 0.014722373, -0.16995136, 0.98534244, 11.581493, 2.1278148, -5.7511363)
+[node name="Flower5" parent="TheBeach/Areas/Cabeca/Interagiveis/Flores/FlowersLeft" unique_id=1339711997 instance=ExtResource("4_ysdx3")]
+transform = Transform3D(0.99626887, 0.086303756, 0, -0.08503876, 0.981666, 0.17058785, 0.014722373, -0.16995136, 0.98534244, -0.6061592, 0.07054043, -0.8620033)
 
-[node name="Flower10" parent="TheBeach/Areas/Cabeca/Interagiveis/Flores" unique_id=823205428 instance=ExtResource("11_1aaqb")]
-transform = Transform3D(0.99626887, 0.086303756, 0, -0.08503876, 0.981666, 0.17058785, 0.014722373, -0.16995136, 0.98534244, 9.583631, 2.5027723, -4.599865)
+[node name="Flower7" parent="TheBeach/Areas/Cabeca/Interagiveis/Flores/FlowersLeft" unique_id=670247688 instance=ExtResource("4_ysdx3")]
+transform = Transform3D(0.99626887, 0.086303756, 0, -0.08503876, 0.981666, 0.17058785, 0.014722373, -0.16995136, 0.98534244, 1.404213, 0, -0.24855614)
+
+[node name="Flower10" parent="TheBeach/Areas/Cabeca/Interagiveis/Flores/FlowersLeft" unique_id=823205428 instance=ExtResource("11_1aaqb")]
+transform = Transform3D(0.99626887, 0.086303756, 0, -0.08503876, 0.981666, 0.17058785, 0.014722373, -0.16995136, 0.98534244, -0.6051041, 0.24468169, 0.9252697)
 
 [node name="BracoDireito" type="Node3D" parent="TheBeach/Areas" unique_id=332572922]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -18)
@@ -492,26 +494,8 @@ mesh = SubResource("CylinderMesh_yq54j")
 shape = SubResource("CylinderShape3D_qn35j")
 
 [node name="TheVictim" parent="." unique_id=762061992 node_paths=PackedStringArray("center") instance=ExtResource("1_kxg5b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.382398, 2.9158435, -19.1534)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.964863, 2.2062733, -15.760408)
 center = NodePath("../TheCreature/Eye/Camera3D")
-
-[node name="InteractablePointer" type="Node3D" parent="." unique_id=665730938]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.299533, 0)
-visible = false
-
-[node name="Sprite3D" type="Sprite3D" parent="InteractablePointer" unique_id=218912616]
-transform = Transform3D(0.42, 0, 0, 0, 0.42, 0, 0, 0, 0.42, 0, 0, 0)
-billboard = 1
-no_depth_test = true
-texture = ExtResource("7_45nkh")
-
-[node name="Label3D" type="Label3D" parent="InteractablePointer" unique_id=1784952485]
-billboard = 1
-no_depth_test = true
-render_priority = 1
-modulate = Color(0, 0, 0, 1)
-text = "E"
-font_size = 180
 
 [connection signal="screen_entered" from="TheBeach/Areas/Cabeca/Decoracao/Caverna/VisibleOnScreenNotifier3D" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="fechar_porta"]
 [connection signal="screen_exited" from="TheBeach/Areas/Cabeca/Decoracao/Caverna/VisibleOnScreenNotifier3D" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="abrir_porta"]
