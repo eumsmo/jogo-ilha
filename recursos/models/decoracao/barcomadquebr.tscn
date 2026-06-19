@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dlo7ar5dgtvov"]
+
+[ext_resource type="PackedScene" uid="uid://cladmi8r58wix" path="res://recursos/models/decoracao/fbxdecoracao/barcomadquebr.fbx" id="1_fijhx"]
+
+[node name="barcomadquebr" type="Node3D" unique_id=340667878]
+
+[node name="barcomadquebr" parent="." unique_id=2035911614 instance=ExtResource("1_fijhx")]
