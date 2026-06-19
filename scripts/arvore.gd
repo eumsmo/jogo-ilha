@@ -7,6 +7,7 @@ extends Interactable
 var spawned_fruit: Node3D
 
 func _ready() -> void:
+	randomize()
 	create_apple()
 
 func can_interact(victim: TheVictim) -> bool:
@@ -32,6 +33,4 @@ func create_apple() -> void:
 
 func get_random_spot() -> Node3D:
 	var idx = randi_range(0, places_holder.get_child_count()-1)
-	print(idx)
 	return places_holder.get_child(idx)
-	

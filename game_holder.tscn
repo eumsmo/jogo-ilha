@@ -8,13 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bh65ivpii6yxi" path="res://cenas/ui/list_item.tscn" id="7_ggsbl"]
 [ext_resource type="Script" uid="uid://cskcetkpg7b25" path="res://cenas/ui/altar/photos_visualizer.gd" id="8_y78qc"]
 [ext_resource type="PackedScene" uid="uid://beq56xea3kuob" path="res://cenas/ui/altar/photo_ui.tscn" id="9_hhf4n"]
-[ext_resource type="Script" uid="uid://05yjpl7yq8n2" path="res://cenas/ui/precision/precision_controller.gd" id="11_7mt7j"]
 [ext_resource type="Resource" uid="uid://dd4pigl04vkpc" path="res://items/photo.tres" id="11_hhf4n"]
-[ext_resource type="PackedScene" uid="uid://d30lowle5u43h" path="res://cenas/ui/precision/one_hit_precision.tscn" id="12_7mt7j"]
 [ext_resource type="Script" uid="uid://bnxbap2j3ggw" path="res://cenas/ui/interact_indicator.gd" id="12_nujuc"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hhf4n"]
-load_path = "res://.godot/imported/img_0.png-a30e8d644d66daa3997b82c1d3293cb6.ctex"
 
 [node name="GameHolder" type="Control" unique_id=631920395]
 layout_mode = 3
@@ -49,6 +44,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="InteractIndicator" type="Control" parent="UI" unique_id=1696031751 node_paths=PackedStringArray("indicator")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("12_nujuc")
+indicator = NodePath("Label")
+
+[node name="Label" type="Label" parent="UI/InteractIndicator" unique_id=605820378]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -110.0
+offset_right = 576.0
+offset_bottom = -82.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 20
+text = "[E] para interagir"
+horizontal_alignment = 1
 
 [node name="Inventory" type="MarginContainer" parent="UI" unique_id=350255185 node_paths=PackedStringArray("slots_holder", "on_hand")]
 layout_mode = 1
@@ -111,68 +135,4 @@ grow_vertical = 2
 script = ExtResource("8_y78qc")
 photo_scene = ExtResource("9_hhf4n")
 photos_holder = NodePath(".")
-texture_temp = SubResource("CompressedTexture2D_hhf4n")
 photo_item = ExtResource("11_hhf4n")
-
-[node name="Precision2" type="Control" parent="UI" unique_id=482360378 node_paths=PackedStringArray("order")]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("11_7mt7j")
-order = [NodePath("OneHitPrecision2"), NodePath("OneHitPrecision"), NodePath("OneHitPrecision3")]
-time_between_precisions = 1.0
-
-[node name="OneHitPrecision2" parent="UI/Precision2" unique_id=685162259 instance=ExtResource("12_7mt7j")]
-layout_mode = 1
-offset_left = -352.0
-offset_top = -128.0
-offset_right = 48.0
-offset_bottom = 272.0
-time = 2.0
-
-[node name="OneHitPrecision" parent="UI/Precision2" unique_id=1351837630 instance=ExtResource("12_7mt7j")]
-layout_mode = 1
-offset_top = -340.0
-offset_bottom = 60.0
-time = 2.0
-
-[node name="OneHitPrecision3" parent="UI/Precision2" unique_id=1731553870 instance=ExtResource("12_7mt7j")]
-layout_mode = 1
-offset_left = -48.0
-offset_top = -128.0
-offset_right = 352.0
-offset_bottom = 272.0
-time = 2.0
-
-[node name="InteractIndicator" type="Control" parent="UI" unique_id=1696031751 node_paths=PackedStringArray("indicator")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("12_nujuc")
-indicator = NodePath("Label")
-
-[node name="Label" type="Label" parent="UI/InteractIndicator" unique_id=605820378]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -576.0
-offset_top = -110.0
-offset_right = 576.0
-offset_bottom = -82.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 20
-text = "[E] para interagir"
-horizontal_alignment = 1

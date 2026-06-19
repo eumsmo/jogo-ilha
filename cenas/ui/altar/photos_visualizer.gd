@@ -5,7 +5,6 @@ extends Control
 
 @export var photo_scene: PackedScene
 @export var photos_holder: Control
-@export var texture_temp: Texture2D
 @export var photo_item: Item
 
 var photos: Array[Control]
