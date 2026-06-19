@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bmlywnh6d8tju"]
+
+[ext_resource type="PackedScene" uid="uid://bi1rsib5w2j5h" path="res://recursos/models/marinho/fbxmarinho/peixe.fbx" id="1_yupqy"]
+
+[node name="peixe" type="Node3D" unique_id=765033659]
+
+[node name="peixe" parent="." unique_id=554190529 instance=ExtResource("1_yupqy")]
