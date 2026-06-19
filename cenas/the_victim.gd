@@ -27,12 +27,6 @@ enum VictimAnimations { IDLE, WALK, CAM_IDLE, CAM_WALK, FISH_IDLE, FISH_WALK }
 var locked := false
 
 
-# Interactable
-@export var shape_cast: ShapeCast3D
-var closest_interactable: Interactable = null
-signal closest_interactable_changed(interactable: Interactable)
-
-
 signal using_action
 signal on_hand_tool_changed(tool: HandTool)
 
@@ -44,20 +38,18 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	_handle_movement(delta)
-	_handle_interactables(delta)
+	#_handle_interactables(delta)
 
 func _input(event: InputEvent) -> void:
 	if locked:
 		return
 		
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_accept") or event.is_action_pressed("interact"):
 		on_hand.use_tool(self)
 	
 	if event.is_action_pressed("switch"):
 		switch_hand_tool()
 	
-	if event.is_action_pressed("interact") and closest_interactable != null and closest_interactable.can_interact(self):
-		closest_interactable.interact(self)
 
 func _handle_movement(delta: float) -> void:
 	# Add the gravity.
@@ -81,53 +73,19 @@ func _handle_movement(delta: float) -> void:
 
 	move_and_slide()
 
-func _handle_interactables(_delta: float) -> void:
-	var col = get_closest_collision()
-	if col != null:
-		if col != closest_interactable:
-			closest_interactable = col
-			closest_interactable_changed.emit(closest_interactable)
-	else:
-		if closest_interactable != null:
-			closest_interactable = null
-			closest_interactable_changed.emit(closest_interactable)
-
-func clear_closest_interactable() -> void:
-	if closest_interactable != null:
-		closest_interactable = null
-		closest_interactable_changed.emit(closest_interactable)
-
-func get_closest_collision() -> Interactable:
-	if not shape_cast.is_colliding():
-		return null
-	
-	var closest = null
-	var closest_dist = INF
-	
-	for i in range(0, shape_cast.get_collision_count()):
-		var collider = shape_cast.get_collider(i)
-		if collider is not Interactable or not collider.can_interact(self):
-			continue
-		
-		var collision_point = shape_cast.get_collision_point(i)
-		var dist = collision_point.distance_to(position)
-		if dist < closest_dist:
-			closest = collider
-			closest_dist = dist
-	
-	return closest
-
 func set_hand_tool(tool: HandTool) -> void:
 	if tool != null and not tool.available:
 		return
 	
 	if on_hand != null and on_hand != tool:
 		on_hand.hide()
+		on_hand.on_unequip(self)
 	
 	if tool != null:
 		on_hand = tool
 		on_hand.show()
 		on_hand_tool_changed.emit(on_hand)
+		on_hand.on_equip(self)
 	else:
 		on_hand_tool_changed.emit(null)
 

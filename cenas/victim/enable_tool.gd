@@ -14,6 +14,6 @@ func interact(victim: TheVictim) -> void:
 		Tools.FISHING:
 			victim.fishing_rod.available = true
 	
-	victim.clear_closest_interactable()
+	victim.hands.clear_closest_interactable()
 	delete_node.queue_free()
 	_is_deleting = true

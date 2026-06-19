@@ -79,7 +79,7 @@ func activate_node(name: String) -> void:
 		node.show()
 		node.process_mode = Node.PROCESS_MODE_INHERIT
 	else:
-		print("Failed in finding " + name + " node.")
+		print("Failed on finding " + name + " node.")
 
 func get_node_by_name(name: String) -> Node3D:
 	if name.is_empty():

@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://dtw7g2xhd2ojv" path="res://cenas/the_victim.gd" id="1_s7l8g"]
 [ext_resource type="PackedScene" uid="uid://eb14638l0jyd" path="res://recursos/models/vitima/vitima.fbx" id="2_0mf3q"]
 [ext_resource type="Script" uid="uid://ddsqayr6gd8ld" path="res://cenas/victim/camera.gd" id="2_3j8e3"]
+[ext_resource type="Script" uid="uid://darr4bokc68dn" path="res://cenas/victim/hand.gd" id="3_0mf3q"]
 [ext_resource type="Script" uid="uid://beohup807f2d6" path="res://scripts/inventory.gd" id="3_cd81x"]
 [ext_resource type="PackedScene" uid="uid://bimd0mdmxx0c3" path="res://recursos/models/itens/camera.tscn" id="3_u7652"]
 [ext_resource type="Texture2D" uid="uid://drvtlk7fannst" path="res://recursos/sprites/hand.png" id="3_vp0ll"]
-[ext_resource type="Script" uid="uid://xbqavrhimxwa" path="res://cenas/victim/hand_tool.gd" id="4_2uvyr"]
 [ext_resource type="PackedScene" uid="uid://c54yfrjld5c6b" path="res://recursos/models/itens/vara_pesca.fbx" id="4_w1wq2"]
 [ext_resource type="Texture2D" uid="uid://tri6iybwx0tr" path="res://recursos/sprites/cam.png" id="5_k6mmk"]
 [ext_resource type="Resource" uid="uid://dd4pigl04vkpc" path="res://items/photo.tres" id="5_lysed"]
@@ -15,12 +15,15 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_so80e"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_0mf3q"]
+radius = 1.5
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kxg5b"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s7l8g"]
 radius = 1.5
 
-[node name="TheVictim" type="CharacterBody3D" unique_id=762061992 node_paths=PackedStringArray("inventory", "tools_holder", "camera", "fishing_rod", "hands", "animator", "shape_cast")]
+[node name="TheVictim" type="CharacterBody3D" unique_id=762061992 node_paths=PackedStringArray("inventory", "tools_holder", "camera", "fishing_rod", "hands", "animator")]
 script = ExtResource("1_s7l8g")
 inventory = NodePath("Inventory")
 tools_holder = NodePath("Body/NasMoes")
@@ -36,7 +39,6 @@ animations = Dictionary[int, String]({
 4: "idelfishingrod",
 5: "walkfishingrod"
 })
-shape_cast = NodePath("ShapeCast3D")
 
 [node name="Body" type="Node3D" parent="." unique_id=532842855]
 
@@ -73,8 +75,9 @@ mesh = SubResource("CapsuleMesh_so80e")
 [node name="NasMoes" type="Node3D" parent="Body" unique_id=911029733]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1519258, 0.7180909)
 
-[node name="Moes" type="Node3D" parent="Body/NasMoes" unique_id=1530758359]
-script = ExtResource("4_2uvyr")
+[node name="Moes" type="Node3D" parent="Body/NasMoes" unique_id=1530758359 node_paths=PackedStringArray("shape_cast")]
+script = ExtResource("3_0mf3q")
+shape_cast = NodePath("../../../ShapeCast3D")
 available = true
 img = ExtResource("3_vp0ll")
 
@@ -85,6 +88,7 @@ script = ExtResource("2_3j8e3")
 photo_item = ExtResource("5_lysed")
 camera = NodePath("Control/SubViewportContainer/SubViewport/Camera3D")
 camera_viewpoint = NodePath("CameraViewPoint")
+available = true
 img = ExtResource("5_k6mmk")
 
 [node name="Camera" parent="Body/NasMoes/Camera" unique_id=729508623 instance=ExtResource("3_u7652")]
@@ -125,11 +129,20 @@ render_target_update_mode = 4
 [node name="Camera3D" type="Camera3D" parent="Body/NasMoes/Camera/Control/SubViewportContainer/SubViewport" unique_id=1079464591]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.1519258, 0.72145057)
 
-[node name="VaraDePesca" type="Node3D" parent="Body/NasMoes" unique_id=1615379628]
+[node name="VaraDePesca" type="Node3D" parent="Body/NasMoes" unique_id=1615379628 node_paths=PackedStringArray("shape_cast")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29366577, 0)
 visible = false
 script = ExtResource("5_sud1n")
+shape_cast = NodePath("ShapeCast3D2")
+available = true
 img = ExtResource("8_k6mmk")
+
+[node name="ShapeCast3D2" type="ShapeCast3D" parent="Body/NasMoes/VaraDePesca" unique_id=1970797760]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7619684, 1.124524)
+shape = SubResource("SphereShape3D_0mf3q")
+target_position = Vector3(0, 0, 0)
+max_results = 4
+debug_shape_custom_color = Color(1.4439225e-06, 0.5191905, 0.68792975, 1)
 
 [node name="vara_pesca" parent="Body/NasMoes/VaraDePesca" unique_id=1673416455 instance=ExtResource("4_w1wq2")]
 transform = Transform3D(-8.444392e-08, -2.262668e-08, -2, -0.5176381, 1.9318516, 0, 1.9318516, 0.5176381, -8.742278e-08, -8.326673e-17, -0.27002695, -0.049442887)

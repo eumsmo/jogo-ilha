@@ -21,7 +21,7 @@ func interact(victim: TheVictim) -> void:
 		return
 	
 	victim.inventory.add_item(item)
-	victim.clear_closest_interactable()
+	victim.hands.clear_closest_interactable()
 	spawned_fruit.queue_free()
 	spawned_fruit = null
 	

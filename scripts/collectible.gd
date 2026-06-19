@@ -15,6 +15,6 @@ func collect(victim: TheVictim) -> void:
 
 func interact(victim: TheVictim) -> void:
 	victim.inventory.add_item(item)
-	victim.clear_closest_interactable()
+	victim.hands.clear_closest_interactable()
 	delete_node.queue_free()
 	_is_deleting = true
