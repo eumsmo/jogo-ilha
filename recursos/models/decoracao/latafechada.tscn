@@ -1,7 +1,24 @@
 [gd_scene format=3 uid="uid://bqipj4r8iixpk"]
 
 [ext_resource type="PackedScene" uid="uid://qt4hi816tacg" path="res://recursos/models/decoracao/fbxdecoracao/latafechada.fbx" id="1_uiouy"]
+[ext_resource type="Script" uid="uid://0sq6lk4j0fpt" path="res://scripts/collectible.gd" id="2_p4d4d"]
+[ext_resource type="Resource" uid="uid://cxsrh6c2ft3pc" path="res://items/trash.tres" id="3_p4d4d"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lr568"]
+height = 0.5
+radius = 0.3
 
 [node name="latafechada" type="Node3D" unique_id=525473446]
 
 [node name="latafechada" parent="." unique_id=2036410286 instance=ExtResource("1_uiouy")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="Collectible" type="StaticBody3D" parent="." unique_id=671365306 node_paths=PackedStringArray("delete_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24748719, 0)
+script = ExtResource("2_p4d4d")
+item = ExtResource("3_p4d4d")
+delete_node = NodePath("..")
+metadata/_custom_type_script = "uid://0sq6lk4j0fpt"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectible" unique_id=616326006]
+shape = SubResource("CylinderShape3D_lr568")

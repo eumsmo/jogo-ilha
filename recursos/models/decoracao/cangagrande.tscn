@@ -5,3 +5,4 @@
 [node name="cangagrande" type="Node3D" unique_id=2098190245]
 
 [node name="cangagrande" parent="." unique_id=497624867 instance=ExtResource("1_r7238")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)

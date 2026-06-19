@@ -5,3 +5,4 @@
 [node name="concha00" type="Node3D" unique_id=16141995]
 
 [node name="concha00" parent="." unique_id=618954584 instance=ExtResource("1_i71n1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)

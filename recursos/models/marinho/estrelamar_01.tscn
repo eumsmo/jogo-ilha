@@ -5,3 +5,4 @@
 [node name="estrelamar01" type="Node3D" unique_id=519121463]
 
 [node name="estrelamar01" parent="." unique_id=515338326 instance=ExtResource("1_cm4cw")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)

@@ -1,7 +1,25 @@
 [gd_scene format=3 uid="uid://83migtujwl8e"]
 
 [ext_resource type="PackedScene" uid="uid://coa5rso55hhuq" path="res://recursos/models/decoracao/fbxdecoracao/garrafa.fbx" id="1_uqsog"]
+[ext_resource type="Script" uid="uid://0sq6lk4j0fpt" path="res://scripts/collectible.gd" id="2_xy0yl"]
+[ext_resource type="Resource" uid="uid://cxsrh6c2ft3pc" path="res://items/trash.tres" id="3_ejekg"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_74cab"]
+height = 0.85253906
+radius = 0.2
 
 [node name="garrafa" type="Node3D" unique_id=1096389368]
 
 [node name="garrafa" parent="." unique_id=824737668 instance=ExtResource("1_uqsog")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="Collectible" type="StaticBody3D" parent="." unique_id=2133568370 node_paths=PackedStringArray("delete_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24748719, 0)
+script = ExtResource("2_xy0yl")
+item = ExtResource("3_ejekg")
+delete_node = NodePath("..")
+metadata/_custom_type_script = "uid://0sq6lk4j0fpt"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectible" unique_id=2057750169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17626953, 0)
+shape = SubResource("CylinderShape3D_74cab")
