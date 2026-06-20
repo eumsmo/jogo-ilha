@@ -6,6 +6,7 @@ static var instance: Game
 @export var victim: TheVictim
 @export var creature: TheCreature
 @export var ritual: Ritual
+@export var center: Node3D
 
 var player_interact_lock: bool = false
 signal on_bad_ending

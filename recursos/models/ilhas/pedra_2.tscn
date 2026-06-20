@@ -46,7 +46,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ove6r")
 surface_material_override/0 = ExtResource("1_b7mvn")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2001434558]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2001434558 groups=["rock_floor"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=22083863]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)

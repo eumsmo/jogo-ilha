@@ -15,10 +15,12 @@ var on_hand: HandTool
 
 @export var camera: HandTool
 @export var fishing_rod: HandTool
+@export var axe: HandTool
 @export var hands: HandTool
 
 @export var animator: AnimationPlayer
 @export var audio: VictimAudio
+@export var raycast_floor: RayCast3D
 
 
 
@@ -28,11 +30,14 @@ enum VictimAnimations { IDLE, WALK, CAM_IDLE, CAM_WALK, FISH_IDLE, FISH_WALK }
 
 var locked := false
 
+var deslocamento: float = 0.0
+var last_position: Vector3
 
 signal using_action
 signal on_hand_tool_changed(tool: HandTool)
 
 func _ready() -> void:
+	last_position = global_position
 	switch_hand_tool()
 
 func _physics_process(delta: float) -> void:
@@ -40,6 +45,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	_handle_movement(delta)
+	_handle_floor()
 	#_handle_interactables(delta)
 
 func _input(event: InputEvent) -> void:
@@ -63,6 +69,10 @@ func _handle_movement(delta: float) -> void:
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (base * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	direction.y = 0
+	
+	
+	deslocamento = global_position.distance_to(last_position)
+	last_position = global_position
 	
 	if direction:
 		look_at(global_position - direction)
@@ -110,19 +120,25 @@ func switch_hand_tool() -> void:
 
 
 func set_animation(direction: Vector3) -> void:
-	if direction:
+	if deslocamento > 0.0:
+		audio.start_walking()
 		match on_hand:
 			camera:
 				animator.play(animations[VictimAnimations.CAM_WALK])
 			fishing_rod:
 				animator.play(animations[VictimAnimations.FISH_WALK])
+			axe:
+				animator.play(animations[VictimAnimations.FISH_WALK])
 			_:
 				animator.play(animations[VictimAnimations.WALK])
 	else:
+		audio.stop_walking()
 		match on_hand:
 			camera:
 				animator.play(animations[VictimAnimations.CAM_IDLE])
 			fishing_rod:
+				animator.play(animations[VictimAnimations.FISH_IDLE])
+			axe:
 				animator.play(animations[VictimAnimations.FISH_IDLE])
 			_:
 				animator.play(animations[VictimAnimations.IDLE])
@@ -132,3 +148,12 @@ func lock() -> void:
 
 func unlock() -> void:
 	locked = false
+
+func change_center(center: Node3D) -> void:
+	self.center = center
+
+
+
+func _handle_floor() -> void:
+	var col: CollisionObject3D = raycast_floor.get_collider()
+	audio.set_floor_type(audio.get_floor_type(col))

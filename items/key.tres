@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://8k35s1e8e1te"]
+
+[ext_resource type="Texture2D" uid="uid://4sivblg0pche" path="res://recursos/sprites/key.png" id="1_646gu"]
+[ext_resource type="Script" uid="uid://sledefw12tar" path="res://scripts/item.gd" id="2_d1xeg"]
+
+[resource]
+script = ExtResource("2_d1xeg")
+img = ExtResource("1_646gu")
+max_quant = 1
+metadata/_custom_type_script = "uid://sledefw12tar"

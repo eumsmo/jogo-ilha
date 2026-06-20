@@ -8,6 +8,9 @@ extends Node3D
 @export var porta_up: Node3D
 @export var porta_down: Node3D
 
+@export var spawn_outside: Node3D
+@export var spawn_inside: Node3D
+
 var old_position: Vector3
 var target: Vector3
 var moving: bool = false
@@ -46,3 +49,15 @@ func fechar_porta() -> void:
 		old_position = porta.global_position
 		timer = 0.0
 		moving = true
+
+
+func _on_outside_to_cave_body_entered(body: Node3D) -> void:
+	if body.name == "TheVictim":
+		Game.instance.victim.change_center(Game.instance.center)
+		Game.instance.victim.global_position = spawn_inside.global_position
+
+
+func _on_cave_to_outside_body_entered(body: Node3D) -> void:
+	if body.name == "TheVictim":
+		Game.instance.victim.change_center(Game.instance.creature.camera)
+		Game.instance.victim.global_position = spawn_outside.global_position

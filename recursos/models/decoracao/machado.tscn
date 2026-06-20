@@ -5,3 +5,4 @@
 [node name="machado" type="Node3D" unique_id=997756843]
 
 [node name="machado" parent="." unique_id=725211745 instance=ExtResource("1_vow7f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

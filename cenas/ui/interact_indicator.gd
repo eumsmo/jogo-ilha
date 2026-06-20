@@ -4,10 +4,12 @@ extends Control
 @export var hand_text: String = "[E] para interagir"
 @export var camera_text: String = "[E] para tirar fotos"
 @export var fishing_text: String = "[E] para pescar"
+@export var axe_text: String = "[E] para cortar"
 
 func _ready() -> void:
 	Game.instance.victim.hands.closest_interactable_changed.connect(update_indicator)
 	Game.instance.victim.fishing_rod.fishing_status_changed.connect(set_indicator_visibility)
+	Game.instance.victim.axe.can_cut_status_changed.connect(set_indicator_visibility)
 	Game.instance.victim.on_hand_tool_changed.connect(on_hand_tool_changed)
 	on_hand_tool_changed(Game.instance.victim.on_hand)
 	indicator.hide()
@@ -22,6 +24,9 @@ func on_hand_tool_changed(hand_tool: HandTool) -> void:
 			show_indicator()
 		Game.instance.victim.fishing_rod:
 			indicator.text = fishing_text
+			hide_indicator()
+		Game.instance.victim.axe:
+			indicator.text = axe_text
 			hide_indicator()
 
 func update_indicator(interactable: Interactable) -> void:

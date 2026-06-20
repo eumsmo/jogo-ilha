@@ -24,6 +24,13 @@ Globals="*uid://dk6r6hwn2csm5"
 
 import/blender/enabled=false
 
+[global_group]
+
+sand_floor="Assigned to every sand floor collider"
+grass_floor="Assigned to every grass floor collider"
+rock_floor="Assigned to every rock floor collider"
+wood_floor="Assigned to every wood floor collider"
+
 [input]
 
 left={

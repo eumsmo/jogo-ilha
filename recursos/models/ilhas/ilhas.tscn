@@ -7,12 +7,12 @@
 [node name="ilhas" unique_id=1212567673 instance=ExtResource("1_c8fo1")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
-[node name="Grama" type="StaticBody3D" parent="." index="2" unique_id=1012046665]
+[node name="Grama" type="StaticBody3D" parent="." index="2" unique_id=1012046665 groups=["grass_floor"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Grama" index="0" unique_id=1126604938]
 shape = ExtResource("5_rnwr3")
 
-[node name="Areia" type="StaticBody3D" parent="." index="3" unique_id=1210056268]
+[node name="Areia" type="StaticBody3D" parent="." index="3" unique_id=1210056268 groups=["sand_floor"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Areia" index="0" unique_id=877255903]
 shape = ExtResource("6_mx4mi")
