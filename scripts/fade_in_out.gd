@@ -38,6 +38,16 @@ func fade_out() -> void:
 	fade_out_finished.emit()
 	hide()
 
+func set_black() -> void:
+	var target = modulate
+	target.a = 1
+	modulate = target
+
+func set_clear() -> void:
+	var target = modulate
+	target.a = 0
+	modulate = target
+
 func fade_in_out() -> void:
 	await fade_in()
 	await get_tree().create_timer(between_fades_time).timeout

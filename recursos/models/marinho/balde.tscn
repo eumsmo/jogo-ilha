@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://itp3yfw14psu"]
+
+[ext_resource type="PackedScene" uid="uid://db66f6n02j3we" path="res://recursos/models/marinho/fbxmarinho/balde.fbx" id="1_l2tgk"]
+[ext_resource type="Material" uid="uid://dtu6lscfdwqfq" path="res://recursos/materiais/red_mat.tres" id="2_gpgxa"]
+[ext_resource type="Material" uid="uid://c3xvhtrn1ckem" path="res://recursos/materiais/claro.tres" id="3_deryg"]
+
+[node name="balde" type="Node3D" unique_id=2086973782]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="balde" parent="." unique_id=271924220 instance=ExtResource("1_l2tgk")]
+
+[node name="Balde" parent="balde" index="0" unique_id=1390133655]
+surface_material_override/0 = ExtResource("2_gpgxa")
+surface_material_override/1 = ExtResource("3_deryg")
+
+[editable path="balde"]

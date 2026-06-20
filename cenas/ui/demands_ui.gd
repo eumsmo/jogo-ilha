@@ -10,6 +10,8 @@ func _ready() -> void:
 	var creature = Game.instance.creature
 	creature.demands.on_new_demand.connect(handle_new_demand)
 	creature.demands.on_demand_realized.connect(handle_demand_realized)
+	creature.was_poisoned.connect(hide)
+	creature.was_unpoisoned.connect(show)
 
 func handle_new_demand(demand: Demand) -> void:
 	if demand == current_demand:
@@ -28,3 +30,6 @@ func handle_new_demand(demand: Demand) -> void:
 func handle_demand_realized(demand: Demand) -> void:
 	if demands.has(demand):
 		demands[demand].set_realized()
+
+func _on_poison() -> void:
+	pass

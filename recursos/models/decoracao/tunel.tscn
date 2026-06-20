@@ -1,7 +1,18 @@
 [gd_scene format=3 uid="uid://bphxrbhdfxnxw"]
 
 [ext_resource type="PackedScene" uid="uid://cbd46vv8labxl" path="res://recursos/models/decoracao/fbxdecoracao/tunel.fbx" id="1_lgkyt"]
+[ext_resource type="PackedScene" uid="uid://bnu1j3gikm03h" path="res://recursos/models/decoracao/fbxdecoracao/tunel_floor.fbx" id="2_73xic"]
+[ext_resource type="Material" uid="uid://dyf0neifqn00l" path="res://recursos/materiais/darkness_mat.tres" id="3_ixada"]
 
 [node name="tunel" type="Node3D" unique_id=216463991]
 
 [node name="tunel" parent="." unique_id=574786767 instance=ExtResource("1_lgkyt")]
+
+[node name="tunel_door" parent="." unique_id=1636901620 instance=ExtResource("2_73xic")]
+transform = Transform3D(-1, 6.775265e-08, 0, -8.742278e-08, -0.775, 0, 0, 0, 0.775, 0, 0, -0.013178318)
+
+[node name="tunel_floor" parent="tunel_door" index="0" unique_id=1473659624]
+transform = Transform3D(0.01, 0, 0, 0, 0.0028578416, -0.009582939, 0, 0.009582939, 0.0028578416, -1.1368684e-15, -0.07093764, -8.456426e-09)
+surface_material_override/0 = ExtResource("3_ixada")
+
+[editable path="tunel_door"]

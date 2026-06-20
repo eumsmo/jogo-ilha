@@ -1,6 +1,9 @@
 class_name Interactable
 extends StaticBody3D
 
+## Press [E] to <your text here>
+@export var custom_interact_text: String = ""
+
 var _is_deleting: bool = false
 
 func can_interact(_victim: TheVictim) -> bool:

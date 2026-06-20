@@ -3,6 +3,9 @@ extends HandTool
 @export var photos_per_camera: int = 4
 @export var photo_item: Item
 
+@export var auto_aim_cast: RayCast3D
+@export var aim_node: Node3D
+var place_to_aim: Node3D = null
 
 @export var camera: Camera3D
 @export var camera_viewpoint: Node3D
@@ -30,10 +33,22 @@ func use_tool(victim: TheVictim) -> void:
 	photos.append(img)
 	victim.inventory.add_item(photo_item, 1)
 
+func _physics_process(delta: float) -> void:
+	try_to_aim()
+
+func try_to_aim() -> void:
+	place_to_aim = auto_aim_cast.get_collider()
+	if place_to_aim == null:
+		aim_node.rotation = Vector3.ZERO
+	else:
+		aim_node.look_at(place_to_aim.global_position)
+
 func take_picture() -> Image:
 	camera.current = true
+	
+	var rot = camera_viewpoint.global_rotation if place_to_aim == null else aim_node.global_rotation
 	camera.global_position = camera_viewpoint.global_position
-	camera.global_rotation = camera_viewpoint.global_rotation
+	camera.global_rotation = rot
 	
 	await RenderingServer.frame_post_draw
 	var img: Image = viewport.get_texture().get_image()

@@ -40,9 +40,11 @@
 [ext_resource type="PackedScene" uid="uid://1gurue2myafd" path="res://recursos/models/marinho/concha_02.tscn" id="21_8tnfe"]
 [ext_resource type="PackedScene" uid="uid://cvu54u8s3gw4q" path="res://recursos/models/marinho/concha_01.tscn" id="22_l5ha6"]
 [ext_resource type="PackedScene" uid="uid://s4ajf00msrn7" path="res://recursos/models/marinho/estrelamar_00.tscn" id="23_2lt7e"]
+[ext_resource type="AudioStream" uid="uid://bajqppmrr1y35" path="res://recursos/soundeffects/cave_loop.mp3" id="23_4iiv8"]
 [ext_resource type="Resource" uid="uid://8k35s1e8e1te" path="res://items/key.tres" id="23_c4nn4"]
 [ext_resource type="Script" uid="uid://dcvpd8o63jm64" path="res://scripts/ritual.gd" id="24_7w4qu"]
 [ext_resource type="PackedScene" uid="uid://cw86hdyr7l4iv" path="res://recursos/models/marinho/estrelamar_01.tscn" id="24_j77lb"]
+[ext_resource type="Script" uid="uid://bc803sbdaqtqe" path="res://scripts/simple_interactable.gd" id="24_mwoe0"]
 [ext_resource type="PackedScene" uid="uid://bmlywnh6d8tju" path="res://recursos/models/marinho/peixe.tscn" id="24_s3gv3"]
 [ext_resource type="PackedScene" uid="uid://cnewv62bnv4uo" path="res://recursos/models/natureza/flor_02.tscn" id="24_v2siw"]
 [ext_resource type="PackedScene" uid="uid://dr6lapb31lag1" path="res://recursos/models/natureza/flor_00.tscn" id="25_7w4qu"]
@@ -54,6 +56,7 @@
 [ext_resource type="PackedScene" uid="uid://b06cfvt7a7fxq" path="res://recursos/models/natureza/cocoaberto_01.tscn" id="27_v2siw"]
 [ext_resource type="PackedScene" uid="uid://5obgt4lddlsj" path="res://recursos/models/natureza/flor_01.tscn" id="27_ybdaj"]
 [ext_resource type="PackedScene" uid="uid://bqipj4r8iixpk" path="res://recursos/models/decoracao/latafechada.tscn" id="28_lr568"]
+[ext_resource type="PackedScene" uid="uid://itp3yfw14psu" path="res://recursos/models/marinho/balde.tscn" id="29_c4srl"]
 [ext_resource type="Script" uid="uid://drp4s3sbrnwqe" path="res://scripts/fishing_area.gd" id="30_ne7a3"]
 [ext_resource type="Script" uid="uid://bt5stt5hvqidn" path="res://scripts/fishing_spot.gd" id="31_8sejf"]
 [ext_resource type="Resource" uid="uid://cxsrh6c2ft3pc" path="res://items/trash.tres" id="34_lr568"]
@@ -154,10 +157,7 @@ size = Vector2(1000, 1000)
 size = Vector3(1000, 0.1, 1000)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
-size = Vector3(1, 3, 3)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7w4qu"]
-size = Vector3(0.5, 1, 0.5)
+size = Vector3(1.4366455, 3, 3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 flip_faces = true
@@ -202,17 +202,32 @@ size = Vector3(4, 4, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_veval"]
 size = Vector3(0.08, 2, 1.19)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_c4srl"]
+size = Vector3(0.2, 1.8084717, 1.8635559)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4iiv8"]
+size = Vector3(1.2, 2.233, 0.1)
+
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_orj5g"]
 points = PackedVector3Array(-0.2, 0, 0.5, 0.2, 0, -1.5, -0.2, 1.555, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_48tcl"]
 size = Vector3(0.56380856, 1.4317627, 0.585)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_3gngh"]
+radius = 0.975
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_oy0wu"]
 radius = 1.0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_57qmd"]
+radius = 2.5
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_d0u6y"]
 radius = 1.8250351
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mwoe0"]
+size = Vector3(1.3613281, 1.8753662, 0.78190917)
 
 [sub_resource type="Gradient" id="Gradient_oy0wu"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -251,6 +266,9 @@ func _on_static_body_3d_on_caught() -> void:
 	await get_tree().create_timer(12).timeout
 	spot.reset()
 "
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d0u6y"]
+size = Vector3(1.7160156, 2.368, 0.64481544)
 
 [sub_resource type="Resource" id="Resource_vjpb8"]
 script = ExtResource("11_0ebkc")
@@ -364,13 +382,15 @@ height = 5.0
 height = 13.173
 radius = 12.79
 
-[node name="Game" type="Node3D" unique_id=1206501729 node_paths=PackedStringArray("victim", "creature", "ritual", "center", "music")]
+[node name="Game" type="Node3D" unique_id=1206501729 node_paths=PackedStringArray("victim", "creature", "ritual", "cave", "center", "music", "cave_music")]
 script = ExtResource("1_8c340")
 victim = NodePath("TheVictim")
 creature = NodePath("TheCreature")
 ritual = NodePath("TheBeach/Areas/BracoDireito/Decoracao/Ritual")
+cave = NodePath("TheBeach/Areas/Cabeca/Decoracao/Caverna")
 center = NodePath("CenterOfIslands")
 music = NodePath("AudioStreamPlayer")
+cave_music = NodePath("CaveAudioStreamPlayer")
 
 [node name="CenterOfIslands" type="Node3D" parent="." unique_id=456595919]
 transform = Transform3D(-0.8141156, 0, -0.5807029, 0, 1, 0, 0.5807029, 0, -0.8141156, 0, 0, 0)
@@ -476,6 +496,9 @@ shape = SubResource("BoxShape3D_8c340")
 
 [node name="Marker3D" type="Marker3D" parent="TheBeach/Estrutural/Pier/Altar/StaticBody3D" unique_id=651216509]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0193527, 0)
+
+[node name="AltarPoint" type="Node3D" parent="TheBeach/Estrutural/Pier/Altar" unique_id=1075779058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.895748, 0, -1.2662561)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TheBeach/Estrutural/Pier" unique_id=1652994134 groups=["rock_floor"]]
 transform = Transform3D(0.60925514, -0.04411344, 0.79174626, 0.072216466, 0.99738896, 0, -0.789679, 0.057177123, 0.6108501, 6.4634337, -0.06706929, -14.015377)
@@ -585,26 +608,24 @@ shape = SubResource("BoxShape3D_so80e")
 [node name="Caverna" type="Node3D" parent="TheBeach/Estrutural" unique_id=1598641680]
 transform = Transform3D(1.75, 0, 0, 0, 1.75, 0, 0, 0, 1.75, -16.304108, 5.5063424, 17.52774)
 
+[node name="SpawnOnCave" type="Marker3D" parent="TheBeach/Estrutural/Caverna" unique_id=364267270]
+transform = Transform3D(0.7071069, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071069, 19.475183, -11.883138, 6.6339684)
+
+[node name="SpawnOnOutside" type="Marker3D" parent="TheBeach/Estrutural/Caverna" unique_id=1283089285]
+transform = Transform3D(0.7071069, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071069, 18.551281, -1.4317335, 5.787915)
+
 [node name="apendices_da_ilha" parent="TheBeach/Estrutural/Caverna" unique_id=1624319752 instance=ExtResource("11_2rhjw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3254089, -3.1464815, -13.737628)
 
-[node name="CaveToOutside" type="Area3D" parent="TheBeach/Estrutural/Caverna" unique_id=402207373]
+[node name="CaveToOutside" type="StaticBody3D" parent="TheBeach/Estrutural/Caverna" unique_id=1733206148]
 transform = Transform3D(0.7071069, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071069, 18.03376, -10.40951, 4.6541796)
+script = ExtResource("24_mwoe0")
+custom_interact_text = "exit the cave"
+metadata/_custom_type_script = "uid://bc803sbdaqtqe"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Estrutural/Caverna/CaveToOutside" unique_id=1279645555]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21832275, 0, 0)
 shape = SubResource("BoxShape3D_g4v7s")
-
-[node name="SpawnOnCave" type="Marker3D" parent="TheBeach/Estrutural/Caverna/CaveToOutside" unique_id=364267270]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4191608, -1.4736271, 0.380682)
-
-[node name="OutsideToCave" type="Area3D" parent="TheBeach/Estrutural/Caverna" unique_id=835770710]
-transform = Transform3D(0.7071069, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071069, 19.357903, -0.87554264, 6.7445)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Estrutural/Caverna/OutsideToCave" unique_id=781070899]
-shape = SubResource("BoxShape3D_7w4qu")
-
-[node name="SpawnOnOutside" type="Marker3D" parent="TheBeach/Estrutural/Caverna/OutsideToCave" unique_id=1283089285]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2467749, -0.5561908, -0.10604049)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TheBeach/Estrutural/Caverna" unique_id=316467310]
 transform = Transform3D(0.815052, 0, 0.5793879, 0, 1, 0, -0.5793879, 0, 0.815052, 5.156489, -13.465742, -6.16375)
@@ -666,6 +687,7 @@ mesh = SubResource("CylinderMesh_g4v7s")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TheBeach/Estrutural/Caverna/Trancado" unique_id=458849176 node_paths=PackedStringArray("delete_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8253752, 0)
+collision_layer = 257
 script = ExtResource("53_vjpb8")
 requirements = Array[ExtResource("11_0ebkc")]([SubResource("Resource_g4v7s")])
 delete_node = NodePath("..")
@@ -738,7 +760,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 28)
 
 [node name="Decoracao" type="Node3D" parent="TheBeach/Areas/Cabeca" unique_id=1520636776]
 
-[node name="Caverna" type="Node3D" parent="TheBeach/Areas/Cabeca/Decoracao" unique_id=1192425313 node_paths=PackedStringArray("porta", "porta_up", "porta_down", "spawn_outside", "spawn_inside")]
+[node name="Caverna" type="Node3D" parent="TheBeach/Areas/Cabeca/Decoracao" unique_id=1192425313 node_paths=PackedStringArray("porta", "porta_up", "porta_down", "spawn_outside", "spawn_inside", "interact_enter", "audio_stream")]
 transform = Transform3D(-1.3825467, 0, -1.0728769, 0, 1.75, 0, 1.0728769, 0, -1.3825467, -0.83378595, 3.1717353, 0.8107414)
 script = ExtResource("6_orj5g")
 speed = 0.5
@@ -746,8 +768,10 @@ close_margin = 0.05
 porta = NodePath("Porta")
 porta_up = NodePath("PortaUp")
 porta_down = NodePath("PortaDown")
-spawn_outside = NodePath("../../../../Estrutural/Caverna/OutsideToCave/SpawnOnOutside")
-spawn_inside = NodePath("../../../../Estrutural/Caverna/CaveToOutside/SpawnOnCave")
+spawn_outside = NodePath("../../../../Estrutural/Caverna/SpawnOnOutside")
+spawn_inside = NodePath("../../../../Estrutural/Caverna/SpawnOnCave")
+interact_enter = NodePath("EnterCave")
+audio_stream = NodePath("AudioStreamPlayer3D")
 
 [node name="Mesh" type="Node3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna" unique_id=1770837984]
 
@@ -783,7 +807,6 @@ transform = Transform3D(1, 0, 5.9604645e-08, 0, 1, 0, -5.9604645e-08, 0, 1, 0, -
 aabb = AABB(-0.5, 0, 0, 1, 2, 0.25)
 
 [node name="Porta" type="Node3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna" unique_id=933627610]
-process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, -0.13063455, 0.43631142)
 
 [node name="portatunel" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna/Porta" unique_id=1827040948 instance=ExtResource("9_v41bu")]
@@ -804,6 +827,33 @@ transform = Transform3D(1, 0, 3.5762787e-07, 0, 1, 0, -3.5762787e-07, 0, 1, 4.76
 [node name="PortaDown" type="Marker3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna" unique_id=1954743183]
 transform = Transform3D(1, 0, 1.7881393e-07, 0, 1, 0, -1.7881393e-07, 0, 1, 0, -2, 0.436)
 
+[node name="Photogenic" type="StaticBody3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna" unique_id=947330113]
+transform = Transform3D(-0.5586607, 0, 0.12012069, 0, 0.57142854, 0, -0.12012069, 0, -0.5586606, -0.7749138, 0.684327, 0.13521576)
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna/Photogenic" unique_id=1554803856]
+transform = Transform3D(1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1, 9.536743e-07, -0.027404785, 0.50042725)
+shape = SubResource("BoxShape3D_c4srl")
+
+[node name="Photogenic2" type="StaticBody3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna" unique_id=1070216974]
+transform = Transform3D(-0.54511815, 0, -0.17139691, 0, 0.57142854, 0, 0.17139693, 0, -0.5451181, 0.8042633, 0.62739587, 0.103464246)
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna/Photogenic2" unique_id=980605375]
+transform = Transform3D(1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 1, 9.536743e-07, -0.027404785, 0.50042725)
+shape = SubResource("BoxShape3D_c4srl")
+
+[node name="Photogenic3" type="StaticBody3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna" unique_id=1334636939]
+transform = Transform3D(0.57142866, 0, 0, 0, 0.57142854, 0, 0, 0, 0.5714286, -0.023189593, 0.610033, -1.1040062)
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna/Photogenic3" unique_id=1055623813]
+transform = Transform3D(1, 2.9802322e-08, 2.9802322e-08, 0, 0.74604344, -0.66589046, 0, 0.6658939, 0.74604654, -1.04273505e-08, -0.07128167, -0.037457854)
+shape = SubResource("BoxShape3D_4iiv8")
+
 [node name="Colisoes" type="StaticBody3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna" unique_id=1545642638]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna/Colisoes" unique_id=700521301]
@@ -819,6 +869,23 @@ transform = Transform3D(4.4703484e-06, 0, -1, 0, 1, 0, 1, 0, 4.4703484e-06, 0, 0
 shape = SubResource("BoxShape3D_48tcl")
 
 [node name="TP" type="Node3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna" unique_id=1806561123]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna" unique_id=1961445669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5757904, 0)
+stream = ExtResource("23_4iiv8")
+unit_size = 2.0
+autoplay = true
+max_distance = 10.0
+parameters/looping = true
+
+[node name="EnterCave" type="StaticBody3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna" unique_id=1987687007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6584108, 0)
+script = ExtResource("24_mwoe0")
+custom_interact_text = "enter the cave"
+metadata/_custom_type_script = "uid://bc803sbdaqtqe"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna/EnterCave" unique_id=511769830]
+shape = SubResource("SphereShape3D_3gngh")
 
 [node name="Interagiveis" type="Node3D" parent="TheBeach/Areas/Cabeca" unique_id=1720204071]
 
@@ -889,6 +956,9 @@ metadata/_custom_type_script = "uid://bt5stt5hvqidn"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Areas/Cabeca/Interagiveis/Bolhas/StaticBody3D" unique_id=1146022097]
 shape = SubResource("SphereShape3D_oy0wu")
 
+[node name="balde" parent="TheBeach/Areas/Cabeca/Interagiveis" unique_id=2086973782 instance=ExtResource("29_c4srl")]
+transform = Transform3D(0.55455726, 0.09838889, -0.82630855, -3.72529e-09, 0.99298555, 0.1182352, 0.8321456, -0.06556818, 0.5506674, 0.87108344, 3.113105, 0.0051598987)
+
 [node name="BracoDireito" type="Node3D" parent="TheBeach/Areas" unique_id=332572922]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -18)
 
@@ -896,6 +966,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -18)
 
 [node name="Descanso" type="Node3D" parent="TheBeach/Areas/BracoDireito/Decoracao" unique_id=1512477341]
 transform = Transform3D(-0.12680413, 0, -0.9919278, 0, 1, 0, 0.9919278, 0, -0.12680413, 7.8254757, 2.211043, 5.952076)
+
+[node name="Photogenic" type="StaticBody3D" parent="TheBeach/Areas/BracoDireito/Decoracao/Descanso" unique_id=2003771472]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6873879, 1.2104206, -0.26513857)
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Areas/BracoDireito/Decoracao/Descanso/Photogenic" unique_id=867400952]
+shape = SubResource("SphereShape3D_57qmd")
 
 [node name="cadeira" parent="TheBeach/Areas/BracoDireito/Decoracao/Descanso" unique_id=360871348 instance=ExtResource("16_t3mex")]
 transform = Transform3D(0.93533784, 0, 0.35375574, 0, 1, 0, -0.35375574, 0, 0.93533784, 0, 0, 0)
@@ -1032,8 +1110,20 @@ transform = Transform3D(0.38151452, 0.37274927, -0.84587526, -0.17326328, 0.9277
 [node name="cadeira" parent="TheBeach/Areas/BracoEsquerdo/Decoracao" unique_id=651560152 instance=ExtResource("16_t3mex")]
 transform = Transform3D(-0.71882313, 0.10916786, -0.686568, 7.450581e-09, 0.9875935, 0.15703245, 0.695193, 0.11287855, -0.709905, -6.991171, 1.6175594, 6.9732895)
 
+[node name="balde" parent="TheBeach/Areas/BracoEsquerdo/Decoracao" unique_id=1383093489 instance=ExtResource("29_c4srl")]
+transform = Transform3D(0.56191677, 0.039080884, -0.82627, 0.041176256, 0.99632347, 0.07512658, 0.82616836, -0.07623755, 0.55824155, -8.427186, 1.5523286, 6.9928412)
+
 [node name="guardasol" parent="TheBeach/Areas/BracoEsquerdo/Decoracao" unique_id=808986608 instance=ExtResource("18_hsikf")]
 transform = Transform3D(0.9999999, 0.00051201024, -4.026254e-05, -0.0005135909, 0.9969223, -0.07839418, 0, 0.0783942, 0.99692243, -7.508933, 1.565717, 7.910394)
+
+[node name="Photogenic" type="StaticBody3D" parent="TheBeach/Areas/BracoEsquerdo/Decoracao/guardasol" unique_id=1575115777]
+transform = Transform3D(0.42628816, 0.1402893, 0.8936427, -0.20772912, 0.97668177, -0.054233696, -0.880413, -0.16251643, 0.44549003, -0.14108086, 1.2350237, 0.019340515)
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Areas/BracoEsquerdo/Decoracao/guardasol/Photogenic" unique_id=1181600670]
+transform = Transform3D(0.9748781, 7.450581e-09, 0.22275703, -5.2154064e-08, 1.0000006, 7.264316e-08, -0.22275092, 2.2351742e-08, 0.97488654, -0.35032654, -0.18438745, -0.16104126)
+shape = SubResource("BoxShape3D_mwoe0")
 
 [node name="Node3D" type="Node3D" parent="TheBeach/Areas/BracoEsquerdo/Decoracao/guardasol" unique_id=1100614424]
 transform = Transform3D(-0.22890949, 0.14028935, -0.96328586, 0.19168709, 0.97668195, 0.096688904, 0.9543881, -0.16251643, -0.25046337, -0.0880727, 1.231807, 0.04576487)
@@ -1145,6 +1235,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8433647, 1.6971962, -21.47
 [node name="Node3D" type="Node3D" parent="TheBeach/Areas/Pernas/Decoracao" unique_id=1026803354]
 transform = Transform3D(-0.9036581, 0.31151462, -0.2938726, 0.02235038, 0.71957946, 0.6940504, 0.4276715, 0.620616, -0.6572162, 3.5388496, 1.4006286, 12.501481)
 
+[node name="Photogenic" type="StaticBody3D" parent="TheBeach/Areas/Pernas/Decoracao/Node3D" unique_id=1478553463]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999994, 0.0063141417, -2.3283062e-10, 0)
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Areas/Pernas/Decoracao/Node3D/Photogenic" unique_id=1202581866]
+transform = Transform3D(0.9999589, 2.9802322e-08, -0.009318143, -1.1622906e-06, 1, 7.748604e-06, 0.0093216, 0, 0.9999846, -0.11400986, -0.2358303, 0.38057327)
+shape = SubResource("BoxShape3D_d0u6y")
+
 [node name="Sprite3D" type="Sprite3D" parent="TheBeach/Areas/Pernas/Decoracao/Node3D" unique_id=171186591]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 2.783032e-13, 0, 0.00047308853)
 modulate = Color(0.81960785, 0.3137255, 0.35686275, 1)
@@ -1157,6 +1256,9 @@ texture = SubResource("GradientTexture2D_57qmd")
 
 [node name="Pedra" parent="TheBeach/Areas/Pernas/Decoracao" unique_id=1731170125 instance=ExtResource("35_6753d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.056885, 0.6368165, 13.493498)
+
+[node name="balde" parent="TheBeach/Areas/Pernas/Decoracao/Pedra" unique_id=801980361 instance=ExtResource("29_c4srl")]
+transform = Transform3D(0.5512029, -0.115987994, -0.82627, 0.31191966, 0.9471336, 0.07512659, 0.7738744, -0.2991398, 0.5582415, -1.3387073, 0.49132073, 0.44983894)
 
 [node name="Pedra9" parent="TheBeach/Areas/Pernas/Decoracao" unique_id=1919393440 instance=ExtResource("35_6753d")]
 transform = Transform3D(-0.03846797, 0, 0.9992598, 0, 1, 0, -0.9992598, 0, -0.03846797, -11.152252, 1.4201636, 8.226667)
@@ -1206,6 +1308,7 @@ requirements = Array[ExtResource("11_0ebkc")]([SubResource("Resource_vjpb8")])
 delete_node = NodePath("..")
 show_node = NodePath("../../BarcoHolder/barcomadeira")
 fade_time = 0.5
+custom_interact_text = "fix"
 metadata/_custom_type_script = "uid://tl8ndvake8h"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Areas/Pernas/Interagiveis/BarcoDesconstruido/Interactable" unique_id=2001029236]
@@ -1234,33 +1337,41 @@ transform = Transform3D(-0.07671897, 0, -0.9970527, 0, 1, 0, 0.9970527, 0, -0.07
 process_mode = 4
 visible = false
 
-[node name="TheCreature" type="Node3D" parent="." unique_id=1480783709 node_paths=PackedStringArray("eye", "camera", "demands")]
+[node name="TheCreature" type="Node3D" parent="." unique_id=1480783709 node_paths=PackedStringArray("eye", "camera", "eye_rotation", "demands", "altar_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2550864, 0, 2.6688201)
 script = ExtResource("9_dwd3o")
 eye = NodePath("Eye")
-camera = NodePath("Eye/Camera3D")
+camera = NodePath("Eye/EyeRotation/Camera3D")
+eye_rotation = NodePath("Eye/EyeRotation")
 demands = NodePath("Demands")
+altar_point = NodePath("../TheBeach/Estrutural/Pier/Altar/AltarPoint")
 
 [node name="Demands" type="Node" parent="TheCreature" unique_id=1596109770]
 script = ExtResource("9_qlqx7")
 demands = Array[ExtResource("10_dwd3o")]([SubResource("Resource_48tcl"), SubResource("Resource_dwd3o"), ExtResource("35_onujg"), SubResource("Resource_3viy2"), SubResource("Resource_ho1os"), SubResource("Resource_x68vr"), SubResource("Resource_8sejf")])
 photo_demand = ExtResource("35_onujg")
+evil_fish = ExtResource("46_6m6bv")
+evil_fish_text = "poison"
 
 [node name="EyeBottomRef" type="Marker3D" parent="TheCreature" unique_id=426806147]
 
 [node name="EyeTopRef" type="Marker3D" parent="TheCreature" unique_id=961510593]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
 
-[node name="Eye" type="Node3D" parent="TheCreature" unique_id=1616323726 node_paths=PackedStringArray("cam", "victim", "creature", "top_ref", "bottom_ref")]
+[node name="Eye" type="Node3D" parent="TheCreature" unique_id=1616323726 node_paths=PackedStringArray("cam", "eye_rot", "victim", "creature", "top_ref", "bottom_ref")]
 transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 15, 0)
 script = ExtResource("1_evvns")
-cam = NodePath("Camera3D")
+cam = NodePath("EyeRotation/Camera3D")
+eye_rot = NodePath("EyeRotation")
 victim = NodePath("../../TheVictim")
 creature = NodePath("..")
 top_ref = NodePath("../EyeTopRef")
 bottom_ref = NodePath("../EyeBottomRef")
 
-[node name="Camera3D" type="Camera3D" parent="TheCreature/Eye" unique_id=408621461]
+[node name="EyeRotation" type="Node3D" parent="TheCreature/Eye" unique_id=192464144]
+
+[node name="Camera3D" type="Camera3D" parent="TheCreature/Eye/EyeRotation" unique_id=408621461]
+cull_mask = 1
 environment = SubResource("Environment_kxg5b")
 fov = 50.0
 
@@ -1276,7 +1387,7 @@ shape = SubResource("CylinderShape3D_qn35j")
 
 [node name="TheVictim" parent="." unique_id=762061992 node_paths=PackedStringArray("center") instance=ExtResource("1_kxg5b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.304658, 2.5633824, -17.623264)
-center = NodePath("../TheCreature/Eye/Camera3D")
+center = NodePath("../TheCreature/Eye/EyeRotation")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=761471171]
 stream = ExtResource("47_2rhjw")
@@ -1284,12 +1395,18 @@ volume_db = -14.633
 autoplay = true
 parameters/looping = true
 
-[connection signal="body_entered" from="TheBeach/Estrutural/Caverna/CaveToOutside" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="_on_cave_to_outside_body_entered"]
-[connection signal="body_entered" from="TheBeach/Estrutural/Caverna/OutsideToCave" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="_on_outside_to_cave_body_entered"]
+[node name="CaveAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=166281189]
+stream = ExtResource("23_4iiv8")
+volume_db = -14.633
+autoplay = true
+parameters/looping = true
+
+[connection signal="on_interact" from="TheBeach/Estrutural/Caverna/CaveToOutside" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="_on_cave_to_outside_on_interact"]
 [connection signal="body_entered" from="TheBeach/Estrutural/Caverna/Trancado/Area3D" to="TheBeach/Estrutural/Caverna/Trancado/Area3D" method="_on_body_entered"]
 [connection signal="body_exited" from="TheBeach/Estrutural/Caverna/Trancado/Area3D" to="TheBeach/Estrutural/Caverna/Trancado/Area3D" method="_on_body_exited"]
 [connection signal="screen_entered" from="TheBeach/Areas/Cabeca/Decoracao/Caverna/VisibleOnScreenNotifier3D" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="fechar_porta"]
 [connection signal="screen_exited" from="TheBeach/Areas/Cabeca/Decoracao/Caverna/VisibleOnScreenNotifier3D" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="abrir_porta"]
+[connection signal="on_interact" from="TheBeach/Areas/Cabeca/Decoracao/Caverna/EnterCave" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="_on_enter_cave_on_interact"]
 [connection signal="body_entered" from="TheBeach/Areas/BracoDireito/Decoracao/Ritual/Area3D" to="TheBeach/Areas/BracoDireito/Decoracao/Ritual" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="TheBeach/Areas/BracoDireito/Decoracao/Ritual/Area3D" to="TheBeach/Areas/BracoDireito/Decoracao/Ritual" method="_on_area_3d_body_exited"]
 [connection signal="on_caught" from="TheBeach/Areas/BracoEsquerdo/Interagiveis/AreasDePeixe/Area1/Bolhas/StaticBody3D" to="TheBeach/Areas/BracoEsquerdo/Interagiveis/AreasDePeixe" method="on_caught"]

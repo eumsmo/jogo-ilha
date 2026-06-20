@@ -86,6 +86,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32043886, -0.700661)
 [node name="SimpleInteractable" type="StaticBody3D" parent="." unique_id=1348775003 node_paths=PackedStringArray("delete_node")]
 script = ExtResource("3_mxxqk")
 delete_node = NodePath(".")
+custom_interact_text = "escape"
 metadata/_custom_type_script = "uid://bc803sbdaqtqe"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SimpleInteractable" unique_id=993241689]

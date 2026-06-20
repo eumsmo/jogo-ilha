@@ -1,3 +1,4 @@
+class_name CreatureDemands
 extends Node
 
 @export var demands: Array[Demand]
@@ -5,6 +6,8 @@ var _demand_idx: int = -1
 var current_demand: Demand = null
 
 @export var photo_demand: Demand
+@export var evil_fish: Item
+@export var evil_fish_text: String = "envenenar"
 
 
 signal on_new_demand(demand: Demand)
@@ -22,13 +25,17 @@ func _ready() -> void:
 	go_to_next_demand()
 
 func can_realize(victim: TheVictim) -> bool:
-	return (current_demand.can_realize(victim.inventory) if current_demand != null else false) or victim.camera.is_full()
+	return (current_demand.can_realize(victim.inventory) if current_demand != null else false) or victim.camera.is_full() or victim.inventory.has_item(Game.instance.creature.demands.evil_fish)
 
 func try_to_realize(victim: TheVictim) -> void:
 	var demand = current_demand
 	
 	if victim.camera.is_full() and current_demand != photo_demand:
 		show_photos(victim)
+		return
+	
+	if victim.inventory.has_item(Game.instance.creature.demands.evil_fish):
+		on_poisoned(victim)
 		return
 	
 	if current_demand != null and current_demand.realize(victim.inventory):
@@ -91,3 +98,8 @@ func get_node_by_name(name: String) -> Node3D:
 			return node
 	
 	return null
+
+func on_poisoned(victim: TheVictim) -> void:
+	print("poison?")
+	victim.inventory.sub_item(Game.instance.creature.demands.evil_fish)
+	Game.instance.creature.poison()

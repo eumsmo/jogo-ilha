@@ -8,7 +8,9 @@
 [ext_resource type="Script" uid="uid://bj4vporq1e0od" path="res://cenas/ui/demands_ui.gd" id="6_sph1n"]
 [ext_resource type="PackedScene" uid="uid://bh65ivpii6yxi" path="res://cenas/ui/list_item.tscn" id="7_ggsbl"]
 [ext_resource type="Script" uid="uid://cskcetkpg7b25" path="res://cenas/ui/altar/photos_visualizer.gd" id="8_y78qc"]
+[ext_resource type="Script" uid="uid://peypg8hv2uft" path="res://cenas/creature/unpoison_ui.gd" id="9_dfn5e"]
 [ext_resource type="PackedScene" uid="uid://beq56xea3kuob" path="res://cenas/ui/altar/photo_ui.tscn" id="9_hhf4n"]
+[ext_resource type="Texture2D" uid="uid://cwwyan5tfgdf6" path="res://recursos/sprites/circle.png" id="9_nujuc"]
 [ext_resource type="Script" uid="uid://bkgnmfet56vgk" path="res://scripts/fade_in_out.gd" id="11_7mt7j"]
 [ext_resource type="Resource" uid="uid://dd4pigl04vkpc" path="res://items/photo.tres" id="11_hhf4n"]
 [ext_resource type="Script" uid="uid://bnxbap2j3ggw" path="res://cenas/ui/interact_indicator.gd" id="12_nujuc"]
@@ -37,6 +39,7 @@ stretch_shrink = 2
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1498225757]
 handle_input_locally = false
+audio_listener_enable_3d = true
 size = Vector2i(576, 324)
 render_target_update_mode = 4
 
@@ -81,10 +84,11 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("12_nujuc")
 indicator = NodePath("Label")
-hand_text = "Press [E] to interact"
-camera_text = "Press [E] to take photos"
-fishing_text = "Press [E] to fish"
-axe_text = "Press [E] to cut"
+start_text = "Press [E] to "
+hand_text = "interact"
+camera_text = "take photos"
+fishing_text = "fish"
+axe_text = "cut"
 
 [node name="Label" type="Label" parent="UI/InteractIndicator" unique_id=605820378]
 layout_mode = 1
@@ -155,6 +159,30 @@ demands_holder = NodePath("VBoxContainer")
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Demands" unique_id=378548820]
 layout_mode = 2
 alignment = 2
+
+[node name="UnPoison" type="MarginContainer" parent="UI" unique_id=154872546 node_paths=PackedStringArray("progress")]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+script = ExtResource("9_dfn5e")
+progress = NodePath("TextureProgressBar")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/UnPoison" unique_id=1175298832]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.5, 0.5)
+offset_transform_pivot_ratio = Vector2(1, 0)
+max_value = 1.0
+step = 0.0
+fill_mode = 4
+texture_progress = ExtResource("9_nujuc")
 
 [node name="PhotosVisualizer" type="Control" parent="UI" unique_id=1136043697 node_paths=PackedStringArray("photos_holder")]
 layout_mode = 1

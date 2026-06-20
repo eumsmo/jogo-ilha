@@ -6,8 +6,10 @@ static var instance: Game
 @export var victim: TheVictim
 @export var creature: TheCreature
 @export var ritual: Ritual
+@export var cave: Cave
 @export var center: Node3D
 @export var music: AudioStreamPlayer
+@export var cave_music: AudioStreamPlayer
 
 var player_interact_lock: bool = false
 signal on_bad_ending
@@ -22,6 +24,7 @@ func _init() -> void:
 	instance = self
 	
 func _ready() -> void:
+	stop_cave()
 	ritual.on_end.connect(bad_ending)
 	
 func bad_ending() -> void:
@@ -50,9 +53,20 @@ func handle_fade_in_ended() -> void:
 func handle_fade_out_ended() -> void:
 	on_fade_out_ended.emit()
 
-func stop_music() -> void:
+func pause_music() -> void:
 	music.stream_paused = true
 
-func start_music() -> void:
+func unpause_music() -> void:
 	music.stream_paused = false
 	
+func stop_music() -> void:
+	music.stop()
+
+func start_music() -> void:
+	music.play()
+
+func start_cave() -> void:
+	cave_music.stream_paused = false
+
+func stop_cave() -> void:
+	cave_music.stream_paused = true

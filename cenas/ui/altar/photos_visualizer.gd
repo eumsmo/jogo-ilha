@@ -26,6 +26,9 @@ func _input(event: InputEvent) -> void:
 func show_photos() -> void:
 	finished_entering = false
 	
+	for previous_photo in photos_holder.get_children():
+		previous_photo.queue_free()
+	
 	var textures: Array[Texture2D] = get_photos()
 	textures.reverse()
 	show()

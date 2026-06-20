@@ -96,13 +96,16 @@ shape_cast = NodePath("../../../ShapeCast3D")
 available = true
 img = ExtResource("3_vp0ll")
 
-[node name="Camera" type="Node3D" parent="Body/NasMoes" unique_id=1049223435 node_paths=PackedStringArray("camera", "camera_viewpoint")]
+[node name="Camera" type="Node3D" parent="Body/NasMoes" unique_id=1049223435 node_paths=PackedStringArray("auto_aim_cast", "aim_node", "camera", "camera_viewpoint")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23420417, 0)
 visible = false
 script = ExtResource("2_3j8e3")
 photo_item = ExtResource("5_lysed")
+auto_aim_cast = NodePath("CameraViewPoint/RayCast3D")
+aim_node = NodePath("CameraViewPoint/Aiming")
 camera = NodePath("Control/SubViewportContainer/SubViewport/Camera3D")
 camera_viewpoint = NodePath("CameraViewPoint")
+available = true
 img = ExtResource("5_k6mmk")
 
 [node name="Camera" parent="Body/NasMoes/Camera" unique_id=729508623 instance=ExtResource("3_u7652")]
@@ -110,6 +113,14 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.1477977, -0.0033005476)
 
 [node name="CameraViewPoint" type="Node3D" parent="Body/NasMoes/Camera" unique_id=338728636]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.220446e-15, 0, 0.18148148)
+
+[node name="RayCast3D" type="RayCast3D" parent="Body/NasMoes/Camera/CameraViewPoint" unique_id=1564371298]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.586561e-08, 0, 0.18148148)
+target_position = Vector3(0, 0, 5)
+collision_mask = 256
+hit_from_inside = true
+
+[node name="Aiming" type="Node3D" parent="Body/NasMoes/Camera/CameraViewPoint" unique_id=1767319304]
 
 [node name="Control" type="Control" parent="Body/NasMoes/Camera" unique_id=1722424761]
 layout_mode = 3
@@ -142,13 +153,13 @@ render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Body/NasMoes/Camera/Control/SubViewportContainer/SubViewport" unique_id=1079464591]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.1519258, 0.72145057)
+cull_mask = 3
 
 [node name="VaraDePesca" type="Node3D" parent="Body/NasMoes" unique_id=1615379628 node_paths=PackedStringArray("shape_cast")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29366577, 0)
 visible = false
 script = ExtResource("5_sud1n")
 shape_cast = NodePath("ShapeCast3D2")
-available = true
 img = ExtResource("8_k6mmk")
 
 [node name="ShapeCast3D2" type="ShapeCast3D" parent="Body/NasMoes/VaraDePesca" unique_id=1970797760]
@@ -208,6 +219,9 @@ volume_db = -18.291
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=192756382]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3504513, 0)
+
+[node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=841796967]
+current = true
 
 [connection signal="using_action" from="." to="Body/NasMoes/Camera" method="take_picture"]
 
