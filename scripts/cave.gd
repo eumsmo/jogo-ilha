@@ -55,9 +55,11 @@ func _on_outside_to_cave_body_entered(body: Node3D) -> void:
 	if body.name == "TheVictim":
 		Game.instance.victim.change_center(Game.instance.center)
 		Game.instance.victim.global_position = spawn_inside.global_position
+		Game.instance.stop_music()
 
 
 func _on_cave_to_outside_body_entered(body: Node3D) -> void:
 	if body.name == "TheVictim":
 		Game.instance.victim.change_center(Game.instance.creature.camera)
 		Game.instance.victim.global_position = spawn_outside.global_position
+		Game.instance.start_music()

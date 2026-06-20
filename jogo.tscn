@@ -29,6 +29,8 @@
 [ext_resource type="Resource" uid="uid://dkcxnyv08ip06" path="res://items/flower.tres" id="13_0ebkc"]
 [ext_resource type="PackedScene" uid="uid://cuphyihs54jk1" path="res://recursos/models/decoracao/machado.tscn" id="13_d63na"]
 [ext_resource type="PackedScene" uid="uid://2kmrhd2h3dl8" path="res://cenas/items/flower_3.tscn" id="13_fxpqx"]
+[ext_resource type="PackedScene" uid="uid://d1rvln3x2lex7" path="res://recursos/models/decoracao/cadeado.tscn" id="13_my516"]
+[ext_resource type="Material" uid="uid://c5i588fs2ne8e" path="res://recursos/materiais/roxo_clarissimo.tres" id="14_c4srl"]
 [ext_resource type="Texture2D" uid="uid://1hu082bayu2k" path="res://recursos/sprites/cave_map.png" id="15_ybdaj"]
 [ext_resource type="PackedScene" uid="uid://cjm1jfge12udw" path="res://recursos/models/decoracao/cadeira.tscn" id="16_t3mex"]
 [ext_resource type="PackedScene" uid="uid://cbfuwnuqkufwx" path="res://recursos/models/natureza/arvore.tscn" id="17_qlqx7"]
@@ -64,6 +66,9 @@
 [ext_resource type="PackedScene" uid="uid://bssttwgc8kscm" path="res://recursos/models/decoracao/lataaberta.tscn" id="46_c6qah"]
 [ext_resource type="Texture2D" uid="uid://c0m4wydf4xfco" path="res://recursos/sprites/treasure_map.png" id="46_oy0wu"]
 [ext_resource type="AudioStream" uid="uid://ccsaua1dppssl" path="res://recursos/musics/vibepraia.mp3" id="47_2rhjw"]
+[ext_resource type="PackedScene" uid="uid://dlo7ar5dgtvov" path="res://recursos/models/decoracao/barcomadquebr.tscn" id="51_i5yqm"]
+[ext_resource type="Script" uid="uid://b2enkiolof12c" path="res://scripts/requires_items.gd" id="53_vjpb8"]
+[ext_resource type="Resource" uid="uid://cp6i7faibhtl1" path="res://items/wood.tres" id="55_khvfy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ysdx3"]
 friction = 0.0
@@ -158,6 +163,42 @@ size = Vector3(0.5, 1, 0.5)
 flip_faces = true
 size = Vector3(30, 10, 70)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_g4v7s"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 4.0
+radial_segments = 4
+rings = 1
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="Resource" id="Resource_g4v7s"]
+script = ExtResource("11_0ebkc")
+item = ExtResource("23_c4nn4")
+quant = 1
+metadata/_custom_type_script = "uid://c5nru43e0eiis"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(4, 4, 0.25)
+
+[sub_resource type="GDScript" id="GDScript_my516"]
+script/source = "extends Area3D
+
+@export var text: Control
+
+func _on_body_entered(body: Node3D) -> void:
+	if body == Game.instance.victim:
+		text.show()
+
+
+func _on_body_exited(body: Node3D) -> void:
+	if body == Game.instance.victim:
+		text.hide()
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_57qmd"]
+size = Vector3(4, 4, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_veval"]
 size = Vector3(0.08, 2, 1.19)
 
@@ -210,6 +251,16 @@ func _on_static_body_3d_on_caught() -> void:
 	await get_tree().create_timer(12).timeout
 	spot.reset()
 "
+
+[sub_resource type="Resource" id="Resource_vjpb8"]
+script = ExtResource("11_0ebkc")
+item = ExtResource("55_khvfy")
+quant = 5
+metadata/_custom_type_script = "uid://c5nru43e0eiis"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g4v7s"]
+height = 4.0
+radius = 0.25
 
 [sub_resource type="Resource" id="Resource_0ebkc"]
 script = ExtResource("11_0ebkc")
@@ -313,12 +364,13 @@ height = 5.0
 height = 13.173
 radius = 12.79
 
-[node name="Game" type="Node3D" unique_id=1206501729 node_paths=PackedStringArray("victim", "creature", "ritual", "center")]
+[node name="Game" type="Node3D" unique_id=1206501729 node_paths=PackedStringArray("victim", "creature", "ritual", "center", "music")]
 script = ExtResource("1_8c340")
 victim = NodePath("TheVictim")
 creature = NodePath("TheCreature")
 ritual = NodePath("TheBeach/Areas/BracoDireito/Decoracao/Ritual")
 center = NodePath("CenterOfIslands")
+music = NodePath("AudioStreamPlayer")
 
 [node name="CenterOfIslands" type="Node3D" parent="." unique_id=456595919]
 transform = Transform3D(-0.8141156, 0, -0.5807029, 0, 1, 0, 0.5807029, 0, -0.8141156, 0, 0, 0)
@@ -558,6 +610,103 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2467749, -0.5561908, -0.10
 transform = Transform3D(0.815052, 0, 0.5793879, 0, 1, 0, -0.5793879, 0, 0.815052, 5.156489, -13.465742, -6.16375)
 mesh = SubResource("BoxMesh_g4v7s")
 surface_material_override/0 = ExtResource("12_p01ov")
+
+[node name="Trancado" type="Node3D" parent="TheBeach/Estrutural/Caverna" unique_id=1461254813]
+transform = Transform3D(0.8376428, 0, 0.5462184, 0, 1, 0, -0.5462184, 0, 0.8376428, 2.091679, -13.16314, -14.429494)
+
+[node name="Mesh" type="Node3D" parent="TheBeach/Estrutural/Caverna/Trancado" unique_id=2100832272]
+
+[node name="cadeado" parent="TheBeach/Estrutural/Caverna/Trancado/Mesh" unique_id=139527961 instance=ExtResource("13_my516")]
+transform = Transform3D(1, 0, 0, 0, 0.9157607, -0.40172416, 0, 0.40172416, 0.9157607, 0, 0.6724656, -0.2123479)
+
+[node name="Grade" type="MeshInstance3D" parent="TheBeach/Estrutural/Caverna/Trancado/Mesh" unique_id=324088275]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3825881, 0.8219502, 1.8626451e-09)
+material_override = ExtResource("14_c4srl")
+mesh = SubResource("CylinderMesh_g4v7s")
+
+[node name="Grade2" type="MeshInstance3D" parent="TheBeach/Estrutural/Caverna/Trancado/Mesh" unique_id=1003473016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0313152, 0.8219502, 1.6763806e-08)
+material_override = ExtResource("14_c4srl")
+mesh = SubResource("CylinderMesh_g4v7s")
+
+[node name="Grade3" type="MeshInstance3D" parent="TheBeach/Estrutural/Caverna/Trancado/Mesh" unique_id=1004940437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7019603, 0.8219502, 3.1664968e-08)
+material_override = ExtResource("14_c4srl")
+mesh = SubResource("CylinderMesh_g4v7s")
+
+[node name="Grade4" type="MeshInstance3D" parent="TheBeach/Estrutural/Caverna/Trancado/Mesh" unique_id=782416201]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3655995, 0.8219502, 3.1664968e-08)
+material_override = ExtResource("14_c4srl")
+mesh = SubResource("CylinderMesh_g4v7s")
+
+[node name="Grade5" type="MeshInstance3D" parent="TheBeach/Estrutural/Caverna/Trancado/Mesh" unique_id=1082071547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0017144829, 0.8219502, 4.656613e-08)
+material_override = ExtResource("14_c4srl")
+mesh = SubResource("CylinderMesh_g4v7s")
+
+[node name="Grade6" type="MeshInstance3D" parent="TheBeach/Estrutural/Caverna/Trancado/Mesh" unique_id=129511350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3830539, 0.8219502, 6.146729e-08)
+material_override = ExtResource("14_c4srl")
+mesh = SubResource("CylinderMesh_g4v7s")
+
+[node name="Grade7" type="MeshInstance3D" parent="TheBeach/Estrutural/Caverna/Trancado/Mesh" unique_id=1396230267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.79582983, 0.8219502, 7.636845e-08)
+material_override = ExtResource("14_c4srl")
+mesh = SubResource("CylinderMesh_g4v7s")
+
+[node name="Grade8" type="MeshInstance3D" parent="TheBeach/Estrutural/Caverna/Trancado/Mesh" unique_id=233696006]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2219478, 0.8219502, 6.146729e-08)
+material_override = ExtResource("14_c4srl")
+mesh = SubResource("CylinderMesh_g4v7s")
+
+[node name="Grade9" type="MeshInstance3D" parent="TheBeach/Estrutural/Caverna/Trancado/Mesh" unique_id=1093453721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6370579, 0.8219502, 7.636845e-08)
+material_override = ExtResource("14_c4srl")
+mesh = SubResource("CylinderMesh_g4v7s")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheBeach/Estrutural/Caverna/Trancado" unique_id=458849176 node_paths=PackedStringArray("delete_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8253752, 0)
+script = ExtResource("53_vjpb8")
+requirements = Array[ExtResource("11_0ebkc")]([SubResource("Resource_g4v7s")])
+delete_node = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Estrutural/Caverna/Trancado/StaticBody3D" unique_id=1188273230]
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="Area3D" type="Area3D" parent="TheBeach/Estrutural/Caverna/Trancado" unique_id=564514893 node_paths=PackedStringArray("text")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90303534, -0.3549255)
+script = SubResource("GDScript_my516")
+text = NodePath("Control")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Estrutural/Caverna/Trancado/Area3D" unique_id=625161379]
+shape = SubResource("BoxShape3D_57qmd")
+
+[node name="Control" type="Control" parent="TheBeach/Estrutural/Caverna/Trancado/Area3D" unique_id=1736518472]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TheBeach/Estrutural/Caverna/Trancado/Area3D/Control" unique_id=156179437]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 24
+text = "[ LOCKED ]"
 
 [node name="AxeSpot" type="Node3D" parent="TheBeach/Estrutural/Caverna" unique_id=1031926618]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0916793, -13.163139, -14.429493)
@@ -993,9 +1142,6 @@ shape = SubResource("SphereShape3D_oy0wu")
 [node name="coqueiro" parent="TheBeach/Areas/Pernas/Decoracao" unique_id=1906917966 instance=ExtResource("10_48tcl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8433647, 1.6971962, -21.479143)
 
-[node name="cangagrande" parent="TheBeach/Areas/Pernas/Decoracao" unique_id=2098190245 instance=ExtResource("26_j77lb")]
-transform = Transform3D(1, 0, 0, 0, 0.9738314, -0.2272718, 0, 0.2272718, 0.9738314, -15.337318, 1.7318401, 11.047706)
-
 [node name="Node3D" type="Node3D" parent="TheBeach/Areas/Pernas/Decoracao" unique_id=1026803354]
 transform = Transform3D(-0.9036581, 0.31151462, -0.2938726, 0.02235038, 0.71957946, 0.6940504, 0.4276715, 0.620616, -0.6572162, 3.5388496, 1.4006286, 12.501481)
 
@@ -1044,6 +1190,28 @@ transform = Transform3D(0.19691473, 0, -0.9804206, 0, 1, 0, 0.9804206, 0, 0.1969
 
 [node name="Interagiveis" type="Node3D" parent="TheBeach/Areas/Pernas" unique_id=1557986718]
 
+[node name="BarcoDesconstruido" type="Node3D" parent="TheBeach/Areas/Pernas/Interagiveis" unique_id=1922395638]
+transform = Transform3D(-0.936957, -7.450581e-09, -0.3494446, -0.12333642, 0.93564224, 0.33069882, 0.32695514, 0.35294983, -0.8766566, -15.725437, 1.4385747, 11.399914)
+
+[node name="barcomadquebr" parent="TheBeach/Areas/Pernas/Interagiveis/BarcoDesconstruido" unique_id=340667878 instance=ExtResource("51_i5yqm")]
+transform = Transform3D(1, 0, -2.9802322e-08, 0, 1, 0, 0, 2.9802322e-08, 1, 0, 0, 0)
+
+[node name="cangagrande" parent="TheBeach/Areas/Pernas/Interagiveis/BarcoDesconstruido" unique_id=2098190245 instance=ExtResource("26_j77lb")]
+transform = Transform3D(-0.935559, 0.05309595, 0.34915656, 0.0717115, 0.99659884, 0.040597826, -0.3458134, 0.06302014, -0.93618464, -1.6478958, 0.08744049, -0.42993164)
+
+[node name="Interactable" type="StaticBody3D" parent="TheBeach/Areas/Pernas/Interagiveis/BarcoDesconstruido" unique_id=979916098 node_paths=PackedStringArray("delete_node", "show_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26141122, 0.53212404, -0.50859046)
+script = ExtResource("53_vjpb8")
+requirements = Array[ExtResource("11_0ebkc")]([SubResource("Resource_vjpb8")])
+delete_node = NodePath("..")
+show_node = NodePath("../../BarcoHolder/barcomadeira")
+fade_time = 0.5
+metadata/_custom_type_script = "uid://tl8ndvake8h"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Areas/Pernas/Interagiveis/BarcoDesconstruido/Interactable" unique_id=2001029236]
+transform = Transform3D(0.08670073, 0.9039519, -0.41875306, -0.98528594, 0.13995026, 0.09810862, 0.14729005, 0.40408537, 0.9027848, 0, 0, 0)
+shape = SubResource("CylinderShape3D_g4v7s")
+
 [node name="latafechada" parent="TheBeach/Areas/Pernas/Interagiveis" unique_id=525473446 instance=ExtResource("28_lr568")]
 transform = Transform3D(0.8628952, -0.50538296, 0, 0.50538296, 0.8628952, 0, 0, 0, 1, 10.624903, 0.81840456, 17.062187)
 
@@ -1059,8 +1227,12 @@ transform = Transform3D(1, 0, 0, 0, 0.63615197, -0.77156377, 0, 0.77156377, 0.63
 [node name="garrafa3" parent="TheBeach/Areas/Pernas/Interagiveis" unique_id=2104872570 instance=ExtResource("25_l5ha6")]
 transform = Transform3D(1, 0, 0, 0, 0.94160765, -0.33671215, 0, 0.33671215, 0.94160765, -3.9676971, 1.2849014, 15.155857)
 
-[node name="barcomadeira" parent="TheBeach/Areas/Pernas" unique_id=1892110636 instance=ExtResource("26_2lt7e")]
-transform = Transform3D(0.50162375, 0, -0.86508596, 0, 1, 0, 0.86508596, 0, 0.50162375, -17.432823, 0.3544402, 14.938512)
+[node name="BarcoHolder" type="Node3D" parent="TheBeach/Areas/Pernas/Interagiveis" unique_id=954735878]
+transform = Transform3D(-0.07671897, 0, -0.9970527, 0, 1, 0, 0.9970527, 0, -0.07671897, -14.859234, 0, 15.470349)
+
+[node name="barcomadeira" parent="TheBeach/Areas/Pernas/Interagiveis/BarcoHolder" unique_id=1892110636 instance=ExtResource("26_2lt7e")]
+process_mode = 4
+visible = false
 
 [node name="TheCreature" type="Node3D" parent="." unique_id=1480783709 node_paths=PackedStringArray("eye", "camera", "demands")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2550864, 0, 2.6688201)
@@ -1109,10 +1281,13 @@ center = NodePath("../TheCreature/Eye/Camera3D")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=761471171]
 stream = ExtResource("47_2rhjw")
 volume_db = -14.633
+autoplay = true
 parameters/looping = true
 
 [connection signal="body_entered" from="TheBeach/Estrutural/Caverna/CaveToOutside" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="_on_cave_to_outside_body_entered"]
 [connection signal="body_entered" from="TheBeach/Estrutural/Caverna/OutsideToCave" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="_on_outside_to_cave_body_entered"]
+[connection signal="body_entered" from="TheBeach/Estrutural/Caverna/Trancado/Area3D" to="TheBeach/Estrutural/Caverna/Trancado/Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="TheBeach/Estrutural/Caverna/Trancado/Area3D" to="TheBeach/Estrutural/Caverna/Trancado/Area3D" method="_on_body_exited"]
 [connection signal="screen_entered" from="TheBeach/Areas/Cabeca/Decoracao/Caverna/VisibleOnScreenNotifier3D" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="fechar_porta"]
 [connection signal="screen_exited" from="TheBeach/Areas/Cabeca/Decoracao/Caverna/VisibleOnScreenNotifier3D" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="abrir_porta"]
 [connection signal="body_entered" from="TheBeach/Areas/BracoDireito/Decoracao/Ritual/Area3D" to="TheBeach/Areas/BracoDireito/Decoracao/Ritual" method="_on_area_3d_body_entered"]

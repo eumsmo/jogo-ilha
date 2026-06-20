@@ -84,6 +84,7 @@ indicator = NodePath("Label")
 hand_text = "Press [E] to interact"
 camera_text = "Press [E] to take photos"
 fishing_text = "Press [E] to fish"
+axe_text = "Press [E] to cut"
 
 [node name="Label" type="Label" parent="UI/InteractIndicator" unique_id=605820378]
 layout_mode = 1

@@ -11,8 +11,13 @@ func _ready() -> void:
 	hide()
 	Game.instance.creature.demands.need_to_fade.connect(demand_fade)
 	Game.instance.on_bad_ending.connect(fade_in)
+	Game.instance.on_good_ending.connect(fade_in)
 	Game.instance.victim.axe.started_cutting.connect(fade_in)
 	Game.instance.victim.axe.ended_cutting.connect(fade_out)
+	
+	
+	Game.instance.on_fade_in.connect(fade_in_by_game)
+	Game.instance.on_fade_out.connect(fade_out_by_game)
 
 func _fade(from: float, to: float, fade_time: float) -> void:
 	var tween = get_tree().create_tween()
@@ -46,4 +51,11 @@ func demand_fade() -> void:
 	
 	fade_in_finished.disconnect(Game.instance.creature.demands.faded_in)
 	fade_out_finished.disconnect(Game.instance.creature.demands.faded_out)
-	
+
+func fade_in_by_game() -> void:
+	await fade_in()
+	Game.instance.handle_fade_in_ended()
+
+func fade_out_by_game() -> void:
+	await fade_out()
+	Game.instance.handle_fade_out_ended()

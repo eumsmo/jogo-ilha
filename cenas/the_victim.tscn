@@ -148,6 +148,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29366577, 0)
 visible = false
 script = ExtResource("5_sud1n")
 shape_cast = NodePath("ShapeCast3D2")
+available = true
 img = ExtResource("8_k6mmk")
 
 [node name="ShapeCast3D2" type="ShapeCast3D" parent="Body/NasMoes/VaraDePesca" unique_id=1970797760]

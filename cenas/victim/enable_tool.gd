@@ -6,15 +6,19 @@ enum Tools { HAND, CAMERA, FISHING, AXE }
 @export var which: Tools
 
 func interact(victim: TheVictim) -> void:
+	var tool = null
 	match which:
 		Tools.HAND:
-			victim.hands.available = true
+			tool = victim.hands
 		Tools.CAMERA:
-			victim.camera.available = true
+			tool = victim.camera
 		Tools.FISHING:
-			victim.fishing_rod.available = true
+			tool = victim.fishing_rod
 		Tools.AXE:
-			victim.axe.available = true
+			tool = victim.axe
+	
+	tool.available = true
+	victim.set_hand_tool(tool)
 	
 	victim.hands.clear_closest_interactable()
 	delete_node.queue_free()

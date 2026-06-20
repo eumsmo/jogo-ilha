@@ -1,8 +1,94 @@
 [gd_scene format=3 uid="uid://ccsnncgdv1vb3"]
 
 [ext_resource type="PackedScene" uid="uid://bb62ome6mg1ue" path="res://recursos/models/decoracao/fbxdecoracao/barcomadeira.fbx" id="1_afk5t"]
+[ext_resource type="Script" uid="uid://gb0af1r2j8ms" path="res://scripts/leaving.gd" id="1_ro6sl"]
+[ext_resource type="Script" uid="uid://bc803sbdaqtqe" path="res://scripts/simple_interactable.gd" id="3_mxxqk"]
 
-[node name="barcomadeira" type="Node3D" unique_id=1892110636]
+[sub_resource type="Animation" id="Animation_mxxqk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ro6sl"]
+resource_name = "leave"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(2.3474367, 0, 195.263)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.017453292, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mxxqk"]
+_data = {
+&"RESET": SubResource("Animation_mxxqk"),
+&"leave": SubResource("Animation_ro6sl")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(3.5, 1, 4.5)
+
+[node name="barcomadeira" type="Node3D" unique_id=1892110636 node_paths=PackedStringArray("stand_in", "animator")]
+script = ExtResource("1_ro6sl")
+stand_in = NodePath("StandIn")
+animator = NodePath("AnimationPlayer")
+animation_name = "leave"
 
 [node name="barcomadeira" parent="." unique_id=400930552 instance=ExtResource("1_afk5t")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2010725639]
+libraries/ = SubResource("AnimationLibrary_mxxqk")
+
+[node name="StandIn" type="Marker3D" parent="." unique_id=1041976246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32043886, -0.700661)
+
+[node name="SimpleInteractable" type="StaticBody3D" parent="." unique_id=1348775003 node_paths=PackedStringArray("delete_node")]
+script = ExtResource("3_mxxqk")
+delete_node = NodePath(".")
+metadata/_custom_type_script = "uid://bc803sbdaqtqe"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SimpleInteractable" unique_id=993241689]
+shape = SubResource("BoxShape3D_g4v7s")
+
+[connection signal="on_interact" from="SimpleInteractable" to="." method="_on_simple_interactable_on_interact"]
