@@ -105,7 +105,6 @@ auto_aim_cast = NodePath("CameraViewPoint/RayCast3D")
 aim_node = NodePath("CameraViewPoint/Aiming")
 camera = NodePath("Control/SubViewportContainer/SubViewport/Camera3D")
 camera_viewpoint = NodePath("CameraViewPoint")
-available = true
 img = ExtResource("5_k6mmk")
 
 [node name="Camera" parent="Body/NasMoes/Camera" unique_id=729508623 instance=ExtResource("3_u7652")]
@@ -213,6 +212,7 @@ walk_sand = ExtResource("19_f23x0")
 walk_rock = ExtResource("20_3w708")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BarulhosDoJogador" unique_id=1527757167]
+volume_db = -5.76
 
 [node name="WalkStreamPlayer" type="AudioStreamPlayer" parent="BarulhosDoJogador" unique_id=1804834210]
 volume_db = -18.291

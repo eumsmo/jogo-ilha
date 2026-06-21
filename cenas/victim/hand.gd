@@ -11,7 +11,8 @@ func _ready() -> void:
 
 func use_tool(_victim: TheVictim) -> void:
 	if closest_interactable != null and closest_interactable.can_interact(victim):
-		victim.audio.play(victim.audio.hand_collect)
+		if closest_interactable.play_sfx_on_interact:
+			victim.audio.play(victim.audio.hand_collect)
 		closest_interactable.interact(victim)
 
 func on_unequip(_victim: TheVictim) -> void:

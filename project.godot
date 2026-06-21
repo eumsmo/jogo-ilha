@@ -12,13 +12,15 @@ config_version=5
 
 config/name="Skull Island"
 config/description="Jogo produzido por Juan Vitor (Cebojuan) e Maria Fernanda (MaryLife) para a GameJam ComfyJam Summer 2026 (https://itch.io/jam/comfy-jam-summer-2026) com o tema \"The Instructions are a lie\"."
+config/version="1.0"
 run/main_scene="uid://ndjuf2q5lg1s"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://c82638weexv0j"
 
 [autoload]
 
 Globals="*uid://dk6r6hwn2csm5"
+Music="*uid://bv4pj75236b75"
 
 [filesystem]
 

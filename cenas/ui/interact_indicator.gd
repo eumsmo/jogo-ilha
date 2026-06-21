@@ -12,6 +12,8 @@ func _ready() -> void:
 	Game.instance.victim.hands.closest_interactable_changed.connect(update_indicator)
 	Game.instance.victim.fishing_rod.fishing_status_changed.connect(set_indicator_visibility)
 	Game.instance.victim.axe.can_cut_status_changed.connect(set_indicator_visibility)
+	Game.instance.victim.camera.camera_full.connect(camera_full)
+	Game.instance.victim.camera.camera_not_full.connect(camera_not_full)
 	Game.instance.victim.on_hand_tool_changed.connect(on_hand_tool_changed)
 	on_hand_tool_changed(Game.instance.victim.on_hand)
 	indicator.hide()
@@ -23,7 +25,10 @@ func on_hand_tool_changed(hand_tool: HandTool) -> void:
 			hide_indicator()
 		Game.instance.victim.camera:
 			text = camera_text
-			show_indicator()
+			if Game.instance.victim.camera.is_full():
+				hide_indicator()
+			else:
+				show_indicator()
 		Game.instance.victim.fishing_rod:
 			text = fishing_text
 			hide_indicator()
@@ -53,3 +58,12 @@ func hide_indicator() -> void:
 
 func set_indicator_visibility(is_visible: bool) -> void:
 	indicator.visible = is_visible
+
+
+func camera_full() -> void:
+	if Game.instance.victim.on_hand == Game.instance.victim.camera:
+		hide_indicator()
+
+func camera_not_full() -> void:
+	if Game.instance.victim.on_hand == Game.instance.victim.camera:
+		show_indicator()

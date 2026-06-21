@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://bh65ivpii6yxi"]
 
 [ext_resource type="Script" uid="uid://dyr8u8mvwolwx" path="res://cenas/ui/list_item.gd" id="1_kx02e"]
+[ext_resource type="FontFile" uid="uid://y0becg3vn4x2" path="res://recursos/fonts/SyneMono-Regular.ttf" id="2_5kob5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sph1n"]
 
 [node name="ListItem" type="PanelContainer" unique_id=831202404 node_paths=PackedStringArray("text")]
+offset_right = 700.0
+offset_bottom = 24.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sph1n")
 script = ExtResource("1_kx02e")
 text = NodePath("Label")
@@ -12,7 +16,9 @@ text = NodePath("Label")
 [node name="Label" type="RichTextLabel" parent="." unique_id=556899281]
 custom_minimum_size = Vector2(500, 24)
 layout_mode = 2
+theme_override_colors/default_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.14901961)
+theme_override_fonts/normal_font = ExtResource("2_5kob5")
 bbcode_enabled = true
 text = "1. Traga frutas ao altar"
 horizontal_alignment = 2

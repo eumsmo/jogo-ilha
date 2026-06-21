@@ -15,6 +15,9 @@ var resize_by = 3.0
 
 var photos: Array[Image]
 
+signal camera_full
+signal camera_not_full
+
 func _ready() -> void:
 	viewport = camera.get_viewport()
 	viewport.world_3d = get_viewport().world_3d
@@ -32,6 +35,9 @@ func use_tool(victim: TheVictim) -> void:
 	img.save_png("user://img_{0}.png".format([count]))
 	photos.append(img)
 	victim.inventory.add_item(photo_item, 1)
+	
+	if len(photos) >= photos_per_camera:
+		camera_full.emit()
 
 func _physics_process(delta: float) -> void:
 	try_to_aim()
@@ -62,4 +68,5 @@ func is_full() -> bool:
 	return len(photos) >= photos_per_camera
 
 func clear() -> void:
+	camera_not_full.emit()
 	photos.clear()

@@ -8,7 +8,6 @@ static var instance: Game
 @export var ritual: Ritual
 @export var cave: Cave
 @export var center: Node3D
-@export var music: AudioStreamPlayer
 @export var cave_music: AudioStreamPlayer
 
 var player_interact_lock: bool = false
@@ -30,14 +29,14 @@ func _ready() -> void:
 func bad_ending() -> void:
 	on_bad_ending.emit()
 	victim.lock()
-	await get_tree().create_timer(3)
-	get_tree().change_scene_to_file("res://ending.tscn")
+	await get_tree().create_timer(3).timeout
+	get_tree().change_scene_to_file("res://bad_ending.tscn")
 
 
 func good_ending() -> void:
 	on_good_ending.emit()
 	await get_tree().create_timer(3).timeout
-	get_tree().change_scene_to_file("res://ending.tscn")
+	get_tree().change_scene_to_file("res://good_ending.tscn")
 
 func fade_in() -> void:
 	on_fade_in.emit()
@@ -54,16 +53,16 @@ func handle_fade_out_ended() -> void:
 	on_fade_out_ended.emit()
 
 func pause_music() -> void:
-	music.stream_paused = true
+	Music.instance.pause()
 
 func unpause_music() -> void:
-	music.stream_paused = false
+	Music.instance.unpause()
 	
 func stop_music() -> void:
-	music.stop()
+	Music.instance.stop()
 
 func start_music() -> void:
-	music.play()
+	Music.instance.start()
 
 func start_cave() -> void:
 	cave_music.stream_paused = false

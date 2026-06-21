@@ -68,9 +68,9 @@
 [ext_resource type="Resource" uid="uid://cpnvddkvxxhl3" path="res://items/evil_fish.tres" id="46_6m6bv"]
 [ext_resource type="PackedScene" uid="uid://bssttwgc8kscm" path="res://recursos/models/decoracao/lataaberta.tscn" id="46_c6qah"]
 [ext_resource type="Texture2D" uid="uid://c0m4wydf4xfco" path="res://recursos/sprites/treasure_map.png" id="46_oy0wu"]
-[ext_resource type="AudioStream" uid="uid://ccsaua1dppssl" path="res://recursos/musics/vibepraia.mp3" id="47_2rhjw"]
 [ext_resource type="PackedScene" uid="uid://dlo7ar5dgtvov" path="res://recursos/models/decoracao/barcomadquebr.tscn" id="51_i5yqm"]
 [ext_resource type="Script" uid="uid://b2enkiolof12c" path="res://scripts/requires_items.gd" id="53_vjpb8"]
+[ext_resource type="AudioStream" uid="uid://btcxsowexkqsv" path="res://recursos/soundeffects/bolhas.mp3" id="54_beccm"]
 [ext_resource type="Resource" uid="uid://cp6i7faibhtl1" path="res://items/wood.tres" id="55_khvfy"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ysdx3"]
@@ -213,6 +213,23 @@ points = PackedVector3Array(-0.2, 0, 0.5, 0.2, 0, -1.5, -0.2, 1.555, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_48tcl"]
 size = Vector3(0.56380856, 1.4317627, 0.585)
+
+[sub_resource type="GDScript" id="GDScript_mwoe0"]
+script/source = "extends Area3D
+
+@export var audio: AudioStreamPlayer3D
+
+func _on_body_entered(body: Node3D) -> void:
+	if body.name == \"TheVictim\":
+		audio.stream_paused = false
+
+func _on_body_exited(body: Node3D) -> void:
+	if body.name == \"TheVictim\":
+		audio.stream_paused = true
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fcnqv"]
+radius = 10.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3gngh"]
 radius = 0.975
@@ -382,14 +399,13 @@ height = 5.0
 height = 13.173
 radius = 12.79
 
-[node name="Game" type="Node3D" unique_id=1206501729 node_paths=PackedStringArray("victim", "creature", "ritual", "cave", "center", "music", "cave_music")]
+[node name="Game" type="Node3D" unique_id=1206501729 node_paths=PackedStringArray("victim", "creature", "ritual", "cave", "center", "cave_music")]
 script = ExtResource("1_8c340")
 victim = NodePath("TheVictim")
 creature = NodePath("TheCreature")
 ritual = NodePath("TheBeach/Areas/BracoDireito/Decoracao/Ritual")
 cave = NodePath("TheBeach/Areas/Cabeca/Decoracao/Caverna")
 center = NodePath("CenterOfIslands")
-music = NodePath("AudioStreamPlayer")
 cave_music = NodePath("CaveAudioStreamPlayer")
 
 [node name="CenterOfIslands" type="Node3D" parent="." unique_id=456595919]
@@ -691,6 +707,7 @@ collision_layer = 257
 script = ExtResource("53_vjpb8")
 requirements = Array[ExtResource("11_0ebkc")]([SubResource("Resource_g4v7s")])
 delete_node = NodePath("..")
+custom_interact_text = "unlock"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Estrutural/Caverna/Trancado/StaticBody3D" unique_id=1188273230]
 shape = SubResource("BoxShape3D_yf5fn")
@@ -877,6 +894,13 @@ unit_size = 2.0
 autoplay = true
 max_distance = 10.0
 parameters/looping = true
+
+[node name="Area3D" type="Area3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna/AudioStreamPlayer3D" unique_id=265224279 node_paths=PackedStringArray("audio")]
+script = SubResource("GDScript_mwoe0")
+audio = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna/AudioStreamPlayer3D/Area3D" unique_id=868038959]
+shape = SubResource("SphereShape3D_fcnqv")
 
 [node name="EnterCave" type="StaticBody3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna" unique_id=1987687007]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6584108, 0)
@@ -1184,6 +1208,15 @@ metadata/_custom_type_script = "uid://bt5stt5hvqidn"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Areas/BracoEsquerdo/Interagiveis/AreasDePeixe/Area1/Bolhas/StaticBody3D" unique_id=1687321192]
 shape = SubResource("SphereShape3D_yf5fn")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TheBeach/Areas/BracoEsquerdo/Interagiveis/AreasDePeixe/Area1/Bolhas" unique_id=1719430983]
+stream = ExtResource("54_beccm")
+volume_db = -2.461
+unit_size = 3.0
+max_db = -0.043
+autoplay = true
+max_distance = 10.0
+parameters/looping = true
+
 [node name="Area4" type="Marker3D" parent="TheBeach/Areas/BracoEsquerdo/Interagiveis/AreasDePeixe" unique_id=129886744]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43714333, 0, -13.097086)
 
@@ -1309,6 +1342,7 @@ delete_node = NodePath("..")
 show_node = NodePath("../../BarcoHolder/barcomadeira")
 fade_time = 0.5
 custom_interact_text = "fix"
+play_sfx_on_interact = false
 metadata/_custom_type_script = "uid://tl8ndvake8h"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Areas/Pernas/Interagiveis/BarcoDesconstruido/Interactable" unique_id=2001029236]
@@ -1389,12 +1423,6 @@ shape = SubResource("CylinderShape3D_qn35j")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.304658, 2.5633824, -17.623264)
 center = NodePath("../TheCreature/Eye/EyeRotation")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=761471171]
-stream = ExtResource("47_2rhjw")
-volume_db = -14.633
-autoplay = true
-parameters/looping = true
-
 [node name="CaveAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=166281189]
 stream = ExtResource("23_4iiv8")
 volume_db = -14.633
@@ -1406,6 +1434,8 @@ parameters/looping = true
 [connection signal="body_exited" from="TheBeach/Estrutural/Caverna/Trancado/Area3D" to="TheBeach/Estrutural/Caverna/Trancado/Area3D" method="_on_body_exited"]
 [connection signal="screen_entered" from="TheBeach/Areas/Cabeca/Decoracao/Caverna/VisibleOnScreenNotifier3D" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="fechar_porta"]
 [connection signal="screen_exited" from="TheBeach/Areas/Cabeca/Decoracao/Caverna/VisibleOnScreenNotifier3D" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="abrir_porta"]
+[connection signal="body_entered" from="TheBeach/Areas/Cabeca/Decoracao/Caverna/AudioStreamPlayer3D/Area3D" to="TheBeach/Areas/Cabeca/Decoracao/Caverna/AudioStreamPlayer3D/Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="TheBeach/Areas/Cabeca/Decoracao/Caverna/AudioStreamPlayer3D/Area3D" to="TheBeach/Areas/Cabeca/Decoracao/Caverna/AudioStreamPlayer3D/Area3D" method="_on_body_exited"]
 [connection signal="on_interact" from="TheBeach/Areas/Cabeca/Decoracao/Caverna/EnterCave" to="TheBeach/Areas/Cabeca/Decoracao/Caverna" method="_on_enter_cave_on_interact"]
 [connection signal="body_entered" from="TheBeach/Areas/BracoDireito/Decoracao/Ritual/Area3D" to="TheBeach/Areas/BracoDireito/Decoracao/Ritual" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="TheBeach/Areas/BracoDireito/Decoracao/Ritual/Area3D" to="TheBeach/Areas/BracoDireito/Decoracao/Ritual" method="_on_area_3d_body_exited"]

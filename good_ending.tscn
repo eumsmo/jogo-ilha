@@ -1,0 +1,200 @@
+[gd_scene format=3 uid="uid://bmkarav8xbhew"]
+
+[ext_resource type="Material" uid="uid://mclaebi6mgob" path="res://recursos/materiais/water_mat.tres" id="1_hoaxh"]
+[ext_resource type="PackedScene" uid="uid://eb14638l0jyd" path="res://recursos/models/vitima/vitima.fbx" id="2_rg0k8"]
+[ext_resource type="PackedScene" uid="uid://ccsnncgdv1vb3" path="res://recursos/models/decoracao/barcomadeira.tscn" id="3_ostjc"]
+[ext_resource type="FontFile" uid="uid://c5ke1ywyiobcm" path="res://recursos/fonts/Quantico-Regular.ttf" id="4_000ck"]
+[ext_resource type="FontFile" uid="uid://y0becg3vn4x2" path="res://recursos/fonts/SyneMono-Regular.ttf" id="5_q7roy"]
+
+[sub_resource type="GDScript" id="GDScript_j14t3"]
+script/source = "extends Control
+
+@export var animator: AnimationPlayer
+
+func _ready() -> void:
+	animator.play(\"idel\")
+
+func go_to_game() -> void:
+	get_tree().change_scene_to_file(\"res://start.tscn\")
+"
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ym6uf"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="Environment" id="Environment_000ck"]
+background_mode = 1
+background_color = Color(0.9647059, 0.65882355, 0.7019608, 1)
+tonemap_mode = 3
+tonemap_exposure = 0.64
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.9647059, 0.65882355, 0.7019608, 1)
+fog_density = 1.0
+fog_depth_begin = 90.0
+fog_depth_end = 270.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rg0k8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ostjc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_000ck"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q7roy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ma7py"]
+
+[node name="GoodEnding" type="Control" unique_id=1823842551 node_paths=PackedStringArray("animator")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_j14t3")
+animator = NodePath("SubViewportContainer/SubViewport/Barco/vitima/AnimationPlayer")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1258930661]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=812781411]
+handle_input_locally = false
+size = Vector2i(576, 324)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Water" type="MeshInstance3D" parent="SubViewportContainer/SubViewport" unique_id=2032879199]
+mesh = SubResource("PlaneMesh_ym6uf")
+surface_material_override/0 = ExtResource("1_hoaxh")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1073054186]
+transform = Transform3D(0.84118754, 0, 0.5407435, 0, 1, 0, -0.5407435, 0, 0.84118754, 2.07662, 2.0438585, 8.827762)
+cull_mask = 1
+environment = SubResource("Environment_000ck")
+fov = 50.0
+
+[node name="Barco" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1039580097]
+transform = Transform3D(-0.81699896, 0, -0.5766391, 0, 1, 0, 0.5766391, 0, -0.81699896, 1.0225334, 0, -0.030776978)
+
+[node name="vitima" parent="SubViewportContainer/SubViewport/Barco" unique_id=1014366406 instance=ExtResource("2_rg0k8")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0.32774898, -0.60390496)
+
+[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Barco/vitima/armvitima" parent_id_path=PackedInt32Array(1014366406, 562520514) index="0" unique_id=1578486684]
+bones/3/rotation = Quaternion(0.6922097, 0.14438069, 0.6922096, -0.14438069)
+bones/7/rotation = Quaternion(-0.7004053, 0, 0, 0.7137453)
+bones/10/rotation = Quaternion(-0.7004053, 0, 0, 0.7137453)
+bones/12/rotation = Quaternion(0.695979, -0.12495385, -0.6959787, -0.12495391)
+bones/15/rotation = Quaternion(0.061866466, -4.8732457e-18, 1.0147735e-16, 0.9980844)
+bones/16/rotation = Quaternion(-0.0056781624, 2.6708858e-19, -1.8489606e-17, 0.99998397)
+bones/17/rotation = Quaternion(0.005678332, -2.6710282e-19, 1.8489604e-17, 0.99998397)
+
+[node name="barcomadeira" parent="SubViewportContainer/SubViewport/Barco" unique_id=1892110636 instance=ExtResource("3_ostjc")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=790743873]
+transform = Transform3D(1, 0, 0, 0, 0.5409451, 0.8410579, 0, -0.8410579, 0.5409451, 0, 45, 0)
+light_color = Color(1, 0.8810025, 0.7647058, 1)
+
+[node name="Label" type="Label" parent="." unique_id=242644093]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -382.0
+offset_top = 32.0
+offset_right = 20.0
+offset_bottom = 125.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_000ck")
+theme_override_font_sizes/font_size = 64
+text = "You Escaped!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=776792364]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -91.0
+offset_right = 222.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_colors/font_focus_color = Color(0.9014849, 0.42834106, 0.4554708, 1)
+theme_override_colors/font_pressed_color = Color(0.679443, 0.23002425, 0.27422303, 1)
+theme_override_colors/font_hover_color = Color(0.9088428, 0.44645208, 0.4709667, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.6784314, 0.23137255, 0.27450982, 1)
+theme_override_fonts/font = ExtResource("4_000ck")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rg0k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ostjc")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_000ck")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_q7roy")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ma7py")
+text = "[ Return ]"
+
+[node name="Label2" type="Label" parent="." unique_id=1868558109]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -189.0
+offset_right = 71.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_q7roy")
+theme_override_font_sizes/font_size = 24
+text = "Congrats on your brightness!
+
+You saw the buckets and decided to make
+some bucks out of it, that's smart.
+
+No more following rules,"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="." unique_id=702646003]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = 8.0
+offset_right = 71.0
+offset_bottom = 375.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_q7roy")
+theme_override_font_sizes/font_size = 24
+text = "you are your own little fox!
+
+You should be proud of yourself,
+you are the final fox of this story.
+
+But I mean, what were you running
+from anyway?
+
+"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="go_to_game"]
+
+[editable path="SubViewportContainer/SubViewport/Barco/vitima"]
+[editable path="SubViewportContainer/SubViewport/Barco/barcomadeira"]

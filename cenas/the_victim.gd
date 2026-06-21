@@ -21,6 +21,7 @@ var on_hand: HandTool
 @export var animator: AnimationPlayer
 @export var audio: VictimAudio
 @export var raycast_floor: RayCast3D
+@export var listener: AudioListener3D
 
 
 
@@ -35,6 +36,7 @@ var last_position: Vector3
 
 signal using_action
 signal on_hand_tool_changed(tool: HandTool)
+signal manual_hand_change
 
 func _ready() -> void:
 	last_position = global_position
@@ -58,6 +60,7 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("switch"):
 		switch_hand_tool()
+		manual_hand_change.emit()
 	
 
 func _handle_movement(delta: float) -> void:
@@ -157,3 +160,8 @@ func change_center(center: Node3D) -> void:
 func _handle_floor() -> void:
 	var col: CollisionObject3D = raycast_floor.get_collider()
 	audio.set_floor_type(audio.get_floor_type(col))
+
+func refresh_audio_listener() -> void:
+	listener.clear_current()
+	await get_tree().process_frame
+	listener.make_current()

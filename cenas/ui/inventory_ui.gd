@@ -6,11 +6,18 @@ var slots: Dictionary[Item, InventoryUISlot]
 @export var slot_scene: PackedScene
 @export var slots_holder: Control
 @export var on_hand: TextureRect
+@export var how_to_switch_tip: Control
+
+var first_switch: bool = true
 
 func _ready() -> void:
 	var victim = Game.instance.victim
 	victim.inventory.on_item_change.connect(handle_inventory_change)
 	victim.on_hand_tool_changed.connect(handle_hand_tool_changed)
+	victim.manual_hand_change.connect(handle_switch_tip)
+
+func handle_switch_tip() -> void:
+	how_to_switch_tip.hide()
 
 func handle_inventory_change(item: Item, quant: int) -> void:
 	var slot = get_slot(item)
@@ -38,6 +45,10 @@ func create_slot(item: Item) -> InventoryUISlot:
 
 
 func handle_hand_tool_changed(tool: HandTool) -> void:
+	if first_switch:
+		first_switch = false
+		how_to_switch_tip.show()
+	
 	if tool != null:
 		on_hand.texture = tool.img
 		on_hand.show()

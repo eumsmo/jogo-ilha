@@ -1,11 +1,47 @@
 [gd_scene format=3 uid="uid://ndjuf2q5lg1s"]
 
+[ext_resource type="Material" uid="uid://mclaebi6mgob" path="res://recursos/materiais/water_mat.tres" id="1_g38d0"]
+[ext_resource type="PackedScene" uid="uid://brf8x28t534l0" path="res://recursos/models/ilhas/ilhas.tscn" id="2_pob1m"]
+[ext_resource type="PackedScene" uid="uid://itp3yfw14psu" path="res://recursos/models/marinho/balde.tscn" id="3_gophc"]
+[ext_resource type="PackedScene" uid="uid://cjm1jfge12udw" path="res://recursos/models/decoracao/cadeira.tscn" id="4_p0nl4"]
+[ext_resource type="PackedScene" uid="uid://bk72msp6yptot" path="res://recursos/models/natureza/coqueiro.tscn" id="5_da165"]
+[ext_resource type="PackedScene" uid="uid://biljfyrykr6kv" path="res://recursos/models/decoracao/guardasol.tscn" id="6_r8ukj"]
+[ext_resource type="PackedScene" uid="uid://bl6jhm7tkar6b" path="res://recursos/models/natureza/cocoaberto_00.tscn" id="7_1colc"]
+[ext_resource type="PackedScene" uid="uid://coa5rso55hhuq" path="res://recursos/models/decoracao/fbxdecoracao/garrafa.fbx" id="8_pob1m"]
+[ext_resource type="FontFile" uid="uid://c5ke1ywyiobcm" path="res://recursos/fonts/Quantico-Regular.ttf" id="9_p0nl4"]
+[ext_resource type="FontFile" uid="uid://y0becg3vn4x2" path="res://recursos/fonts/SyneMono-Regular.ttf" id="10_da165"]
+
 [sub_resource type="GDScript" id="GDScript_g4v7s"]
 script/source = "extends Control
 
 func go_to_game() -> void:
 	get_tree().change_scene_to_file(\"res://game_holder.tscn\")
 "
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hwiky"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="Environment" id="Environment_mhwaj"]
+background_mode = 1
+background_color = Color(0.9647059, 0.65882355, 0.7019608, 1)
+tonemap_mode = 3
+tonemap_exposure = 0.64
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.9647059, 0.65882355, 0.7019608, 1)
+fog_density = 1.0
+fog_depth_begin = 90.0
+fog_depth_end = 270.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_da165"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r8ukj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1colc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hwiky"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mhwaj"]
 
 [node name="Start" type="Control" unique_id=1823842551]
 layout_mode = 3
@@ -16,50 +52,207 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_g4v7s")
 
-[node name="Label" type="Label" parent="." unique_id=242644093]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1526110954]
+texture_filter = 1
 layout_mode = 1
-offset_left = 39.0
-offset_top = 34.0
-offset_right = 441.0
-offset_bottom = 122.0
-theme_override_font_sizes/font_size = 64
-text = "Skull Island"
-
-[node name="Button" type="Button" parent="." unique_id=776792364]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -197.0
-offset_top = -121.0
-offset_right = -76.0
-offset_bottom = -46.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 48
-text = "Start"
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=384828775]
+handle_input_locally = false
+size = Vector2i(576, 324)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Water" type="MeshInstance3D" parent="SubViewportContainer/SubViewport" unique_id=68647615]
+mesh = SubResource("PlaneMesh_hwiky")
+surface_material_override/0 = ExtResource("1_g38d0")
+
+[node name="ilhas" parent="SubViewportContainer/SubViewport" unique_id=1212567673 instance=ExtResource("2_pob1m")]
+transform = Transform3D(1.7500001, 0, 0, 0, 1.7500001, -2.9802322e-08, 2.6077032e-08, 0, 1.7500001, -13.984643, 0, -6.513109)
+
+[node name="balde" parent="SubViewportContainer/SubViewport" unique_id=2086973782 instance=ExtResource("3_gophc")]
+transform = Transform3D(0.8721003, 0.28322446, -0.3990297, -0.2816637, 0.9573802, 0.06394146, 0.40013295, 0.05662881, 0.9147058, 24.26207, 2.0391388, -15.995203)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1261384264]
+transform = Transform3D(1, 0, 0, 0, 0.5409451, 0.8410579, 0, -0.8410579, 0.5409451, 0, 45, 0)
+light_color = Color(1, 0.8810025, 0.7647058, 1)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=200017768]
+transform = Transform3D(0.98040074, 0.19695576, -0.004768938, -0.18673284, 0.93668616, 0.29622605, 0.06281048, -0.28952974, 0.9551059, 23.687025, 6.7085066, -9.347276)
+cull_mask = 1
+environment = SubResource("Environment_mhwaj")
+fov = 50.0
+
+[node name="cadeira" parent="SubViewportContainer/SubViewport" unique_id=360871348 instance=ExtResource("4_p0nl4")]
+transform = Transform3D(0.74358416, 0, -0.66864234, 0, 1, 0, 0.66864234, 0, 0.74358416, 25.50404, 2.0578294, -15.165535)
+
+[node name="coqueiro" parent="SubViewportContainer/SubViewport" unique_id=1924780143 instance=ExtResource("5_da165")]
+transform = Transform3D(0.88845366, 0, 0.45896634, 0, 1, 0, -0.45896634, 0, 0.88845366, 25.22084, 1.4869614, -17.55151)
+
+[node name="guardasol" parent="SubViewportContainer/SubViewport" unique_id=1667521885 instance=ExtResource("6_r8ukj")]
+transform = Transform3D(0.88845366, 0, 0.45896634, 0, 1, 0, -0.45896634, 0, 0.88845366, 26.749777, 2.079381, -14.576157)
+
+[node name="cocoaberto00" parent="SubViewportContainer/SubViewport" unique_id=145229467 instance=ExtResource("7_1colc")]
+transform = Transform3D(-0.14122447, 0, -0.9899777, 0, 1, 0, 0.9899777, 0, -0.14122447, 26.21861, 1.989862, -14.368232)
+
+[node name="Mensagem" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=979155845]
+transform = Transform3D(0.97838926, -0.19292375, -0.07439659, 0.20677143, 0.9128656, 0.35202554, -7.450581e-09, -0.3598011, 0.93302906, 47.566837, -0.23939945, -73.350746)
+
+[node name="garrafa" parent="SubViewportContainer/SubViewport/Mensagem" unique_id=1268896050 instance=ExtResource("8_pob1m")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="Label" type="Label" parent="." unique_id=242644093]
+layout_mode = 1
+offset_left = 14.0
+offset_top = 98.0
+offset_right = 565.0
+offset_bottom = 242.0
+rotation = -0.19373155
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("9_p0nl4")
+theme_override_font_sizes/font_size = 100
+text = "Skull Island"
 
 [node name="Label2" type="Label" parent="." unique_id=1868558109]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 23.0
-offset_top = -254.0
-offset_right = 547.0
-offset_bottom = -23.0
+offset_left = 9.0
+offset_top = -237.0
+offset_right = 581.0
+offset_bottom = -6.0
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("10_da165")
 text = "Made by:
 - Juan Vitor [@Cebojuan]: Code, Level/Game design, Implementation
 - Maria Fernanda [@Mary_Life]: Models and Animations
 
-Outside Material (audios from pixabay.com):
-- Jerome Chauvel
-- Daniel Roberts
-- freesound_community
-- Xmer™ Sounds"
+
+
+
+
+"
 vertical_alignment = 2
 
-[connection signal="pressed" from="Button" to="." method="go_to_game"]
+[node name="Label3" type="Label" parent="." unique_id=1291763608]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -242.0
+offset_right = 581.0
+offset_bottom = -11.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("10_da165")
+text = "Outside Material (audios from pixabay.com and freesound.org):
+
+
+
+"
+vertical_alignment = 2
+
+[node name="Button2" type="Button" parent="." unique_id=1052766541]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -217.0
+offset_top = -69.0
+offset_right = 25.0
+offset_bottom = -11.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_colors/font_focus_color = Color(0.9014849, 0.42834106, 0.4554708, 1)
+theme_override_colors/font_pressed_color = Color(0.679443, 0.23002425, 0.27422303, 1)
+theme_override_colors/font_hover_color = Color(0.9088428, 0.44645208, 0.4709667, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.6784314, 0.23137255, 0.27450982, 1)
+theme_override_fonts/font = ExtResource("9_p0nl4")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_da165")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_r8ukj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1colc")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hwiky")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mhwaj")
+text = "[ Start ]"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1046374587]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 385.0
+grow_vertical = 0
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1703372036]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=301289423]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="JeromeChauvel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1223681544]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("10_da165")
+text = "- Jerome Chauvel"
+
+[node name="Daniel Roberts" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1294278995]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("10_da165")
+text = "- Daniel Roberts"
+
+[node name="freesound_community" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=139314659]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("10_da165")
+text = "- freesound_community"
+
+[node name="XmerSounds" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1063442803]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("10_da165")
+text = "- Xmer™ Sounds"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1958999134]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Dymewiz" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=139984009]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("10_da165")
+text = "- Dymewiz"
+
+[node name="Fewes" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1908333484]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("10_da165")
+text = "- Fewes"
+
+[node name="IanStarGem" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=424108865]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("10_da165")
+text = "- IanStarGem"
+
+[connection signal="pressed" from="Button2" to="." method="go_to_game"]

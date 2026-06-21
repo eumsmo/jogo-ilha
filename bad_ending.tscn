@@ -1,0 +1,575 @@
+[gd_scene format=3 uid="uid://chxl6cfh5ki78"]
+
+[ext_resource type="Material" uid="uid://mclaebi6mgob" path="res://recursos/materiais/water_mat.tres" id="1_1m3bu"]
+[ext_resource type="PackedScene" uid="uid://eb14638l0jyd" path="res://recursos/models/vitima/vitima.fbx" id="2_msjbc"]
+[ext_resource type="PackedScene" uid="uid://brf8x28t534l0" path="res://recursos/models/ilhas/ilhas.tscn" id="3_jvrsq"]
+[ext_resource type="FontFile" uid="uid://c5ke1ywyiobcm" path="res://recursos/fonts/Quantico-Regular.ttf" id="4_d32yt"]
+[ext_resource type="Script" uid="uid://dcvpd8o63jm64" path="res://scripts/ritual.gd" id="4_g7llo"]
+[ext_resource type="PackedScene" uid="uid://cnewv62bnv4uo" path="res://recursos/models/natureza/flor_02.tscn" id="5_0cw3i"]
+[ext_resource type="FontFile" uid="uid://y0becg3vn4x2" path="res://recursos/fonts/SyneMono-Regular.ttf" id="5_xkj5i"]
+[ext_resource type="PackedScene" uid="uid://dr6lapb31lag1" path="res://recursos/models/natureza/flor_00.tscn" id="6_i3gmb"]
+[ext_resource type="PackedScene" uid="uid://d380h74n4m587" path="res://recursos/models/natureza/flor_03.tscn" id="7_afjsc"]
+[ext_resource type="PackedScene" uid="uid://5obgt4lddlsj" path="res://recursos/models/natureza/flor_01.tscn" id="8_eh11b"]
+[ext_resource type="PackedScene" uid="uid://bmlywnh6d8tju" path="res://recursos/models/marinho/peixe.tscn" id="9_sn7dc"]
+[ext_resource type="PackedScene" uid="uid://bdygvn6ffhgvg" path="res://recursos/models/natureza/maca.tscn" id="10_h35f4"]
+[ext_resource type="PackedScene" uid="uid://bl6jhm7tkar6b" path="res://recursos/models/natureza/cocoaberto_00.tscn" id="11_ogiq0"]
+[ext_resource type="PackedScene" uid="uid://itp3yfw14psu" path="res://recursos/models/marinho/balde.tscn" id="12_afjsc"]
+[ext_resource type="PackedScene" uid="uid://b06cfvt7a7fxq" path="res://recursos/models/natureza/cocoaberto_01.tscn" id="12_unoyu"]
+[ext_resource type="PackedScene" uid="uid://cjm1jfge12udw" path="res://recursos/models/decoracao/cadeira.tscn" id="13_i3gmb"]
+[ext_resource type="PackedScene" uid="uid://bk72msp6yptot" path="res://recursos/models/natureza/coqueiro.tscn" id="14_afjsc"]
+[ext_resource type="PackedScene" uid="uid://biljfyrykr6kv" path="res://recursos/models/decoracao/guardasol.tscn" id="15_eh11b"]
+
+[sub_resource type="GDScript" id="GDScript_j14t3"]
+script/source = "extends Control
+
+@export var animator: AnimationPlayer
+
+func _ready() -> void:
+	animator.play(\"idel\")
+
+func go_to_game() -> void:
+	get_tree().change_scene_to_file(\"res://start.tscn\")
+"
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ym6uf"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5iikr"]
+radius = 1.8250351
+
+[sub_resource type="Environment" id="Environment_jvrsq"]
+background_mode = 1
+background_color = Color(0.9647059, 0.65882355, 0.7019608, 1)
+tonemap_mode = 3
+tonemap_exposure = 0.64
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.9647059, 0.65882355, 0.7019608, 1)
+fog_density = 1.0
+fog_depth_begin = 90.0
+fog_depth_end = 270.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rg0k8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ostjc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_000ck"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q7roy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ma7py"]
+
+[sub_resource type="GDScript" id="GDScript_afjsc"]
+script/source = "extends MarginContainer
+
+@export var collapse_button: Button
+@export var more_tips: Button
+@export var tips_holder: Control
+
+@export var help_text: String = \"[ Need help on leaving the island? ]\"
+@export var no_help_text: String = \"[ No shame in getting some tips! ]\"
+
+var showing_help: bool = false
+
+var current_tip_idx = -1
+
+func help_nedded_press() -> void:
+	var was = showing_help
+	showing_help = not showing_help
+	
+	if showing_help:
+		collapse_button.text = no_help_text
+		tips_holder.show()
+	else:
+		collapse_button.text = help_text
+		tips_holder.hide()
+	
+	if current_tip_idx == -1:
+		show_next_tip()
+
+
+func show_next_tip() -> void:
+	current_tip_idx += 1
+	
+	tips_holder.get_child(current_tip_idx).show()
+	
+	if current_tip_idx >= tips_holder.get_child_count() -2:
+		more_tips.hide()
+		current_tip_idx = tips_holder.get_child_count() -1
+		return
+	else:
+		more_tips.show()
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afjsc"]
+bg_color = Color(0.9843137, 0.7764706, 0.5921569, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eh11b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sn7dc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h35f4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ogiq0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_unoyu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5iikr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2h324"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dfhdi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h77yl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_scmoe"]
+
+[node name="BadEnding" type="Control" unique_id=1823842551 node_paths=PackedStringArray("animator")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_j14t3")
+animator = NodePath("SubViewportContainer/SubViewport/vitima/AnimationPlayer")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1258930661]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=812781411]
+handle_input_locally = false
+size = Vector2i(576, 324)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Water" type="MeshInstance3D" parent="SubViewportContainer/SubViewport" unique_id=2032879199]
+mesh = SubResource("PlaneMesh_ym6uf")
+surface_material_override/0 = ExtResource("1_1m3bu")
+
+[node name="ilhas" parent="SubViewportContainer/SubViewport" unique_id=1212567673 instance=ExtResource("3_jvrsq")]
+transform = Transform3D(1.7500001, 0, 0, 0, 1.7500001, -2.9802322e-08, 2.6077032e-08, 0, 1.7500001, -13.984643, 0, -6.513109)
+
+[node name="Ritual" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1226453350 groups=["appear_on_demand"]]
+process_mode = 4
+transform = Transform3D(1.0000001, 0, -4.656613e-09, 0, 1.0000001, 0, 8.381903e-09, 7.450581e-09, 1.0000001, 12.9103365, 2.21608, -20.328928)
+script = ExtResource("4_g7llo")
+
+[node name="flor02" parent="SubViewportContainer/SubViewport/Ritual" unique_id=641796397 instance=ExtResource("5_0cw3i")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.17271137, -0.05801487, -0.949667)
+
+[node name="flor01" parent="SubViewportContainer/SubViewport/Ritual" unique_id=1018173014 instance=ExtResource("6_i3gmb")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.6023226, 0.022708654, 0.57829285)
+
+[node name="flor06" parent="SubViewportContainer/SubViewport/Ritual" unique_id=574453212 instance=ExtResource("7_afjsc")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.8809786, -0.061986923, -0.066057205)
+
+[node name="flor03" parent="SubViewportContainer/SubViewport/Ritual" unique_id=1393398938 instance=ExtResource("6_i3gmb")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.3837185, 0.022708654, 0.69712067)
+
+[node name="flor05" parent="SubViewportContainer/SubViewport/Ritual" unique_id=562461087 instance=ExtResource("8_eh11b")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.7657728, 0.022708654, -0.4674225)
+
+[node name="peixe" parent="SubViewportContainer/SubViewport/Ritual" unique_id=765033659 instance=ExtResource("9_sn7dc")]
+transform = Transform3D(0.79089504, 0.6030362, -0.10407953, -3.6162804e-09, 0.17007795, 0.98543066, 0.6119518, -0.7793722, 0.1345138, -1.385581, 0.03743577, -0.91420364)
+
+[node name="peixe2" parent="SubViewportContainer/SubViewport/Ritual" unique_id=2021824869 instance=ExtResource("9_sn7dc")]
+transform = Transform3D(-0.99196255, 0.12468836, -0.021520264, 1.139514e-08, 0.17007792, 0.98543054, 0.12653196, 0.9775103, -0.16871092, 1.7488794, -0.1308899, -0.2404499)
+
+[node name="peixe3" parent="SubViewportContainer/SubViewport/Ritual" unique_id=618985060 instance=ExtResource("9_sn7dc")]
+transform = Transform3D(0.13451833, -0.97647417, 0.16853209, 1.1395142e-08, 0.17007793, 0.98543066, -0.99091125, -0.13255858, 0.02287862, -0.24441147, 0.0769465, 1.4863873)
+
+[node name="Maca" parent="SubViewportContainer/SubViewport/Ritual" unique_id=1644423440 instance=ExtResource("10_h35f4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9390421, -0.7444987, -1.9549713)
+
+[node name="Maca2" parent="SubViewportContainer/SubViewport/Ritual" unique_id=1509290523 instance=ExtResource("10_h35f4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.363697, -0.19835567, 1.3442726)
+
+[node name="Maca3" parent="SubViewportContainer/SubViewport/Ritual" unique_id=1622054369 instance=ExtResource("10_h35f4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44556046, -0.46310043, 2.765234)
+
+[node name="Maca4" parent="SubViewportContainer/SubViewport/Ritual" unique_id=921580042 instance=ExtResource("10_h35f4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7811632, -0.4454751, 0.33163452)
+
+[node name="Maca5" parent="SubViewportContainer/SubViewport/Ritual" unique_id=535676733 instance=ExtResource("10_h35f4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2132063, -0.36739254, -2.5102882)
+
+[node name="cocoaberto00" parent="SubViewportContainer/SubViewport/Ritual" unique_id=145229467 instance=ExtResource("11_ogiq0")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.356596, 0, -1.1944637)
+
+[node name="cocoaberto02" parent="SubViewportContainer/SubViewport/Ritual" unique_id=1581652814 instance=ExtResource("11_ogiq0")]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 1.1627874, -0.5347383, -2.425724)
+
+[node name="cocoaberto03" parent="SubViewportContainer/SubViewport/Ritual" unique_id=154095156 instance=ExtResource("11_ogiq0")]
+transform = Transform3D(0.30901697, 0, -0.95105654, 0, 1, 0, 0.95105654, 0, 0.30901697, 2.2839031, -0.53473854, -1.1176376)
+
+[node name="cocoaberto01" parent="SubViewportContainer/SubViewport/Ritual" unique_id=1555788771 instance=ExtResource("11_ogiq0")]
+transform = Transform3D(-0.8660254, 0, 0.49999997, 0, 1, 0, -0.49999997, 0, -0.8660254, 1.2783661, 0, 2.3816757)
+
+[node name="cocoaberto04" parent="SubViewportContainer/SubViewport/Ritual" unique_id=442124491 instance=ExtResource("12_unoyu")]
+transform = Transform3D(0.24444635, 0, 0.96966285, 0, 1, 0, -0.96966285, 0, 0.24444635, -2.28265, -0.2851007, 1.4247055)
+
+[node name="cocoaberto05" parent="SubViewportContainer/SubViewport/Ritual" unique_id=648672541 instance=ExtResource("12_unoyu")]
+transform = Transform3D(-0.8694949, 0, 0.49394184, 0, 1, 0, -0.49394184, 0, -0.8694949, -1.4035845, -0.3161695, 2.0891342)
+
+[node name="cocoaberto06" parent="SubViewportContainer/SubViewport/Ritual" unique_id=1818293539 instance=ExtResource("12_unoyu")]
+transform = Transform3D(-0.4939417, 0, -0.869495, 0, 1, 0, 0.869495, 0, -0.4939417, 2.6712418, -0.20895886, 0.15187073)
+
+[node name="cocoaberto07" parent="SubViewportContainer/SubViewport/Ritual" unique_id=791439987 instance=ExtResource("12_unoyu")]
+transform = Transform3D(0.99376786, 0, 0.111468926, 0, 1, 0, -0.111468926, 0, 0.99376786, -0.12260914, -0.28025484, -2.6855373)
+
+[node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport/Ritual" unique_id=1698983120]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Ritual/Area3D" unique_id=223191153]
+shape = SubResource("SphereShape3D_5iikr")
+
+[node name="balde" parent="SubViewportContainer/SubViewport" unique_id=2086973782 instance=ExtResource("12_afjsc")]
+transform = Transform3D(0.8721003, 0.28322446, -0.3990297, -0.2816637, 0.9573802, 0.06394146, 0.40013295, 0.05662881, 0.9147058, 24.26207, 2.0391388, -15.995203)
+
+[node name="vitima" parent="SubViewportContainer/SubViewport" unique_id=1014366406 instance=ExtResource("2_msjbc")]
+transform = Transform3D(-2.417889, 0.6005503, -0.20772983, -0.1289999, 0.33635303, 2.473909, 0.622231, 2.403374, -0.29431748, 12.77868, 2.137476, -21.220413)
+
+[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/vitima/armvitima" parent_id_path=PackedInt32Array(1014366406, 562520514) index="0" unique_id=1578486684]
+bones/3/rotation = Quaternion(0.6922097, 0.14438069, 0.6922096, -0.14438069)
+bones/7/rotation = Quaternion(-0.7004053, 0, 0, 0.7137453)
+bones/10/rotation = Quaternion(-0.7004053, 0, 0, 0.7137453)
+bones/12/rotation = Quaternion(0.695979, -0.12495385, -0.6959787, -0.12495391)
+bones/15/rotation = Quaternion(0.061866466, -4.8732457e-18, 1.0147735e-16, 0.9980844)
+bones/16/rotation = Quaternion(-0.0056781624, 2.6708858e-19, -1.8489606e-17, 0.99998397)
+bones/17/rotation = Quaternion(0.005678332, -2.6710282e-19, 1.8489604e-17, 0.99998397)
+
+[node name="AnimationPlayer" parent="SubViewportContainer/SubViewport/vitima" index="1" unique_id=610901965]
+root_node = NodePath("")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=790743873]
+transform = Transform3D(1, 0, 0, 0, 0.5409451, 0.8410579, 0, -0.8410579, 0.5409451, 0, 45, 0)
+light_color = Color(1, 0.8810025, 0.7647058, 1)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=380409887]
+transform = Transform3D(0.82682616, 0.19695576, -0.5268461, 0, 0.93668616, 0.35017002, 0.5624575, -0.28952974, 0.77447665, 10.637342, 7.54089, -10.613597)
+cull_mask = 1
+environment = SubResource("Environment_jvrsq")
+fov = 50.0
+
+[node name="cadeira" parent="SubViewportContainer/SubViewport" unique_id=360871348 instance=ExtResource("13_i3gmb")]
+transform = Transform3D(0.74358416, 0, -0.66864234, 0, 1, 0, 0.66864234, 0, 0.74358416, 25.50404, 2.0578294, -15.165535)
+
+[node name="coqueiro" parent="SubViewportContainer/SubViewport" unique_id=1924780143 instance=ExtResource("14_afjsc")]
+transform = Transform3D(0.88845366, 0, 0.45896634, 0, 1, 0, -0.45896634, 0, 0.88845366, 25.22084, 1.4869614, -17.55151)
+
+[node name="guardasol" parent="SubViewportContainer/SubViewport" unique_id=1667521885 instance=ExtResource("15_eh11b")]
+transform = Transform3D(0.88845366, 0, 0.45896634, 0, 1, 0, -0.45896634, 0, 0.88845366, 26.749777, 2.079381, -14.576157)
+
+[node name="cocoaberto00" parent="SubViewportContainer/SubViewport" unique_id=579453385 instance=ExtResource("11_ogiq0")]
+transform = Transform3D(-0.14122447, 0, -0.9899777, 0, 1, 0, 0.9899777, 0, -0.14122447, 26.21861, 1.989862, -14.368232)
+
+[node name="Label" type="Label" parent="." unique_id=242644093]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 41.0
+offset_top = 9.0
+offset_right = 491.0
+offset_bottom = 102.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.11764706)
+theme_override_fonts/font = ExtResource("4_d32yt")
+theme_override_font_sizes/font_size = 64
+text = "You are dead :("
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=776792364]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -108.0
+offset_top = -91.0
+offset_right = 161.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_colors/font_focus_color = Color(0.9014849, 0.42834106, 0.4554708, 1)
+theme_override_colors/font_pressed_color = Color(0.679443, 0.23002425, 0.27422303, 1)
+theme_override_colors/font_hover_color = Color(0.9088428, 0.44645208, 0.4709667, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.6784314, 0.23137255, 0.27450982, 1)
+theme_override_fonts/font = ExtResource("4_d32yt")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rg0k8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ostjc")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_000ck")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_q7roy")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ma7py")
+text = "[ Try again? ]"
+
+[node name="Label2" type="Label" parent="." unique_id=1868558109]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -193.0
+offset_right = 530.0
+offset_bottom = 174.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.1882353)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 24
+text = "Apparently, following rules without 
+direction can have terrible consequences.
+
+Could you have done anything different?
+Did you miss anything?"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1371011266 node_paths=PackedStringArray("collapse_button", "more_tips", "tips_holder")]
+propagate_maximum_size = false
+layout_mode = 1
+offset_right = 422.0
+offset_bottom = 59.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+script = SubResource("GDScript_afjsc")
+collapse_button = NodePath("PanelContainer2/MarginContainer/VBoxContainer2/Tips")
+more_tips = NodePath("PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer/Button2")
+tips_holder = NodePath("PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer")
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer2" unique_id=728459147]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_afjsc")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/PanelContainer2" unique_id=811607913]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer2/PanelContainer2/MarginContainer" unique_id=2077648351]
+layout_mode = 2
+
+[node name="Tips" type="Button" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2" unique_id=558859751]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_colors/font_focus_color = Color(0.9014849, 0.42834106, 0.4554708, 1)
+theme_override_colors/font_pressed_color = Color(0.679443, 0.23002425, 0.27422303, 1)
+theme_override_colors/font_hover_color = Color(0.9088428, 0.44645208, 0.4709667, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.6784314, 0.23137255, 0.27450982, 1)
+theme_override_fonts/font = ExtResource("4_d32yt")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eh11b")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sn7dc")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_h35f4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ogiq0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_unoyu")
+text = "[ Need help on leaving the island? ]"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2" unique_id=1954323803]
+visible = false
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=2031415379]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "Tip 0: Consider doing it yourself before getting tips!"
+
+[node name="Label18" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=617855390]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "Tip 1: The text on the right actually gives you some tips."
+
+[node name="Label6" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=417493627]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "Tip 2: Red buckets are so beautiful"
+
+[node name="Label5" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=680219123]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "Tip 3: You can keep giving photos to the altar and it will 
+always reveal it. Photos are a great way to look at things
+from a different perspective."
+
+[node name="Label7" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1803219918]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "Tip 4: Sometimes you can only hear things and that's okay."
+
+[node name="Label17" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=293045306]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "Tip 5: There's something that can be fixed."
+
+[node name="Label8" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=754091588]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "NOTE: The next tips are a walkthrough on how to do it."
+
+[node name="Label9" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1190066388]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "Step 1: Take photos around the buckets on the map. There's
+a map to something close to each one of them."
+
+[node name="Label10" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1851966632]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "Step 2: The rock island bucket shows a spot on the skull
+island where you can fish a treasure."
+
+[node name="Label11" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1401348227]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "Step 3: The fish island bucket shows a spot on the rock
+island where you can fish a sleep inducing fish"
+
+[node name="Label12" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1588659635]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "Step 4: The skull island bucket shows the map of the caves,
+it's important to have it in mind for your blind journey."
+
+[node name="Label13" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=40231706]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "Step 5: Put the sleep inducing fish on the altar and go
+to the cave. Don't forget to bring you favorite treasure."
+
+[node name="Label14" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1658621339]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "Step 6: Listen to your footsteps. Whatever you find on 
+the cave, use it as it was design to be used."
+
+[node name="Label15" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=634947711]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "Step 7: You can use what you collected to fix something."
+
+[node name="Label16" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=2053904063]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "Step 8: This something is on rock island."
+
+[node name="Label19" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1447685110]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 16
+text = "Step 9: That's it."
+
+[node name="Button2" type="Button" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=81457855]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_colors/font_focus_color = Color(0.9014849, 0.42834106, 0.4554708, 1)
+theme_override_colors/font_pressed_color = Color(0.679443, 0.23002425, 0.27422303, 1)
+theme_override_colors/font_hover_color = Color(0.9088428, 0.44645208, 0.4709667, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.6784314, 0.23137255, 0.27450982, 1)
+theme_override_fonts/font = ExtResource("4_d32yt")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5iikr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2h324")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dfhdi")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_h77yl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_scmoe")
+text = "[ I need more help, please! ]"
+
+[node name="Label3" type="Label" parent="." unique_id=702646003]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_right = 518.0
+offset_bottom = 367.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.1882353)
+theme_override_fonts/font = ExtResource("5_xkj5i")
+theme_override_font_sizes/font_size = 24
+text = "Did you take enough photos?
+Did you listen to all of the amazing 
+sound effects carefully chosen?
+
+Maybe you should look at these buckets
+from another perspective.
+
+
+"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="SubViewportContainer/SubViewport/Ritual/Area3D" to="SubViewportContainer/SubViewport/Ritual" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="SubViewportContainer/SubViewport/Ritual/Area3D" to="SubViewportContainer/SubViewport/Ritual" method="_on_area_3d_body_exited"]
+[connection signal="pressed" from="Button" to="." method="go_to_game"]
+[connection signal="pressed" from="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/Tips" to="MarginContainer2" method="help_nedded_press"]
+[connection signal="pressed" from="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer/Button2" to="MarginContainer2" method="show_next_tip"]
+
+[editable path="SubViewportContainer/SubViewport/vitima"]

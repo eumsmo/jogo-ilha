@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bxcjjme8q0erw" path="res://cenas/ui/inventory_ui.gd" id="2_dc7qk"]
 [ext_resource type="PackedScene" uid="uid://c03b32i2i2kdi" path="res://cenas/ui/slot_de_inventario.tscn" id="3_sph1n"]
 [ext_resource type="Texture2D" uid="uid://drvtlk7fannst" path="res://recursos/sprites/hand.png" id="4_ggsbl"]
+[ext_resource type="FontFile" uid="uid://c5ke1ywyiobcm" path="res://recursos/fonts/Quantico-Regular.ttf" id="4_pyhvr"]
 [ext_resource type="Script" uid="uid://bj4vporq1e0od" path="res://cenas/ui/demands_ui.gd" id="6_sph1n"]
 [ext_resource type="PackedScene" uid="uid://bh65ivpii6yxi" path="res://cenas/ui/list_item.tscn" id="7_ggsbl"]
 [ext_resource type="Script" uid="uid://cskcetkpg7b25" path="res://cenas/ui/altar/photos_visualizer.gd" id="8_y78qc"]
@@ -68,8 +69,9 @@ offset_bottom = -82.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 20
-text = "[E] para se sacrificar"
+theme_override_fonts/font = ExtResource("4_pyhvr")
+theme_override_font_sizes/font_size = 25
+text = "Press [E] to sacrifice yourself"
 horizontal_alignment = 1
 script = ExtResource("2_7mt7j")
 indicator = NodePath("../InteractIndicator")
@@ -104,11 +106,12 @@ offset_bottom = -82.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("4_pyhvr")
+theme_override_font_sizes/font_size = 25
 text = "[E] para interagir"
 horizontal_alignment = 1
 
-[node name="Inventory" type="MarginContainer" parent="UI" unique_id=350255185 node_paths=PackedStringArray("slots_holder", "on_hand")]
+[node name="Inventory" type="MarginContainer" parent="UI" unique_id=350255185 node_paths=PackedStringArray("slots_holder", "on_hand", "how_to_switch_tip")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -125,6 +128,7 @@ script = ExtResource("2_dc7qk")
 slot_scene = ExtResource("3_sph1n")
 slots_holder = NodePath("HBoxContainer")
 on_hand = NodePath("../HandSlot/TextureRect")
+how_to_switch_tip = NodePath("../TABInfo")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Inventory" unique_id=1040851708]
 layout_mode = 2
@@ -136,6 +140,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TextureRect" type="TextureRect" parent="UI/HandSlot" unique_id=1559862365]
+modulate = Color(0.81960785, 0.3137255, 0.35686275, 1)
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture = ExtResource("4_ggsbl")
@@ -147,11 +152,12 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
+offset_left = -700.0
 offset_bottom = 40.0
 grow_horizontal = 0
+pivot_offset_ratio = Vector2(1, 0)
 theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
+theme_override_constants/margin_right = 16
 script = ExtResource("6_sph1n")
 demand_item_scene = ExtResource("7_ggsbl")
 demands_holder = NodePath("VBoxContainer")
@@ -161,7 +167,6 @@ layout_mode = 2
 alignment = 2
 
 [node name="UnPoison" type="MarginContainer" parent="UI" unique_id=154872546 node_paths=PackedStringArray("progress")]
-visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -183,6 +188,7 @@ max_value = 1.0
 step = 0.0
 fill_mode = 4
 texture_progress = ExtResource("9_nujuc")
+tint_progress = Color(0.81960785, 0.3137255, 0.35686275, 1)
 
 [node name="PhotosVisualizer" type="Control" parent="UI" unique_id=1136043697 node_paths=PackedStringArray("photos_holder")]
 layout_mode = 1
@@ -208,3 +214,17 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_g4v7s")
 script = ExtResource("11_7mt7j")
 fade_in_time = 0.75
 between_fades_time = 0.5
+
+[node name="TABInfo" type="Label" parent="UI" unique_id=1380702483]
+visible = false
+layout_mode = 1
+offset_left = 107.0
+offset_top = 8.0
+offset_right = 424.0
+offset_bottom = 45.0
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("4_pyhvr")
+theme_override_font_sizes/font_size = 16
+text = "Press [TAB] to switch tools!"
+vertical_alignment = 1

@@ -3,6 +3,7 @@ extends StaticBody3D
 
 ## Press [E] to <your text here>
 @export var custom_interact_text: String = ""
+@export var play_sfx_on_interact: bool = true
 
 var _is_deleting: bool = false
 
