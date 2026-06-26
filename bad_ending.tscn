@@ -284,7 +284,7 @@ grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.11764706)
 theme_override_fonts/font = ExtResource("4_d32yt")
 theme_override_font_sizes/font_size = 64
-text = "You are dead :("
+text = "ENDING_BAD_TITLE"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="." unique_id=776792364]
@@ -313,7 +313,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_ostjc")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_000ck")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_q7roy")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ma7py")
-text = "[ Try again? ]"
+text = "ENDING_BAD_RETURN"
 
 [node name="Label2" type="Label" parent="." unique_id=1868558109]
 layout_mode = 1
@@ -332,11 +332,7 @@ theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.1882353)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 24
-text = "Apparently, following rules without 
-direction can have terrible consequences.
-
-Could you have done anything different?
-Did you miss anything?"
+text = "ENDING_BAD_TEXT_1"
 horizontal_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1371011266 node_paths=PackedStringArray("collapse_button", "more_tips", "tips_holder")]
@@ -350,6 +346,8 @@ script = SubResource("GDScript_afjsc")
 collapse_button = NodePath("PanelContainer2/MarginContainer/VBoxContainer2/Tips")
 more_tips = NodePath("PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer/Button2")
 tips_holder = NodePath("PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer")
+help_text = "TIPS_OPEN"
+no_help_text = "TIPS_CLOSE"
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer2" unique_id=728459147]
 layout_mode = 2
@@ -380,7 +378,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_sn7dc")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_h35f4")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_ogiq0")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_unoyu")
-text = "[ Need help on leaving the island? ]"
+text = "TIPS_OPEN"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2" unique_id=1954323803]
 visible = false
@@ -392,7 +390,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "Tip 0: Consider doing it yourself before getting tips!"
+text = "TIPS_1"
 
 [node name="Label18" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=617855390]
 visible = false
@@ -400,7 +398,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "Tip 1: The text on the right actually gives you some tips."
+text = "TIPS_2"
 
 [node name="Label6" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=417493627]
 visible = false
@@ -408,7 +406,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "Tip 2: Red buckets are so beautiful"
+text = "TIPS_3"
 
 [node name="Label5" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=680219123]
 visible = false
@@ -416,9 +414,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "Tip 3: You can keep giving photos to the altar and it will 
-always reveal it. Photos are a great way to look at things
-from a different perspective."
+text = "TIPS_4"
 
 [node name="Label7" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1803219918]
 visible = false
@@ -426,7 +422,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "Tip 4: Sometimes you can only hear things and that's okay."
+text = "TIPS_5"
 
 [node name="Label17" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=293045306]
 visible = false
@@ -434,7 +430,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "Tip 5: There's something that can be fixed."
+text = "TIPS_6"
 
 [node name="Label8" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=754091588]
 visible = false
@@ -442,7 +438,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "NOTE: The next tips are a walkthrough on how to do it."
+text = "TIPS_7"
 
 [node name="Label9" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1190066388]
 visible = false
@@ -450,8 +446,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "Step 1: Take photos around the buckets on the map. There's
-a map to something close to each one of them."
+text = "TIPS_8"
 
 [node name="Label10" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1851966632]
 visible = false
@@ -459,8 +454,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "Step 2: The rock island bucket shows a spot on the skull
-island where you can fish a treasure."
+text = "TIPS_9"
 
 [node name="Label11" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1401348227]
 visible = false
@@ -468,8 +462,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "Step 3: The fish island bucket shows a spot on the rock
-island where you can fish a sleep inducing fish"
+text = "TIPS_10"
 
 [node name="Label12" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1588659635]
 visible = false
@@ -477,8 +470,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "Step 4: The skull island bucket shows the map of the caves,
-it's important to have it in mind for your blind journey."
+text = "TIPS_11"
 
 [node name="Label13" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=40231706]
 visible = false
@@ -486,8 +478,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "Step 5: Put the sleep inducing fish on the altar and go
-to the cave. Don't forget to bring you favorite treasure."
+text = "TIPS_12"
 
 [node name="Label14" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1658621339]
 visible = false
@@ -495,8 +486,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "Step 6: Listen to your footsteps. Whatever you find on 
-the cave, use it as it was design to be used."
+text = "TIPS_13"
 
 [node name="Label15" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=634947711]
 visible = false
@@ -504,7 +494,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "Step 7: You can use what you collected to fix something."
+text = "TIPS_14"
 
 [node name="Label16" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=2053904063]
 visible = false
@@ -512,7 +502,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "Step 8: This something is on rock island."
+text = "TIPS_15"
 
 [node name="Label19" type="Label" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1447685110]
 visible = false
@@ -520,7 +510,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 16
-text = "Step 9: That's it."
+text = "TIPS_16"
 
 [node name="Button2" type="Button" parent="MarginContainer2/PanelContainer2/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=81457855]
 layout_mode = 2
@@ -537,7 +527,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_2h324")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_dfhdi")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_h77yl")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_scmoe")
-text = "[ I need more help, please! ]"
+text = "TIPS_MORE"
 
 [node name="Label3" type="Label" parent="." unique_id=702646003]
 layout_mode = 1
@@ -555,15 +545,7 @@ theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.1882353)
 theme_override_fonts/font = ExtResource("5_xkj5i")
 theme_override_font_sizes/font_size = 24
-text = "Did you take enough photos?
-Did you listen to all of the amazing 
-sound effects carefully chosen?
-
-Maybe you should look at these buckets
-from another perspective.
-
-
-"
+text = "ENDING_BAD_TEXT_2"
 horizontal_alignment = 1
 
 [connection signal="body_entered" from="SubViewportContainer/SubViewport/Ritual/Area3D" to="SubViewportContainer/SubViewport/Ritual" method="_on_area_3d_body_entered"]

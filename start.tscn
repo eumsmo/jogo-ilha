@@ -43,6 +43,21 @@ fog_depth_end = 270.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mhwaj"]
 
+[sub_resource type="GDScript" id="GDScript_p0nl4"]
+script/source = "extends Button
+
+func _ready() -> void:
+	print(TranslationServer.get_locale())
+	print(TranslationServer.get_loaded_locales())
+
+func _on_pressed() -> void:
+	var current_locale = TranslationServer.get_locale()
+	var locales = TranslationServer.get_loaded_locales()
+	var current_idx = locales.find(current_locale)
+	current_idx = (current_idx + 1) % len(locales)
+	TranslationServer.set_locale(locales[current_idx])
+"
+
 [node name="Start" type="Control" unique_id=1823842551]
 layout_mode = 3
 anchors_preset = 15
@@ -131,15 +146,7 @@ offset_bottom = -6.0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("10_da165")
-text = "Made by:
-- Juan Vitor [@Cebojuan]: Code, Level/Game design, Implementation
-- Maria Fernanda [@Mary_Life]: Models and Animations
-
-
-
-
-
-"
+text = "CREDITS_DEVS"
 vertical_alignment = 2
 
 [node name="Label3" type="Label" parent="." unique_id=1291763608]
@@ -154,11 +161,7 @@ offset_bottom = -11.0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("10_da165")
-text = "Outside Material (audios from pixabay.com and freesound.org):
-
-
-
-"
+text = "CREDITS_OTHERS"
 vertical_alignment = 2
 
 [node name="Button2" type="Button" parent="." unique_id=1052766541]
@@ -168,9 +171,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -217.0
+offset_left = -329.0
 offset_top = -69.0
-offset_right = 25.0
+offset_right = -22.0
 offset_bottom = -11.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -187,7 +190,8 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_r8ukj")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_1colc")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_hwiky")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mhwaj")
-text = "[ Start ]"
+text = "START"
+alignment = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1046374587]
 layout_mode = 1
@@ -255,4 +259,27 @@ theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("10_da165")
 text = "- IanStarGem"
 
+[node name="Button" type="Button" parent="." unique_id=1694299852]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -138.0
+offset_top = 7.0
+offset_right = -10.0
+offset_bottom = 48.0
+grow_horizontal = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_colors/font_focus_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_colors/font_pressed_color = Color(0.9111602, 0.45254093, 0.47620422, 1)
+theme_override_colors/font_hover_color = Color(0.63329244, 0.20864978, 0.25128826, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
+theme_override_fonts/font = ExtResource("9_p0nl4")
+theme_override_font_sizes/font_size = 20
+text = "LANGUAGE"
+flat = true
+script = SubResource("GDScript_p0nl4")
+
 [connection signal="pressed" from="Button2" to="." method="go_to_game"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

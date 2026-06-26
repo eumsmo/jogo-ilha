@@ -113,7 +113,7 @@ offset_bottom = 125.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("4_000ck")
 theme_override_font_sizes/font_size = 64
-text = "You Escaped!"
+text = "ENDING_GOOD_TITLE"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="." unique_id=776792364]
@@ -142,7 +142,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_ostjc")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_000ck")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_q7roy")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ma7py")
-text = "[ Return ]"
+text = "ENDING_GOOD_RETURN"
 
 [node name="Label2" type="Label" parent="." unique_id=1868558109]
 layout_mode = 1
@@ -159,12 +159,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_q7roy")
 theme_override_font_sizes/font_size = 24
-text = "Congrats on your brightness!
-
-You saw the buckets and decided to make
-some bucks out of it, that's smart.
-
-No more following rules,"
+text = "ENDING_GOOD_TEXT_1"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="." unique_id=702646003]
@@ -183,15 +178,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0.81960785, 0.3137255, 0.35686275, 1)
 theme_override_fonts/font = ExtResource("5_q7roy")
 theme_override_font_sizes/font_size = 24
-text = "you are your own little fox!
-
-You should be proud of yourself,
-you are the final fox of this story.
-
-But I mean, what were you running
-from anyway?
-
-"
+text = "ENDING_GOOD_TEXT_2"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="go_to_game"]

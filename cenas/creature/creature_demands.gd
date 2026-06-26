@@ -5,6 +5,8 @@ extends Node
 var _demand_idx: int = -1
 var current_demand: Demand = null
 
+var realizing_demand: bool = false
+
 @export var photo_demand: Demand
 @export var evil_fish: Item
 @export var evil_fish_text: String = "envenenar"
@@ -28,6 +30,9 @@ func can_realize(victim: TheVictim) -> bool:
 	return (current_demand.can_realize(victim.inventory) if current_demand != null else false) or victim.camera.is_full() or victim.inventory.has_item(Game.instance.creature.demands.evil_fish)
 
 func try_to_realize(victim: TheVictim) -> void:
+	if realizing_demand:
+		return
+	
 	var demand = current_demand
 	
 	if victim.camera.is_full() and current_demand != photo_demand:
@@ -39,6 +44,7 @@ func try_to_realize(victim: TheVictim) -> void:
 		return
 	
 	if current_demand != null and current_demand.realize(victim.inventory):
+		realizing_demand = true
 		if demand.fade_to_black or not demand.activate_node_with_name.is_empty():
 			need_to_fade.emit()
 			await _has_faded_in
@@ -53,6 +59,8 @@ func try_to_realize(victim: TheVictim) -> void:
 		
 		if demand == photo_demand:
 			await show_photos(victim)
+		
+		realizing_demand = false
 
 
 

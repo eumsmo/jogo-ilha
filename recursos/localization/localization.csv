@@ -1,0 +1,146 @@
+KEY,en_US,pt_BR
+LANGUAGE,English,Português
+ENDING_BAD_TITLE,You are dead :(,Você morreu :(
+ENDING_BAD_TEXT_1,"Apparently, following rules without 
+direction can have terrible consequences.
+
+Could you have done anything different?
+Did you miss anything?","Aparentemente segui regras sem
+refletir, pode ter terríveis consequências.
+
+Você poderia ter feito algo diferente?
+Você perdeu alguma coisa?"
+ENDING_BAD_TEXT_2,"Did you take enough photos?
+Did you listen to all of the amazing 
+sound effects carefully chosen?
+
+Maybe you should look at these buckets
+from another perspective.
+
+
+","Você tirou fotos o suficiente?
+Ouviu todos os incriveis efeitos
+sonoros precisamente escolhidos?
+
+Não chute o balde ainda, na verdade
+veja ele por outra perspectiva!
+
+
+"
+ENDING_BAD_RETURN,[ Try Again? ],[ Tentar Novamente? ]
+TIPS_OPEN,[ Need help on leaving the island? ],[ Precisa de ajuda para fugir? ]
+TIPS_CLOSE,[ No shame in getting some tips! ],[ Não há vergonha em pedir ajuda! ]
+TIPS_1,Tip 0: Consider doing it yourself before getting tips!,Dica 0: Tente fazer você mesmo antes de pedir dicas!
+TIPS_2,Tip 1: The text on the right actually gives you some tips.,Dica 1: O texto na direita dá algumas dicas!
+TIPS_3,Tip 2: Red buckets are so beautiful,Dica 2: Baldes vermelhos são lindos!
+TIPS_4,"Tip 3: You can keep giving photos to the altar and it will 
+always reveal it. Photos are a great way to look at things
+from a different perspective.","Dica 3: O altar sempre vai revelar as fotos que você
+der, mesmo sem pedir. Fotos são uma ótima forma
+de ver coisas por outra perspectiva."
+TIPS_5,Tip 4: Sometimes you can only hear things and that's okay.,"Dica 4: As vezes você só vai conseguir escutar, ok?"
+TIPS_6,Tip 5: There's something that can be fixed.,Dica 5: Tem algo que precisa ser consertado.
+TIPS_7,NOTE: The next tips are a walkthrough on how to do it.,NOTA: As próximas são um passo a passo do jogo. 
+TIPS_8,"Step 1: Take photos around the buckets on the map. There's
+a map to something close to each one of them.","Passo 1: Tire foto dos baldes vermelhos. Tem um mapa
+para algo próximo a cada um deles."
+TIPS_9,"Step 2: The rock island bucket shows a spot on the skull
+island where you can fish a treasure.","Passo 2: O balde da ilha das pedras mostra um lugar
+na ilha da caveira onde você pode pescar um tesouro."
+TIPS_10,"Step 3: The fish island bucket shows a spot on the rock
+island where you can fish a sleep inducing fish","Passo 3: O balde da ilha de pesca mostra um lugar na
+ilha das pedras onde você pode pescar um sonífero"
+TIPS_11,"Step 4: The skull island bucket shows the map of the caves,
+it's important to have it in mind for your blind journey.","Passo 4: O balde da ilha da caveira mostra o mapa da
+caverna. É importante o manter em mente."
+TIPS_12,"Step 5: Put the sleep inducing fish on the altar and go
+to the cave. Don't forget to bring you favorite treasure.","Passo 5: Coloque o peixe sonífero no altar e vá para a
+caverna. Leve seu tesouro favorito contigo."
+TIPS_13,"Step 6: Listen to your footsteps. Whatever you find on 
+the cave, use it as it was design to be used.","Passo 6: Ouça pelos seus passos. O que você achar
+na caverna, use como foi feito para ser usado."
+TIPS_14,Step 7: You can use what you collected to fix something.,Passo 7: Use o que coletou para consertar algo.
+TIPS_15,Step 8: This something is on rock island.,Passo 8: Esse algo está na ilha das pedras.
+TIPS_16,Step 9: That's it.,Passo 9: É isso.
+TIPS_MORE,"[ I need more help, please! ]","[ Mais ajuda, por favor! ]"
+ENDING_GOOD_TITLE,You Escaped!,Você Fugiu!
+ENDING_GOOD_TEXT_1,"Congrats on your brightness!
+
+You saw the buckets and decided to make
+some bucks out of it, that's smart.
+
+No more following rules,","Parabéns pela inteligência!
+
+Você tomou alguns baldes de água fria e
+decidiu ir mais a fundo, que sacana!
+
+Sem mais seguir regras,"
+ENDING_GOOD_TEXT_2,"you are your own little fox!
+
+You should be proud of yourself,
+you are the final fox of this story.
+
+But I mean, what were you running
+from anyway?
+
+","você é a sua própria raposa!
+
+Você deveria se orgulhas,
+você é a final fox dessa história.
+
+Quer dizer, do que você tava
+fugindo mesmo?"
+ENDING_GOOD_RETURN,[ Return ],[ Retornar ]
+CREDITS_DEVS,"Made by:
+- Juan Vitor [@Cebojuan]: Code, Level/Game Design, Implementation
+- Maria Fernanda [@Mary_Life]: Models and Animations
+
+
+
+
+
+","Feito por:
+- Juan Vitor [@Cebojuan]: Código, Level/Game Design, Implementação
+- Maria Fernanda [@Mary_Life]: Modelos e Animação
+
+
+
+
+
+"
+CREDITS_OTHERS,"Outside Material (audios from pixabay.com and freesound.org):
+
+
+
+","Material de fora (audios de pixabay.com e freesound.org):
+
+
+
+"
+START,[ Start ],[ Começar ]
+DEMAND_1,Collect 3 fruits and take them to the altar.,Colete 3 frutas e as leve ao altar.
+DEMAND_2,Clean the rocky island and return the remains to the altar.,Limpe a ilha das pedras e retorne os restos ao altar.
+DEMAND_3,Take photos of the island and bring them to the altar.,Tire fotos da ilha e as revele no altar.
+DEMAND_4,Deliver 6 flowers to the altar.,Entregue 6 flores ao altar.
+DEMAND_5,Fish on the connected islands and bring 3 fish to the altar.,Pesque nas ilhas conectadas e leve 3 peixes ao altar.
+DEMAND_6,Offer 6 more fruits to the altar for the final feast.,Ofereça mais 6 frutas ao altar para o banquete final.
+DEMAND_7,Enter the ritual and become the main course.,Entre no ritual e se torne o prato principal.
+INTERACT_SACRIFICE,Press [E] to sacrifice yourself,[E] para se sacrificar
+INTERACT_START,Press [E] to ,[E] para 
+INTERACT_HAND,interact,interagir
+INTERACT_CAMERA,take photos,tirar fotos
+INTERACT_FISHING,fish,pescar
+INTERACT_AXE,cut,cortar
+SWITCH_TOOLS_INFO,Press [TAB] to switch tools!,[TAB] para trocar ferramentas!
+GATE_LOCKED,[ LOCKED ],[ TRANCADO ]
+INTERACT_FIX,fix,consertar
+INTERACT_ENTER_CAVE,enter the cave,entrar na caverna
+INTERACT_UNLOCK,unlock,destrancar
+INTERACT_EXIT_CAVE,exit the cave,sair da caverna
+ENABLER_START,get the ,pegar 
+ITEM_NAME_HAND,hand,a mão
+ITEM_NAME_CAMERA,camera,a câmera
+ITEM_NAME_FISHING,fishing rod,a vara de pesca
+ITEM_NAME_AXE,axe,o machado
+ITEM_NAME_THING,thing,a coisa
+INTERACT_ESCAPE,escape,fugir

@@ -36,7 +36,7 @@ func on_hand_tool_changed(hand_tool: HandTool) -> void:
 			text = axe_text
 			hide_indicator()
 	
-	indicator.text = start_text + text
+	indicator.text = tr(start_text) + tr(text)
 
 func update_indicator(interactable: Interactable) -> void:
 	if interactable == null:
@@ -44,9 +44,9 @@ func update_indicator(interactable: Interactable) -> void:
 		return
 	
 	if not interactable.custom_interact_text.is_empty():
-		indicator.text = start_text + interactable.custom_interact_text
+		indicator.text = tr(start_text) + tr(interactable.custom_interact_text)
 	else:
-		indicator.text = start_text + text
+		indicator.text = tr(start_text) + tr(text)
 	
 	indicator.show()
 

@@ -305,7 +305,7 @@ metadata/_custom_type_script = "uid://c5nru43e0eiis"
 
 [sub_resource type="Resource" id="Resource_48tcl"]
 script = ExtResource("10_dwd3o")
-text = "Collect 3 fruits and take them to the altar."
+text = "DEMAND_1"
 items = Array[ExtResource("11_0ebkc")]([SubResource("Resource_0ebkc")])
 fade_to_black = true
 metadata/_custom_type_script = "uid://bhxcormw418t5"
@@ -318,7 +318,7 @@ metadata/_custom_type_script = "uid://c5nru43e0eiis"
 
 [sub_resource type="Resource" id="Resource_dwd3o"]
 script = ExtResource("10_dwd3o")
-text = "Clean the rocky island and return the remains to the altar."
+text = "DEMAND_2"
 items = Array[ExtResource("11_0ebkc")]([SubResource("Resource_veval")])
 fade_to_black = true
 activate_node_with_name = "Camera"
@@ -332,7 +332,7 @@ metadata/_custom_type_script = "uid://c5nru43e0eiis"
 
 [sub_resource type="Resource" id="Resource_3viy2"]
 script = ExtResource("10_dwd3o")
-text = "Deliver 6 flowers to the altar."
+text = "DEMAND_4"
 items = Array[ExtResource("11_0ebkc")]([SubResource("Resource_onujg")])
 fade_to_black = true
 activate_node_with_name = "Vara"
@@ -346,7 +346,7 @@ metadata/_custom_type_script = "uid://c5nru43e0eiis"
 
 [sub_resource type="Resource" id="Resource_ho1os"]
 script = ExtResource("10_dwd3o")
-text = "Fish on the connected islands and bring 3 fish to the altar."
+text = "DEMAND_5"
 items = Array[ExtResource("11_0ebkc")]([SubResource("Resource_1n8u8")])
 fade_to_black = true
 metadata/_custom_type_script = "uid://bhxcormw418t5"
@@ -359,7 +359,7 @@ metadata/_custom_type_script = "uid://c5nru43e0eiis"
 
 [sub_resource type="Resource" id="Resource_x68vr"]
 script = ExtResource("10_dwd3o")
-text = "Offer 6 more fruits to the altar for the final feast."
+text = "DEMAND_6"
 items = Array[ExtResource("11_0ebkc")]([SubResource("Resource_ne7a3")])
 fade_to_black = true
 activate_node_with_name = "Ritual"
@@ -373,7 +373,7 @@ metadata/_custom_type_script = "uid://c5nru43e0eiis"
 
 [sub_resource type="Resource" id="Resource_8sejf"]
 script = ExtResource("10_dwd3o")
-text = "Enter the ritual and become the main course."
+text = "DEMAND_7"
 items = Array[ExtResource("11_0ebkc")]([SubResource("Resource_c6qah")])
 fade_to_black = true
 metadata/_custom_type_script = "uid://bhxcormw418t5"
@@ -636,7 +636,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3254089, -3.1464815, -13.73
 [node name="CaveToOutside" type="StaticBody3D" parent="TheBeach/Estrutural/Caverna" unique_id=1733206148]
 transform = Transform3D(0.7071069, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.7071069, 18.03376, -10.40951, 4.6541796)
 script = ExtResource("24_mwoe0")
-custom_interact_text = "exit the cave"
+custom_interact_text = "INTERACT_EXIT_CAVE"
 metadata/_custom_type_script = "uid://bc803sbdaqtqe"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Estrutural/Caverna/CaveToOutside" unique_id=1279645555]
@@ -707,7 +707,7 @@ collision_layer = 257
 script = ExtResource("53_vjpb8")
 requirements = Array[ExtResource("11_0ebkc")]([SubResource("Resource_g4v7s")])
 delete_node = NodePath("..")
-custom_interact_text = "unlock"
+custom_interact_text = "INTERACT_UNLOCK"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Estrutural/Caverna/Trancado/StaticBody3D" unique_id=1188273230]
 shape = SubResource("BoxShape3D_yf5fn")
@@ -745,7 +745,7 @@ grow_vertical = 2
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 24
-text = "[ LOCKED ]"
+text = "GATE_LOCKED"
 
 [node name="AxeSpot" type="Node3D" parent="TheBeach/Estrutural/Caverna" unique_id=1031926618]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0916793, -13.163139, -14.429493)
@@ -905,7 +905,7 @@ shape = SubResource("SphereShape3D_fcnqv")
 [node name="EnterCave" type="StaticBody3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna" unique_id=1987687007]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6584108, 0)
 script = ExtResource("24_mwoe0")
-custom_interact_text = "enter the cave"
+custom_interact_text = "INTERACT_ENTER_CAVE"
 metadata/_custom_type_script = "uid://bc803sbdaqtqe"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TheBeach/Areas/Cabeca/Decoracao/Caverna/EnterCave" unique_id=511769830]
@@ -1341,7 +1341,7 @@ requirements = Array[ExtResource("11_0ebkc")]([SubResource("Resource_vjpb8")])
 delete_node = NodePath("..")
 show_node = NodePath("../../BarcoHolder/barcomadeira")
 fade_time = 0.5
-custom_interact_text = "fix"
+custom_interact_text = "INTERACT_FIX"
 play_sfx_on_interact = false
 metadata/_custom_type_script = "uid://tl8ndvake8h"
 
